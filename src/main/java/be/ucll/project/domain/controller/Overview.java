@@ -12,6 +12,5 @@ public class Overview extends RequestHandler {
         request.setAttribute("last" , session.getAttribute("lastAddedUser"));
         request.setAttribute("users", service.getAll());
         return "users.jsp";
-
     }
 }

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -10,16 +11,9 @@
 <body>
 <div id="container">
     <header>
-        <h1>
-            <span>XXX</span>
-        </h1>
-        <nav>
-            <ul>
-                <li id="actual"><a href="Controller">Home</a></li>
-                <li><a href="Controller?command=Overview">Overview</a></li>
-                <li><a href="Controller?command=Register">Register</a></li>
-            </ul>
-        </nav>
+        <jsp:include page="header.jsp">
+            <jsp:param name="current" value=""/>
+        </jsp:include>
         <h2>Home</h2>
     </header>
     <main> Sed ut perspiciatis unde omnis iste natus error sit

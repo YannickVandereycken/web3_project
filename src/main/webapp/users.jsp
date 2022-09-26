@@ -9,17 +9,10 @@
 <body>
 <div id="container">
     <header>
-        <h1><span>XXX</span></h1>
-        <nav>
-            <ul>
-                <li><a href="Controller">Home</a></li>
-                <li id="actual"><a href="Controller?command=Overview">Overview</a></li>
-                <li><a href="Controller?command=Register">Register</a></li>
-            </ul>
-        </nav>
-        <h2>
-            User Overview
-        </h2>
+        <jsp:include page="header.jsp">
+            <jsp:param name="current" value=""/>
+        </jsp:include>
+        <h2>User Overview</h2>
     </header>
     <main>
         <table>
