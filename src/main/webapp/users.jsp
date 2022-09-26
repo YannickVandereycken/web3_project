@@ -24,9 +24,14 @@
     <main>
         <table>
             <tr>
-                <th>E-mail</th>
+                <th>User ID</th>
+                <th>Name</th>
                 <th>First Name</th>
-                <th>Last Name</th>
+                <th>Email</th>
+                <th>Team</th>
+                <th>Role</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
             <tr>
                 <td>jan.janssens@hotmail.com</td>
