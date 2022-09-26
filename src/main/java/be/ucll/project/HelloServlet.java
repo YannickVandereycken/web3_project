@@ -1,4 +1,4 @@
-package be.ucll.ip.web3.groep213;
+package be.ucll.project;
 
 import java.io.*;
 import javax.servlet.http.*;
