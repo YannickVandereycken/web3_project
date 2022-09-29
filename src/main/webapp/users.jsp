@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta charset="UTF-8">
@@ -27,11 +28,6 @@
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
-            <tr>
-                <td>jan.janssens@hotmail.com</td>
-                <td>Jan</td>
-                <td>Janssens</td>
-            </tr>
             <c:forEach var="u" items="${users}">
                 <tr>
                     <td>${u.userid}</td>
@@ -47,9 +43,7 @@
             <caption>Users Overview</caption>
         </table>
     </main>
-    <footer>
-        &copy; Webontwikkeling 3, UC Leuven-Limburg
-    </footer>
+    <footer>&copy; Webontwikkeling 3, UC Leuven-Limburg</footer>
 </div>
 </body>
 </html>

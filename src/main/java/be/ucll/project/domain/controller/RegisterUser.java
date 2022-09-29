@@ -1,6 +1,8 @@
 package be.ucll.project.domain.controller;
 
+import be.ucll.project.domain.model.Role;
 import be.ucll.project.domain.model.User;
+import be.ucll.project.domain.service.DbException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,10 +19,12 @@ public class RegisterUser extends RequestHandler{
         validateLastName(u, request, errors);
         validateEmail(u, request, errors);
         validatePassword(u, request, errors);
+        validateTeam(u, request, errors);
+        u.setRole(Role.EMPLOYEE);
         if (errors.size() == 0) {
             try {
                 service.add(u);
-                return "register.jsp";
+                return "Controller?command=Overview";
             } catch (IllegalArgumentException e) {
                 errors.add(e.getMessage());
             }
@@ -54,8 +58,12 @@ public class RegisterUser extends RequestHandler{
     private void validateEmail(User user, HttpServletRequest request, ArrayList<String> errors) {
         String email = request.getParameter("email");
         try {
+            service.uniqueEmail(email);
             user.setEmail(email);
             request.setAttribute("emailPrevious", email);
+        } catch (DbException e) {
+            errors.add(e.getMessage());
+            request.setAttribute("emailError", true);
         } catch (IllegalArgumentException e) {
             errors.add(e.getMessage());
             request.setAttribute("emailError", true);
@@ -70,6 +78,17 @@ public class RegisterUser extends RequestHandler{
         } catch (IllegalArgumentException e) {
             errors.add(e.getMessage());
             request.setAttribute("passwordError", true);
+        }
+    }
+
+    private void validateTeam(User user, HttpServletRequest request, ArrayList<String> errors) {
+        String team = request.getParameter("team");
+        try {
+            user.setTeam(team);
+            request.setAttribute("teamPrevious", team);
+        } catch (IllegalArgumentException e) {
+            errors.add(e.getMessage());
+            request.setAttribute("teamError", true);
         }
     }
 }

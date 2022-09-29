@@ -60,6 +60,12 @@ public class UserService {
         users.remove(userid);   // userid gaat verloren, maar wordt niet ingenomen door eventuele nieuwe user
     }
 
+    public void uniqueEmail(String email){
+        for(int i=1;i<users.size(); i++){
+            if (users.get(i).getEmail().equals(email)) throw new DbException("Email already used");
+        }
+    }
+
     public int getNumberOfUsers() {
         return users.size();
     }

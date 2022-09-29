@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta charset="UTF-8">
@@ -22,11 +22,10 @@
             <p class="alert-danger">${e}</p>
         </c:forEach>
         <form action="Controller" method="post" novalidate="novalidate">
-            <p><label for="firstName">First Name</label><input type="text" id="firstName" name="firstName" required
-                                                               value=""></p>
-            <p><label for="lastName">Last Name</label><input type="text" id="lastName" name="lastName" required></p>
-            <p><label for="email">Email</label><input type="email" id="email" name="email" required></p>
-            <p><label for="password">Password</label><input type="password" id="password" name="password" required></p>
+            <p><label for="firstName">First Name</label><input type="text" id="firstName" name="firstName" value="${namePrevious}" required autofocus></p>
+            <p><label for="lastName">Last Name</label><input type="text" id="lastName" name="lastName" value="${lastNamePrevious}" required></p>
+            <p><label for="email">Email</label><input type="email" id="email" name="email" value="${emailPrevious}" required></p>
+            <p><label for="password">Password</label><input type="password" id="password" name="password" value="${passwordPrevious}" required></p>
             <label for="team">Team</label>
             <select id="team" name="team">
                 <option value="ALPHA">Alpha</option>
