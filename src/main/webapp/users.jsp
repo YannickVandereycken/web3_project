@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,6 +32,18 @@
                 <td>Jan</td>
                 <td>Janssens</td>
             </tr>
+            <c:forEach var="u" items="${users}">
+                <tr>
+                    <td>${u.userid}</td>
+                    <td>${u.firstName}</td>
+                    <td>${u.lastName}</td>
+                    <td>${u.email}</td>
+                    <td>${u.team.stringValue}</td>
+                    <td>${u.role.stringValue}</td>
+                    <td><a href="Controller?command=Update&id=${u.userid}" id="update${u.userid}">Wijzig</a></td>
+                    <td><a href="Controller?command=Delete&id=${u.userid}" id="remove${u.userid}">Verwijder</a></td>
+                </tr>
+            </c:forEach>
             <caption>Users Overview</caption>
         </table>
     </main>

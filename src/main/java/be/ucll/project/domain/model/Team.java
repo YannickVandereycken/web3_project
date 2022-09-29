@@ -1,7 +1,7 @@
 package be.ucll.project.domain.model;
 
 public enum Team {
-    ALPHA("alpha"), BETA("beta"), GAMMA("gamma"), DELTA("delta"), EPSILON("epsilon");
+    ALPHA("Alpha"), BETA("Beta"), GAMMA("Gamma"), DELTA("Delta"), EPSILON("Epsilon");
 
     private String stringValue;
 

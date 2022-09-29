@@ -17,6 +17,13 @@ public class UserService {
         User director = new User("director@ucll.be", "t", "Ad", "Director", Team.ALPHA);
         director.setRole(Role.DIRECTOR);
         add(director);
+        User boss = new User("a@a.be","a","The","Boss",Team.ALPHA);
+        boss.setRole(Role.DIRECTOR);
+        add(boss);
+        User leader = new User("b@b.be","b","A","Leader",Team.BETA);
+        leader.setRole(Role.TEAMLEADER);
+        add(leader);
+        add(new User("c@c.be","c","Good","Employee",Team.BETA));
     }
 
     public User get(int userid) {

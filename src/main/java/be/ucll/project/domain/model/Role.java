@@ -1,7 +1,7 @@
 package be.ucll.project.domain.model;
 
 public enum Role {
-    DIRECTOR("director"), TEAMLEADER("teamleader"), EMPLOYEE("employee");
+    DIRECTOR("Director"), TEAMLEADER("Teamleader"), EMPLOYEE("Employee");
 
     private String stringValue;
 
