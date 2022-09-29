@@ -17,28 +17,29 @@
         <h2>Register</h2>
     </header>
     <main>
-        <div class="alert-danger">
-            <ul>
-                <li>Some error</li>
-            </ul>
-        </div>
-        <form novalidate="novalidate">
-            <!-- novalidate in order to be able to run tests correctly -->
-            <p><label for="userid">User id</label><input type="text" id="userid" name="userid"
-                                                         required></p>
-            <p><label for="firstName">First Name</label><input type="text" id="firstName" name="firstName"
-                                                               required value=""></p>
-            <p><label for="lastName">Last Name</label><input type="text" id="lastName" name="lastName"
-                                                             required></p>
+        <%--<div class="alert-danger"></div>--%>
+        <c:forEach var="e" items="${errors}">
+            <p class="alert-danger">${e}</p>
+        </c:forEach>
+        <form action="Controller" method="post" novalidate="novalidate">
+            <p><label for="firstName">First Name</label><input type="text" id="firstName" name="firstName" required
+                                                               value=""></p>
+            <p><label for="lastName">Last Name</label><input type="text" id="lastName" name="lastName" required></p>
             <p><label for="email">Email</label><input type="email" id="email" name="email" required></p>
-            <p><label for="password">Password</label><input type="password" id="password" name="password"
-                                                            required></p>
+            <p><label for="password">Password</label><input type="password" id="password" name="password" required></p>
+            <label for="team">Team</label>
+            <select id="team" name="team">
+                <option value="ALPHA">Alpha</option>
+                <option value="BETA">Beta</option>
+                <option value="GAMMA">Gamma</option>
+                <option value="DELTA">Delta</option>
+                <option value="EPSILON">Epsilon</option>
+            </select>
+            <input type="hidden" name="command" value="RegisterUser">
             <p><input type="submit" id="signUp" value="Sign Up"></p>
         </form>
     </main>
-    <footer>
-        &copy; Webontwikkeling 3, UC Leuven-Limburg
-    </footer>
+    <footer>&copy; Webontwikkeling 3, UC Leuven-Limburg</footer>
 </div>
 </body>
 </html>
