@@ -16,14 +16,29 @@
         </jsp:include>
         <h2>Home</h2>
     </header>
-    <main>
-        Sed ut perspiciatis unde omnis iste natus error sit
-        voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque
-        ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-        dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-        aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos
-        qui ratione voluptatem sequi nesciunt.
-    </main>
+    <c:choose>
+        <c:when test="${not empty username}">
+            <main>
+                <h3>Welcome, ${username}</h3>
+                <form action="Controller" method="post">
+                    <input type="hidden" name="command" value="LogOut">
+                    <p><input type="submit" id="logOut" value="Log Out"></p>
+                </form>
+            </main>
+        </c:when>
+        <c:otherwise>
+            <main>
+                <h3>Please Log In</h3>
+                <form action="Controller" method="post">
+                    <p><label for="email">E-mail:</label><input id="email" type="text" name="email"></p>
+                    <p><label for="password">Wachtwoord:</label><input id="password" type="text" name="password"></p>
+                    <input type="hidden" name="command" value="LogIn">
+                    <p><input type="submit" id="logIn" value="Log In"></p>
+                </form>
+            </main>
+        </c:otherwise>
+
+    </c:choose>
     <footer> &copy; Webontwikkeling 3, UC Leuven-Limburg</footer>
 </div>
 </body>
