@@ -17,13 +17,13 @@ public class UserService {
         User director = new User("director@ucll.be", "t", "Ad", "Director", Team.ALPHA);
         director.setRole(Role.DIRECTOR);
         add(director);
-        User boss = new User("a@a.be","a","The","Boss",Team.ALPHA);
+        User boss = new User("a@a.be", "a", "The", "Boss", Team.ALPHA);
         boss.setRole(Role.DIRECTOR);
         add(boss);
-        User leader = new User("b@b.be","b","A","Leader",Team.BETA);
+        User leader = new User("b@b.be", "b", "A", "Leader", Team.BETA);
         leader.setRole(Role.TEAMLEADER);
         add(leader);
-        add(new User("c@c.be","c","Good","Employee",Team.BETA));
+        add(new User("c@c.be", "c", "Good", "Employee", Team.BETA));
     }
 
     public User get(int userid) {
@@ -60,9 +60,16 @@ public class UserService {
         users.remove(userid);   // userid gaat verloren, maar wordt niet ingenomen door eventuele nieuwe user
     }
 
-    public void uniqueEmail(String email){
-        for(int i=1;i<users.size(); i++){
+    public void uniqueEmail(String email) {
+        for (int i = 1; i < users.size(); i++) {
             if (users.get(i).getEmail().equals(email)) throw new DbException("Email already used");
+        }
+    }
+
+    public void uniqueEditEmail(String email, int userid) {
+        for (int i = 1; i < users.size(); i++) {
+            if (!users.get(i).getEmail().equals(get(userid).getEmail()))
+                if (users.get(i).getEmail().equals(email)) throw new DbException("Email already used");
         }
     }
 

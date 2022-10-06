@@ -4,18 +4,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Home</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 <div id="container">
-    <header>
-        <jsp:include page="header.jsp">
-            <jsp:param name="current" value=""/>
-        </jsp:include>
-        <h2>Home</h2>
-    </header>
+    <jsp:include page="header.jsp">
+        <jsp:param name="current" value=""/>
+    </jsp:include>
+    <h2>Home</h2>
     <c:choose>
         <c:when test="${not empty username}">
             <main>
