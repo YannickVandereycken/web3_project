@@ -15,31 +15,40 @@
     </jsp:include>
     <h2>User Overview</h2>
     <main>
-        <table>
-            <caption>Users Overview</caption>
-            <tr>
-                <th>User ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Team</th>
-                <th>Role</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-            <c:forEach var="u" items="${users}">
-                <tr>
-                    <td>${u.userid}</td>
-                    <td>${u.firstName}</td>
-                    <td>${u.lastName}</td>
-                    <td>${u.email}</td>
-                    <td>${u.team.stringValue}</td>
-                    <td>${u.role.stringValue}</td>
-                    <td><a href="Controller?command=Update&id=${u.userid}" id="update${u.userid}">Wijzig</a></td>
-                    <td><a href="Controller?command=Delete&id=${u.userid}" id="remove${u.userid}">Verwijder</a></td>
-                </tr>
-            </c:forEach>
-        </table>
+        <c:choose>
+            <c:when test="${not empty users}">
+                <table>
+                    <caption>Users Overview</caption>
+                    <tr>
+                        <th>User ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Team</th>
+                        <th>Role</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    <c:forEach var="u" items="${users}">
+                        <tr>
+                            <td>${u.userid}</td>
+                            <td>${u.firstName}</td>
+                            <td>${u.lastName}</td>
+                            <td>${u.email}</td>
+                            <td>${u.team.stringValue}</td>
+                            <td>${u.role.stringValue}</td>
+                            <td><a href="Controller?command=Update&id=${u.userid}" id="update${u.userid}">Wijzig</a>
+                            </td>
+                            <td><a href="Controller?command=Delete&id=${u.userid}" id="remove${u.userid}">Verwijder</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </c:when>
+            <c:otherwise>
+                <p>These aren't the users you are looking for.</p>
+            </c:otherwise>
+        </c:choose>
     </main>
     <footer>&copy; Webontwikkeling 3, UC Leuven-Limburg</footer>
 </div>
