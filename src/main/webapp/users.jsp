@@ -3,25 +3,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>Overview</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 <div id="container">
-    <header>
-        <jsp:include page="header.jsp">
-            <jsp:param name="current" value=""/>
-        </jsp:include>
-        <h2>User Overview</h2>
-    </header>
+    <jsp:include page="header.jsp">
+        <jsp:param name="current" value=""/>
+    </jsp:include>
+    <h2>User Overview</h2>
     <main>
         <table>
+            <caption>Users Overview</caption>
             <tr>
                 <th>User ID</th>
-                <th>Name</th>
                 <th>First Name</th>
+                <th>Last Name</th>
                 <th>Email</th>
                 <th>Team</th>
                 <th>Role</th>
@@ -40,7 +39,6 @@
                     <td><a href="Controller?command=Delete&id=${u.userid}" id="remove${u.userid}">Verwijder</a></td>
                 </tr>
             </c:forEach>
-            <caption>Users Overview</caption>
         </table>
     </main>
     <footer>&copy; Webontwikkeling 3, UC Leuven-Limburg</footer>
