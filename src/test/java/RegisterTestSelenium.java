@@ -9,7 +9,6 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -21,7 +20,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
         </dependency>
 */
 
-public class RegisterTest {
+public class RegisterTestSelenium {
 	private WebDriver driver;
 	private String path = "http://localhost:8080/groep2_13_war_exploded/Controller";
 	
