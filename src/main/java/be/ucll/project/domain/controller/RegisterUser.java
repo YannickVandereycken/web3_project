@@ -25,12 +25,12 @@ public class RegisterUser extends RequestHandler{
             try {
                 service.add(u);
                 return "Controller?command=Overview";
-            } catch (IllegalArgumentException e) {
+            } catch (DbException | IllegalArgumentException e) {
                 errors.add(e.getMessage());
             }
         }
         request.setAttribute("errors", errors);
-        return "register.jsp";
+        return "Controller?command=Register";
     }
 
     private void validateName(User user, HttpServletRequest request, ArrayList<String> errors) {
@@ -61,10 +61,7 @@ public class RegisterUser extends RequestHandler{
             service.uniqueEmail(email);
             user.setEmail(email);
             request.setAttribute("emailPrevious", email);
-        } catch (DbException e) {
-            errors.add(e.getMessage());
-            request.setAttribute("emailError", true);
-        } catch (IllegalArgumentException e) {
+        } catch (DbException | IllegalArgumentException e) {
             errors.add(e.getMessage());
             request.setAttribute("emailError", true);
         }

@@ -61,15 +61,22 @@ public class UserService {
     }
 
     public void uniqueEmail(String email) {
-        for (int i = 1; i < users.size(); i++) {
-            if (users.get(i).getEmail().equals(email)) throw new DbException("Email already used");
+        int size = users.size();
+        for (int i = 1; i <= size; i++) {
+            System.out.println(size);
+            if (users.get(i) == null) size++;
+            if (users.get(i) != null)
+                if (users.get(i).getEmail().equals(email)) throw new DbException("Email already used");
         }
     }
 
     public void uniqueEditEmail(String email, int userid) {
-        for (int i = 1; i < users.size(); i++) {
-            if (!users.get(i).getEmail().equals(get(userid).getEmail()))
-                if (users.get(i).getEmail().equals(email)) throw new DbException("Email already used");
+        int size = users.size();
+        for (int i = 1; i <= size; i++) {
+            if (users.get(i) == null) size++;
+            if (users.get(i) != null)
+                if (!users.get(i).getEmail().equals(get(userid).getEmail()))
+                    if (users.get(i).getEmail().equals(email)) throw new DbException("Email already used");
         }
     }
 
