@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.firefox.FirefoxDriver;
 /* add dependency to your pom.xml 
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
@@ -23,8 +24,8 @@ public class SeleniumWorksWellTest {
 
 		@Before
 		public void setUp() throws Exception {
-			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
+			WebDriverManager.firefoxdriver().setup();
+			driver = new FirefoxDriver();
 			driver.get("https://nl.wikipedia.org/wiki/Hoofdpagina");
 		}
 
