@@ -37,10 +37,8 @@
                             <td>${u.email}</td>
                             <td>${u.team.stringValue}</td>
                             <td>${u.role.stringValue}</td>
-                            <td><a href="Controller?command=Update&id=${u.userid}" id="update${u.userid}">Wijzig</a>
-                            </td>
-                            <td><a href="Controller?command=Delete&id=${u.userid}" id="remove${u.userid}">Verwijder</a>
-                            </td>
+                            <td><a href="Controller?command=Update&id=${u.userid}" id="update${u.userid}">Edit</a></td>
+                            <td><a href="Controller?command=Delete&id=${u.userid}" id="delete${u.userid}">Delete</a></td>
                         </tr>
                     </c:forEach>
                 </table>

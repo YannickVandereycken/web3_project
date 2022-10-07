@@ -13,7 +13,24 @@ public class OverviewPage extends Page {
         this.driver.get(getPath() + "?command=Overview");
     }
 
-    public boolean containsAnimalWithName(String name) {
+    public void deleteUserWithId(int id) {
+        WebElement deleteButton = driver.findElement(By.id("delete"+id));
+        deleteButton.click();
+    }
+    public void deleteUserWithIdUrl(int id) {
+        this.driver.get(Config.BASE_URL + "?command=Delete&id="+id);
+    }
+
+    public void editUserWithId(int id) {
+        WebElement deleteButton = driver.findElement(By.id("update"+id));
+        deleteButton.click();
+    }
+    public void editUserWithIdUrl(int id) {
+        this.driver.get(Config.BASE_URL + "?command=Update&id="+id);
+    }
+
+
+    public boolean containsUserWithName(String name) {
         ArrayList<WebElement> listItems = (ArrayList<WebElement>) this.driver.findElements(By.cssSelector("td"));
         boolean found = false;
         for (WebElement listItem : listItems) {

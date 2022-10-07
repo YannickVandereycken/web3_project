@@ -43,7 +43,7 @@
             </select>
             <input type="hidden" name="id" value="${update.userid}">
             <input type="hidden" name="command" value="UpdateUser">
-            <p><input type="submit" id="signUp" value="Update"></p>
+            <p><input type="submit" id="update" value="Update"></p>
         </form>
     </main>
     <footer>&copy; Webontwikkeling 3, UC Leuven-Limburg</footer>

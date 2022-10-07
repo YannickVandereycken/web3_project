@@ -30,7 +30,7 @@ public class RegisterTest {
     }
 
     @Test
-    public void given_allFieldsFilledInCorrectly_when_animalAdded_then_animalIsAdded() {
+    public void given_allFieldsFilledInCorrectly_when_userAdded_then_userIsAdded() {
         // GIVEN STEP = context
         RegisterPage registerPage = PageFactory.initElements(driver, RegisterPage.class);
         registerPage.setFirstName(firstName);
@@ -44,11 +44,11 @@ public class RegisterTest {
         // THEN STEP = result
         OverviewPage overviewPage = PageFactory.initElements(driver, OverviewPage.class);
         assertEquals("Overview", overviewPage.getTitle());
-        assertTrue(overviewPage.containsAnimalWithName(firstName));
+        assertTrue(overviewPage.containsUserWithName(firstName));
     }
 
     @Test
-    public void given_nameNotFilledIn_when_animalAdded_then_errorMessageGivenForNameAndOtherFieldsValueAreKept(){
+    public void given_nameNotFilledIn_when_userAdded_then_errorMessageGivenForNameAndOtherFieldsValueAreKept(){
         // GIVEN STEP = context
         RegisterPage registerPage = PageFactory.initElements(driver, RegisterPage.class);
         registerPage.setFirstName("");
