@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/Controller")
@@ -31,10 +32,16 @@ public class Controller extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String destination = "index.jsp";
         String command = request.getParameter("command");
 
-        if (command != null) {
+        if (command != null && session.getAttribute("username") != null) {
+            RequestHandler handler = handlerFactory.getHandler(command, service);
+            destination = handler.handleRequest(request, response);
+        }
+
+        if (command != null && command.equals("LogIn")) {
             RequestHandler handler = handlerFactory.getHandler(command, service);
             destination = handler.handleRequest(request, response);
         }

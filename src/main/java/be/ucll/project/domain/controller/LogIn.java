@@ -22,7 +22,7 @@ public class LogIn extends RequestHandler{
                 succesful=true;
             }
         }
-        if(succesful=false)
+        if(succesful==false)
             request.setAttribute("error", "No valid email/password");
         return "index.jsp";
     }
