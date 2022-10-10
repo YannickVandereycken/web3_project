@@ -1,11 +1,8 @@
-package be.ucll.project.domain.controller;
-
-import be.ucll.project.domain.model.User;
+package ui.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 
 public class DeleteUser extends RequestHandler {
     @Override

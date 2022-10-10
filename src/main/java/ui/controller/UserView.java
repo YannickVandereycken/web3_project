@@ -1,6 +1,4 @@
-package be.ucll.project.domain.controller;
-
-import be.ucll.project.domain.model.User;
+package ui.controller;
 
 import java.sql.*;
 import java.util.Properties;
@@ -19,7 +17,7 @@ public class UserView {
         Properties properties = new Properties();
 
         try {
-            Class.forName("be.ucll.project.domain.controller.Credentials");
+            Class.forName("ui.controller.Credentials");
             Credentials.setPass(properties);
         } catch (ClassNotFoundException e) {
             System.out.println("Class Credentials with credentials not found");

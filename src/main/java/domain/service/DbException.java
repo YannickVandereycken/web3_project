@@ -1,4 +1,4 @@
-package be.ucll.project.domain.service;
+package domain.service;
 
 public class DbException extends RuntimeException {
 	private static final long serialVersionUID = 1L;

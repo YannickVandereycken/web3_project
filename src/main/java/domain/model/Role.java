@@ -1,4 +1,4 @@
-package be.ucll.project.domain.model;
+package domain.model;
 
 public enum Role {
     DIRECTOR("Director"), TEAMLEADER("Teamleader"), EMPLOYEE("Employee");

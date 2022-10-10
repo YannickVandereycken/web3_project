@@ -1,4 +1,4 @@
-package be.ucll.project.domain.controller;
+package ui.controller;
 
 import java.util.Properties;
 

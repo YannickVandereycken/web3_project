@@ -1,6 +1,6 @@
-package be.ucll.project.domain.controller;
+package ui.controller;
 
-import be.ucll.project.domain.model.User;
+import domain.model.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

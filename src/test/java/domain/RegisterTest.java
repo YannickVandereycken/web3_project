@@ -22,6 +22,10 @@ public class RegisterTest {
     @Before
     public void setUp() {
         driver = DriverHelper.getDriver();
+
+        //Login for tests
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.logIn();
     }
 
     @After

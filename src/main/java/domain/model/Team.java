@@ -1,4 +1,4 @@
-package be.ucll.project.domain.model;
+package domain.model;
 
 public enum Team {
     ALPHA("Alpha"), BETA("Beta"), GAMMA("Gamma"), DELTA("Delta"), EPSILON("Epsilon");

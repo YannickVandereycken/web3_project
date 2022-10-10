@@ -1,6 +1,6 @@
-package be.ucll.project.domain.controller;
+package ui.controller;
 
-import be.ucll.project.domain.service.UserService;
+import domain.service.UserService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
