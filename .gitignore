@@ -40,3 +40,4 @@ build/
 ### UCLL ###
 .idea/
 out/
+/src/main/java/be/ucll/project/domain/controller/Secret.java
