@@ -1,4 +1,4 @@
-package ui.controller;
+package ui.view;
 
 import java.util.Properties;
 

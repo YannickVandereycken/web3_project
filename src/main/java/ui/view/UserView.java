@@ -1,4 +1,4 @@
-package ui.controller;
+package ui.view;
 
 import java.sql.*;
 import java.util.Properties;
@@ -17,7 +17,7 @@ public class UserView {
         Properties properties = new Properties();
 
         try {
-            Class.forName("ui.controller.Credentials");
+            Class.forName("ui.view.Credentials");
             Credentials.setPass(properties);
         } catch (ClassNotFoundException e) {
             System.out.println("Class Credentials with credentials not found");

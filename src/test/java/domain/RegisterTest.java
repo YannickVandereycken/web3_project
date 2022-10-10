@@ -39,7 +39,7 @@ public class RegisterTest {
         RegisterPage registerPage = PageFactory.initElements(driver, RegisterPage.class);
         registerPage.setFirstName(firstName);
         registerPage.setLastName(lastName);
-        registerPage.setEmail(email);
+        registerPage.setEmail("bab@bouwer.be");
         registerPage.setPassword(password);
 
         // WHEN STEP = action
