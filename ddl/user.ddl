@@ -25,8 +25,8 @@ grant all on sequence groep2_13.user_id_seq to local_r0854458, local_r0663460, r
 grant all on all tables in schema groep2_13 to local_r0854458, local_r0663460, r0854458, r0663460, local_u0015529, local_u0034562;
 
 
-INSERT INTO groep2_13.users(userid, password)
-VALUES (1, 'test');
+INSERT INTO groep2_13.users(userid, first_name, last_name, email, role, team, password)
+VALUES (1, 'bob', 'de bouwer', 'bob@debouwer.be','employee','alpha','b');
 
 set search_path to groep2_13;
 select *
