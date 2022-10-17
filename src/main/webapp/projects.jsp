@@ -13,7 +13,7 @@
     <jsp:include page="header.jsp">
         <jsp:param name="current" value=""/>
     </jsp:include>
-    <h2>User Overview</h2>
+    <h2>Project Overview</h2>
     <main>
         <c:choose>
             <c:when test="${not empty projects}">
