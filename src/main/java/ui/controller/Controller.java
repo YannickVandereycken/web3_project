@@ -36,15 +36,20 @@ public class Controller extends HttpServlet {
         String destination = "index.jsp";
         String command = request.getParameter("command");
 
-        if (command != null && session.getAttribute("username") != null) {
+        if (command != null){
             RequestHandler handler = handlerFactory.getHandler(command, service);
             destination = handler.handleRequest(request, response);
         }
 
-        if (command != null && command.equals("LogIn")) {
-            RequestHandler handler = handlerFactory.getHandler(command, service);
-            destination = handler.handleRequest(request, response);
-        }
+//        if (command != null && session.getAttribute("username") != null) {
+//            RequestHandler handler = handlerFactory.getHandler(command, service);
+//            destination = handler.handleRequest(request, response);
+//        }
+
+//        if (command != null && command.equals("LogIn")) {
+//            RequestHandler handler = handlerFactory.getHandler(command, service);
+//            destination = handler.handleRequest(request, response);
+//        }
 
         RequestDispatcher view = request.getRequestDispatcher(destination);
         view.forward(request, response);
