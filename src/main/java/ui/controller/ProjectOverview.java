@@ -7,6 +7,7 @@ public class ProjectOverview extends RequestHandler{
 
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
-        return null;
+        request.setAttribute("projects", projectService.getAll());
+        return "projects.jsp";
     }
 }
