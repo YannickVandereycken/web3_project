@@ -35,8 +35,8 @@
                             <td>${p.team.stringValue}</td>
                             <td>${p.startDate}</td>
                             <td>${not empty p.endDate? p.endDate : ""}</td>
-                            <td><a href="Controller?command=Update&id=${p.projectId}" id="update${p.projectId}">Edit</a></td>
-                            <td><a href="Controller?command=Delete&id=${p.projectId}" id="delete${p.projectId}">Delete</a></td>
+                            <td><a href="Controller?command=UpdateProject&id=${p.projectId}" id="update${p.projectId}">Edit</a></td>
+                            <td><a href="Controller?command=DeleteProject&id=${p.projectId}" id="delete${p.projectId}">Delete</a></td>
                         </tr>
                     </c:forEach>
                 </table>
