@@ -35,7 +35,7 @@
                             <td>${o.name} (${o.team.stringValue})</td>
                             <td>${o.date}</td>
                             <td>from ${o.startTime} to ${o.endTime}</td>
-                            <td>${o.totalTime}</td>
+                            <td>${o.totalTime} min.</td>
                             <td>${o.description}</td>
                             <td><a href="Controller?command=UpdateOrder&id=${o.workOrderId}"
                                    id="update${o.workOrderId}">Edit</a></td>

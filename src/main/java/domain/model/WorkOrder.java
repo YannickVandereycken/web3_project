@@ -2,6 +2,8 @@ package domain.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.time.temporal.ChronoUnit;
 
 public class WorkOrder {
@@ -59,8 +61,8 @@ public class WorkOrder {
         }
     }
 
-    public LocalDate getDate() {
-        return date;
+    public String getDate() {
+        return date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
     }
 
     public void setDate(LocalDate date) {

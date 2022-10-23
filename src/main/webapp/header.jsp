@@ -8,9 +8,9 @@
             <li><a href="Controller?command=Overview">Users</a></li>
             <li><a href="Controller?command=Register">Register</a></li>
             <li><a href="Controller?command=ProjectOverview">Projects</a></li>
-            <li><a href="Controller?command=AddProject">Add Project</a></li>
+            <li><a href="Controller?command=RegisterP">Add Project</a></li>
             <li><a href="Controller?command=OrderOverview">Work Orders</a></li>
-            <%--            <li><a href="Controller?command=AddOrder">Add Work Order</a></li>--%>
+            <li><a href="Controller?command=RegisterO">Add Work Order</a></li>
         </ul>
     </nav>
 </header>
