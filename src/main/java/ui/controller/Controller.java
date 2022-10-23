@@ -2,6 +2,7 @@ package ui.controller;
 
 import domain.service.ProjectService;
 import domain.service.UserService;
+import domain.service.WorkOrderService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,6 +19,8 @@ public class Controller extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private UserService service = new UserService();
     private ProjectService projectService = new ProjectService();
+
+    private WorkOrderService workOrderService = new WorkOrderService();
     private HandlerFactory handlerFactory = new HandlerFactory();
 
     public Controller() {
@@ -39,7 +42,7 @@ public class Controller extends HttpServlet {
         String command = request.getParameter("command");
 
         if (command != null){
-            RequestHandler handler = handlerFactory.getHandler(command, service, projectService);
+            RequestHandler handler = handlerFactory.getHandler(command, service, projectService, workOrderService);
             destination = handler.handleRequest(request, response);
         }
 

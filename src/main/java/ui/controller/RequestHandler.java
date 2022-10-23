@@ -2,6 +2,7 @@ package ui.controller;
 
 import domain.service.ProjectService;
 import domain.service.UserService;
+import domain.service.WorkOrderService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,7 +11,9 @@ public abstract class RequestHandler {
     protected UserService service;
     protected ProjectService projectService;
 
-    public abstract String handleRequest (HttpServletRequest request, HttpServletResponse response);
+    protected WorkOrderService workOrderService;
+
+    public abstract String handleRequest(HttpServletRequest request, HttpServletResponse response);
 
     public UserService getService() {
         return service;
@@ -20,7 +23,19 @@ public abstract class RequestHandler {
         this.service = service;
     }
 
-    public ProjectService getProjectService() {return projectService;}
+    public ProjectService getProjectService() {
+        return projectService;
+    }
 
-    public void setProjectService(ProjectService service){this.projectService=service;}
+    public void setProjectService(ProjectService service) {
+        this.projectService = service;
+    }
+
+    public WorkOrderService getWorkOrderService() {
+        return workOrderService;
+    }
+
+    public void setWorkOrderService(WorkOrderService workOrderService) {
+        this.workOrderService = workOrderService;
+    }
 }

@@ -9,15 +9,14 @@ public class Project {
     private LocalDate startDate;
     private LocalDate endDate;
 
-    public Project(String name, Team team, LocalDate startDate, LocalDate endDate){
+    public Project(String name, Team team, LocalDate startDate, LocalDate endDate) {
         setName(name);
         setTeam(team);
         setStartDate(startDate);
         setEndDate(endDate);
     }
 
-    public Project(){
-
+    public Project() {
     }
 
     public int getProjectId() {
@@ -43,6 +42,7 @@ public class Project {
     public void setTeam(Team team) {
         this.team = team;
     }
+
     public void setTeam(String team) {
         try {
             this.team = Team.valueOf(team.toUpperCase());
@@ -66,6 +66,4 @@ public class Project {
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
-
-
 }
