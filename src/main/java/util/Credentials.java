@@ -1,4 +1,4 @@
-package ui.view;
+package util;
 
 import java.util.Properties;
 

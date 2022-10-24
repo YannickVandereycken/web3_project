@@ -15,7 +15,7 @@ public class LogIn extends RequestHandler{
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         boolean succesful = false;
-        List<User> users= service.getAll();
+        List<User> users= service.getAllUsers();
         for(User u : users){
             if(u.getEmail().equals(email) && u.isCorrectPassword(password)){
                 session.setAttribute("username", u.getFirstName());

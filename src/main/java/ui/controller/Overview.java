@@ -9,7 +9,7 @@ public class Overview extends RequestHandler {
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         request.setAttribute("last" , session.getAttribute("lastAddedUser"));
-        request.setAttribute("users", service.getAll());
+        request.setAttribute("users", service.getAllUsers());
         return "users.jsp";
     }
 }

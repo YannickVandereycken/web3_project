@@ -1,5 +1,6 @@
 package ui.controller;
 
+import domain.service.AppService;
 import domain.service.ProjectService;
 import domain.service.UserService;
 import domain.service.WorkOrderService;
@@ -17,7 +18,7 @@ import java.io.IOException;
 public class Controller extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private UserService service = new UserService();
+    private AppService service = new AppService();
     private ProjectService projectService = new ProjectService();
 
     private WorkOrderService workOrderService = new WorkOrderService();

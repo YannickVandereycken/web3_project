@@ -1,5 +1,6 @@
 package ui.controller;
 
+import domain.service.AppService;
 import domain.service.ProjectService;
 import domain.service.UserService;
 import domain.service.WorkOrderService;
@@ -8,18 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public abstract class RequestHandler {
-    protected UserService service;
+    protected AppService service;
     protected ProjectService projectService;
 
     protected WorkOrderService workOrderService;
 
     public abstract String handleRequest(HttpServletRequest request, HttpServletResponse response);
 
-    public UserService getService() {
+    public AppService getService() {
         return service;
     }
 
-    public void setService(UserService service) {
+    public void setService(AppService service) {
         this.service = service;
     }
 

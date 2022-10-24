@@ -22,7 +22,7 @@ public class RegisterProject extends RequestHandler {
         validateStartDate(p, request, errors);
         //validateEndDate(p, request, errors);
         String username = (String) session.getAttribute("username");
-        for (User u : service.getAll()) {
+        for (User u : service.getAllUsers()) {
             if (u.getFirstName().equals(username)) {
                 p.setTeam(u.getTeam());
                 break;

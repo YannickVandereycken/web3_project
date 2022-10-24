@@ -1,7 +1,6 @@
-package ui.view;
+package util;
 
-import domain.model.Team;
-import domain.model.User;
+import util.Secret;
 
 import java.sql.*;
 import java.util.Properties;
@@ -17,7 +16,7 @@ public class UserView {
         Properties properties = new Properties();
 
         try {
-            Class.forName("ui.view.Secret");
+            Class.forName("util.Secret");
             Secret.setPass(properties);
         } catch (ClassNotFoundException e) {
             System.out.println("Class Secret with credentials not found");

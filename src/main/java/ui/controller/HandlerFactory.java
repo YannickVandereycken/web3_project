@@ -1,12 +1,13 @@
 package ui.controller;
 
+import domain.service.AppService;
 import domain.service.ProjectService;
 import domain.service.UserService;
 import domain.service.WorkOrderService;
 
 public class HandlerFactory {
 
-    public RequestHandler getHandler(String command, UserService service, ProjectService projectService, WorkOrderService workOrderService) {
+    public RequestHandler getHandler(String command, AppService service, ProjectService projectService, WorkOrderService workOrderService) {
         RequestHandler handler = null;
         try {
             Class handlerClass = Class.forName("ui.controller." + command);

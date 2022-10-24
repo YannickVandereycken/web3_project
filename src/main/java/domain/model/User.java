@@ -26,6 +26,12 @@ public class User {
         this.setUserid(userid);
     }
 
+    public User(int userid, String email, String password, String firstName, String lastName, Team team, Role role) {
+        this(email, password, firstName, lastName, team);
+        setRole(role);
+        this.setUserid(userid);
+    }
+
     public User() {
     }
 
@@ -57,7 +63,7 @@ public class User {
         return email;
     }
 
-    private String getPassword() {
+    public String getPassword() {
         return password;
     }
 
