@@ -37,9 +37,9 @@
                             <td>from ${o.startTime} to ${o.endTime}</td>
                             <td>${o.totalTime} min.</td>
                             <td>${o.description}</td>
-                            <td><a href="Controller?command=UpdateOrder&id=${o.workOrderId}"
+                            <td><a href="Controller?command=UpdateO&id=${o.workOrderId}"
                                    id="update${o.workOrderId}">Edit</a></td>
-                            <td><a href="Controller?command=DeleteOrder&id=${o.workOrderId}"
+                            <td><a href="Controller?command=DeleteO&id=${o.workOrderId}"
                                    id="delete${o.workOrderId}">Delete</a></td>
                         </tr>
                     </c:forEach>
