@@ -22,14 +22,14 @@ public class UserServiceDBSQL implements UserService {
     public void add(User user) {
         String query = String.format("insert into %s.users (first_name, last_name, email, role, team, password) values (?,?,?,?,?,?)", schema);
         try {
-            PreparedStatement preparedStatement = getConnection().prepareStatement(query);
-            preparedStatement.setString(1, user.getFirstName());
-            preparedStatement.setString(2, user.getLastName());
-            preparedStatement.setString(3, user.getEmail());
-            preparedStatement.setString(4, user.getRole().getStringValue());
-            preparedStatement.setString(5, user.getTeam().getStringValue());
-            preparedStatement.setString(6, user.getPassword());
-            preparedStatement.execute();
+            PreparedStatement statement = getConnection().prepareStatement(query);
+            statement.setString(1, user.getFirstName());
+            statement.setString(2, user.getLastName());
+            statement.setString(3, user.getEmail());
+            statement.setString(4, user.getRole().getStringValue());
+            statement.setString(5, user.getTeam().getStringValue());
+            statement.setString(6, user.getPassword());
+            statement.execute();
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         }

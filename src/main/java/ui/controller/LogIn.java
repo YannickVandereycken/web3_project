@@ -19,6 +19,7 @@ public class LogIn extends RequestHandler{
         for(User u : users){
             if(u.getEmail().equals(email) && u.isCorrectPassword(password)){
                 session.setAttribute("username", u.getFirstName());
+                session.setAttribute("team", u.getTeam());
                 succesful=true;
             }
         }

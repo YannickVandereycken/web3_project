@@ -24,10 +24,25 @@ CREATE TABLE groep2_13.users
     CONSTRAINT pk_user PRIMARY KEY (userid)
 );
 
+CREATE SEQUENCE groep2_13.workorder_id_seq;
+
+CREATE TABLE groep2_13.workorders
+(
+    workorderid integer     NOT NULL DEFAULT nextval('groep2_13.workorder_id_seq'::regclass),
+    name        char(40)    NOT NULL,
+    team        char(40)    NOT NULL,
+    date        date        NOT NULL,
+    start_time  time        NOT NULL,
+    end_time    time        NOT NULL,
+    description char(100)   NOT NULL,
+    CONSTRAINT pk_workorder PRIMARY KEY (workorderid)
+);
+
 grant all on schema groep2_13 to local_r0854458, local_r0663460, r0854458, r0663460, local_u0015529, local_u0034562;
-grant all on sequence groep2_13.user_id_seq to local_r0854458, local_r0663460, r0854458, r0663460, local_u0015529, local_u0034562;
+grant all on all SEQUENCES IN SCHEMA groep2_13 to local_r0854458, local_r0663460, r0854458, r0663460, local_u0015529, local_u0034562;
 grant all on all tables in schema groep2_13 to local_r0854458, local_r0663460, r0854458, r0663460, local_u0015529, local_u0034562;
 
+--grant all on sequence groep2_13.user_id_seq to local_r0854458, local_r0663460, r0854458, r0663460, local_u0015529, local_u0034562;
 
 -- director@ucll.be met wachtwoord t (rol: director; team: Alpha)
 -- teamleader@ucll.be met wachtwoord t (rol: teamleader; team: Beta)

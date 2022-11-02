@@ -1,9 +1,6 @@
 package ui.controller;
 
-import domain.service.AppService;
-import domain.service.ProjectService;
-import domain.service.UserService;
-import domain.service.WorkOrderService;
+import domain.service.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,7 +18,7 @@ public class Controller extends HttpServlet {
     private AppService service = new AppService();
     private ProjectService projectService = new ProjectService();
 
-    private WorkOrderService workOrderService = new WorkOrderService();
+    private WorkOrderService workOrderService = new WorkOrderServiceDBSQL();
     private HandlerFactory handlerFactory = new HandlerFactory();
 
     public Controller() {

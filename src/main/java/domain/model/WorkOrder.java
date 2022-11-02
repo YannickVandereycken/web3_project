@@ -1,5 +1,7 @@
 package domain.model;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -25,8 +27,12 @@ public class WorkOrder {
         setDescription(description);
     }
 
-    public WorkOrder() {
+    public WorkOrder(int workOrderId, String name, Team team, LocalDate date, LocalTime startTime, LocalTime endTime, String description) {
+        this(name, team, date, startTime, endTime, description);
+        setWorkOrderId(workOrderId);
+    }
 
+    public WorkOrder() {
     }
 
     public int getWorkOrderId() {
@@ -65,6 +71,11 @@ public class WorkOrder {
         return date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
     }
 
+    public Date getDateSQL() {
+        //return date.format(DateTimeFormatter.ISO_LOCAL_DATE);
+        return Date.valueOf(date);
+    }
+
     public void setDate(LocalDate date) {
         this.date = date;
     }
@@ -73,12 +84,20 @@ public class WorkOrder {
         return startTime;
     }
 
+    public Time getStartTimeSQL() {
+        return Time.valueOf(startTime);
+    }
+
     public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 
     public LocalTime getEndTime() {
         return endTime;
+    }
+
+    public Time getEndTimeSQL() {
+        return Time.valueOf(endTime);
     }
 
     public void setEndTime(LocalTime endTime) {

@@ -35,7 +35,6 @@
                 </form>
             </main>
         </c:otherwise>
-
     </c:choose>
     <footer> &copy; Webontwikkeling 3, UC Leuven-Limburg</footer>
 </div>
