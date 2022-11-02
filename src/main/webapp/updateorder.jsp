@@ -5,7 +5,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
-    <title>Register Order</title>
+    <title>Edit Workorder</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
@@ -13,27 +13,27 @@
     <jsp:include page="header.jsp">
         <jsp:param name="current" value=""/>
     </jsp:include>
-    <h2>Register Work Order</h2>
+    <h2>Edit Workorder</h2>
     <main>
-        <p>Do you want to register a workorder, ${username} (${team})?</p>
+        <h3>Edit work order of ${update.name} (${update.team})</h3>
         <%--<div class="alert-danger"></div>--%>
         <c:forEach var="e" items="${errors}">
             <p class="alert-danger">${e}</p>
         </c:forEach>
         <form action="Controller" method="post" novalidate="novalidate">
-            <p>${datePrevious}</p>
-            <p><label for="date">Date</label><input type="date" id="date" name="date"
-                                                    value="${datePrevious}" required autofocus></p>
+            <p><label for="date">Date</label><input type="date" id="date" name="date" value="${update.dateSQL}" required
+                                                    autofocus></p>
             <p><label for="starttime">Start time</label><input type="time" id="starttime" name="starttime"
-                                                               value="${starttimePrevious}" required></p>
+                                                               value="${update.startTime}" required></p>
             <p><label for="endtime">End time</label><input type="time" id="endtime" name="endtime"
-                                                           value="${endtimePrevious}" required></p>
+                                                           value="${update.endTime}" required></p>
             <p><label for="description">Description</label><input type="text" id="description" name="description"
-                                                                  value="${descriptionPrevious}"></p>
-            <input type="hidden" name="name" value="${username}">
-            <input type="hidden" name="team" value="${team}">
-            <input type="hidden" name="command" value="RegisterOrder">
-            <p><input type="submit" id="register" value="Register"></p>
+                                                                  value="${update.description}"></p>
+            <input type="hidden" name="name" value="${update.name}">
+            <input type="hidden" name="team" value="${update.team}">
+            <input type="hidden" name="id" value="${update.workOrderId}">
+            <input type="hidden" name="command" value="UpdateOrder">
+            <p><input type="submit" id="update" value="Update"></p>
         </form>
     </main>
     <footer>&copy; Webontwikkeling 3, UC Leuven-Limburg</footer>

@@ -73,19 +73,17 @@ public class WorkOrderServiceDBSQL implements WorkOrderService {
     @Override
     public void update(WorkOrder workOrder) {
         ArrayList<WorkOrder> workOrders = new ArrayList<>();
-        String sql = String.format("UPDATE from %s.workorders set name=?, team=?, date=?, start_time=?, end_time=?, description=?, where workorderid=?;", schema);
+        String sql = String.format("UPDATE %s.workorders set name=?, team=?, date=?, start_time=?, end_time=?, description=? where workorderid=?;", schema);
         try {
             PreparedStatement statement = getConnection().prepareStatement(sql);
             statement.setString(1, workOrder.getName());
             statement.setString(2, workOrder.getTeam().getStringValue());
-            statement.setString(3, workOrder.getDate());
-            statement.setString(4, workOrder.getStartTime().toString());
-            statement.setString(5, workOrder.getEndTime().toString());
+            statement.setDate(3, workOrder.getDateSQL());
+            statement.setTime(4, workOrder.getStartTimeSQL());
+            statement.setTime(5, workOrder.getEndTimeSQL());
             statement.setString(6, workOrder.getDescription());
-            ResultSet result = statement.executeQuery();
-            while (result.next()) {
-                workOrders.add(resultSetToWorkOrder(result));
-            }
+            statement.setInt(7, workOrder.getWorkOrderId());
+            statement.execute();
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         }
@@ -97,7 +95,7 @@ public class WorkOrderServiceDBSQL implements WorkOrderService {
         try {
             PreparedStatement statement = getConnection().prepareStatement(sql);
             statement.setInt(1, id);
-            statement.executeUpdate();
+            statement.execute();
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         }

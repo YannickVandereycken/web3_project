@@ -64,7 +64,7 @@ public class UserServiceDBSQL implements UserService {
     @Override
     public void update(User user) {
         ArrayList<User> users = new ArrayList<>();
-        String sql = String.format("UPDATE from %s.users set first_name=?, last_name=?, email=?, role=?, team=?, where userid=?;", schema);
+        String sql = String.format("UPDATE %s.users set first_name=?, last_name=?, email=?, role=?, team=? where userid=?;", schema);
         try {
             PreparedStatement statement = getConnection().prepareStatement(sql);
             statement.setString(1, user.getFirstName());
@@ -72,10 +72,8 @@ public class UserServiceDBSQL implements UserService {
             statement.setString(3, user.getEmail());
             statement.setString(4, user.getRole().getStringValue());
             statement.setString(5, user.getTeam().getStringValue());
-            ResultSet result = statement.executeQuery();
-            while (result.next()) {
-                users.add(resultSetToUser(result));
-            }
+            statement.setInt(6, user.getUserid());
+            statement.execute();
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         }
@@ -87,7 +85,7 @@ public class UserServiceDBSQL implements UserService {
         try {
             PreparedStatement statement = getConnection().prepareStatement(sql);
             statement.setInt(1, id);
-            statement.executeUpdate();
+            statement.execute();
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         }
