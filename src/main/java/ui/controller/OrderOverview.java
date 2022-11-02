@@ -7,7 +7,7 @@ public class OrderOverview extends RequestHandler {
 
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("orders", workOrderService.getAllWorkOrders());
+        request.setAttribute("orders", service.getAllWorkOrders());
         return "orders.jsp";
     }
 }

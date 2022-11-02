@@ -10,7 +10,7 @@ public class Update extends RequestHandler{
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
-        User user = service.get(Integer.parseInt(request.getParameter("id")));
+        User user = service.getUser(Integer.parseInt(request.getParameter("id")));
         if (user==null)
             return "Controller?command=Overview";
         request.setAttribute("update", user);

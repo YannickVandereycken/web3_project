@@ -10,7 +10,7 @@ public class DeleteUser extends RequestHandler {
         HttpSession session = request.getSession();
         int id = Integer.parseInt(request.getParameter("id"));
         if (request.getParameter("submit").equals("Confirm")) {
-            service.delete(id);
+            service.deleteUser(id);
         }
         return "Controller?command=Overview";
     }

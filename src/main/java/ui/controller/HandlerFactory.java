@@ -7,7 +7,7 @@ import domain.service.WorkOrderService;
 
 public class HandlerFactory {
 
-    public RequestHandler getHandler(String command, AppService service, ProjectService projectService, WorkOrderService workOrderService) {
+    public RequestHandler getHandler(String command, AppService service, ProjectService projectService) {
         RequestHandler handler = null;
         try {
             Class handlerClass = Class.forName("ui.controller." + command);
@@ -15,7 +15,6 @@ public class HandlerFactory {
             handler = (RequestHandler) objectHandler;
             handler.setService(service);
             handler.setProjectService(projectService);
-            handler.setWorkOrderService(workOrderService);
         } catch (Exception e) {
             throw new RuntimeException("Deze pagina bestaat niet!");
         }

@@ -1,17 +1,20 @@
 package domain.service;
 
 import domain.model.User;
+import domain.model.WorkOrder;
 
 import java.util.ArrayList;
 
 public class AppService {
     private UserService userService = new UserServiceDBSQL();
+    private WorkOrderService workOrderService = new WorkOrderServiceDBSQL();
 
-    public void add(User user) {
+    //User Services
+    public void addUser(User user) {
         userService.add(user);
     }
 
-    public User get(int id) {
+    public User getUser(int id) {
         return userService.get(id);
     }
 
@@ -19,8 +22,12 @@ public class AppService {
         return userService.getAllUsers();
     }
 
-    public void update(User user) {
+    public void updateUser(User user) {
         userService.update(user);
+    }
+
+    public void deleteUser(int id) {
+        userService.delete(id);
     }
 
     public void uniqueEditEmail(String email, int userid) {
@@ -31,7 +38,26 @@ public class AppService {
         userService.uniqueEmail(email);
     }
 
-    public void delete(int id) {
-        userService.delete(id);
+    //Workorder services
+    public void addOrder(WorkOrder workOrder) {
+        workOrderService.add(workOrder);
     }
+
+    public WorkOrder getOrder(int id) {
+        return workOrderService.get(id);
+    }
+
+    public ArrayList<WorkOrder> getAllWorkOrders() {
+        return workOrderService.getAllWorkOrders();
+    }
+
+    public void updateOrder(WorkOrder workOrder) {
+        workOrderService.update(workOrder);
+    }
+
+    public void deleteOrder(int id) {
+        workOrderService.delete(id);
+    }
+
+    //Project Services
 }

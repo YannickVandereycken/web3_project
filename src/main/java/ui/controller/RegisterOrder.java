@@ -35,7 +35,7 @@ public class RegisterOrder extends RequestHandler {
         validateDescription(workOrder, request, errors);
         if (errors.size() == 0) {
             try {
-                workOrderService.add(workOrder);
+                service.addOrder(workOrder);
                 return "Controller?command=OrderOverview";
             } catch (DbException | IllegalArgumentException e) {
                 errors.add(e.getMessage());

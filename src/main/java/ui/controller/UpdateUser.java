@@ -24,7 +24,7 @@ public class UpdateUser extends RequestHandler{
         validateRole(user, request, errors);
         if (errors.size() == 0) {
             try {
-                service.update(user);
+                service.updateUser(user);
                 return "Controller?command=Overview";
             } catch (IllegalArgumentException e) {
                 errors.add(e.getMessage());

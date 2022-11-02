@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
-public class RegisterUser extends RequestHandler{
+public class RegisterUser extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
@@ -23,7 +23,7 @@ public class RegisterUser extends RequestHandler{
         u.setRole(Role.EMPLOYEE);
         if (errors.size() == 0) {
             try {
-                service.add(u);
+                service.addUser(u);
                 return "Controller?command=Overview";
             } catch (DbException | IllegalArgumentException e) {
                 errors.add(e.getMessage());

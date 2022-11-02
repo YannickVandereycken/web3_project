@@ -2,12 +2,12 @@ package domain.service;
 
 import domain.model.WorkOrder;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public interface WorkOrderService {
     WorkOrder get(int userid);
 
-    List<WorkOrder> getAllWorkOrders();
+    ArrayList<WorkOrder> getAllWorkOrders();
 
     void add(WorkOrder workOrder);
 

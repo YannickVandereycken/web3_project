@@ -18,7 +18,6 @@ public class Controller extends HttpServlet {
     private AppService service = new AppService();
     private ProjectService projectService = new ProjectService();
 
-    private WorkOrderService workOrderService = new WorkOrderServiceDBSQL();
     private HandlerFactory handlerFactory = new HandlerFactory();
 
     public Controller() {
@@ -39,8 +38,8 @@ public class Controller extends HttpServlet {
         String destination = "index.jsp";
         String command = request.getParameter("command");
 
-        if (command != null){
-            RequestHandler handler = handlerFactory.getHandler(command, service, projectService, workOrderService);
+        if (command != null) {
+            RequestHandler handler = handlerFactory.getHandler(command, service, projectService);
             destination = handler.handleRequest(request, response);
         }
 
