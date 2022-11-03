@@ -3,6 +3,8 @@ package domain.service;
 import domain.model.User;
 import domain.model.WorkOrder;
 
+import java.sql.Date;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class AppService {
@@ -57,6 +59,14 @@ public class AppService {
 
     public void deleteOrder(int id) {
         workOrderService.delete(id);
+    }
+
+    public void checkOverlap(Date date, LocalTime endTime){
+        workOrderService.checkOverlap(date, endTime);
+    }
+
+    public void checkPast(Date date, LocalTime endTime) {
+        workOrderService.checkPast(date, endTime);
     }
 
     //Project Services

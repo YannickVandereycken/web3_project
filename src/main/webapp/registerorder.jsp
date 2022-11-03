@@ -21,7 +21,6 @@
             <p class="alert-danger">${e}</p>
         </c:forEach>
         <form action="Controller" method="post" novalidate="novalidate">
-            <p>${datePrevious}</p>
             <p><label for="date">Date</label><input type="date" id="date" name="date"
                                                     value="${datePrevious}" required autofocus></p>
             <p><label for="starttime">Start time</label><input type="time" id="starttime" name="starttime"

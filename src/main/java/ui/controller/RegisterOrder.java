@@ -6,6 +6,7 @@ import domain.service.DbException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -18,20 +19,26 @@ public class RegisterOrder extends RequestHandler {
         ArrayList<String> errors = new ArrayList<String>();
         WorkOrder workOrder = new WorkOrder();
         validateNameTeam(workOrder, request, errors);
-        if (request.getParameter("date").isEmpty()) errors.add("Please fill in a valid date");
-        else {
-            workOrder.setDate(LocalDate.parse(request.getParameter("date")));
-            request.setAttribute("datePrevious", request.getParameter("date"));
+        try {
+            if (request.getParameter("date").isEmpty()) errors.add("Please fill in a valid date");
+            else {
+                workOrder.setDate(LocalDate.parse(request.getParameter("date")));
+                request.setAttribute("datePrevious", request.getParameter("date"));
+            }
+            if (request.getParameter("starttime").isEmpty()) errors.add("Please fill in a valid start time");
+            else {
+                workOrder.setStartTime(LocalTime.parse(request.getParameter("starttime")));
+                request.setAttribute("starttimePrevious", request.getParameter("starttime"));
+            }
+            if (request.getParameter("endtime").isEmpty()) errors.add("Please fill in a valid end time");
+            else {
+                validateEndTime(workOrder, request, errors);
+            }
+        } catch (DbException | IllegalArgumentException e) {
+            errors.add(e.getMessage());
         }
-        if (request.getParameter("starttime").isEmpty()) errors.add("Please fill in a valid start time");
-        else {
-            workOrder.setStartTime(LocalTime.parse(request.getParameter("starttime")));
-            request.setAttribute("starttimePrevious", request.getParameter("starttime"));
-        }
-        if (request.getParameter("endtime").isEmpty()) errors.add("Please fill in a valid end time");
-        else {
-            validateEndTime(workOrder, request, errors);
-        }
+        validateOverlap(workOrder, request, errors);
+        validatePast(workOrder, request, errors);
         validateDescription(workOrder, request, errors);
         if (errors.size() == 0) {
             try {
@@ -63,6 +70,22 @@ public class RegisterOrder extends RequestHandler {
         } catch (IllegalArgumentException e) {
             errors.add(e.getMessage());
             request.setAttribute("endtimeError", true);
+        }
+    }
+
+    private void validateOverlap(WorkOrder workOrder, HttpServletRequest request, ArrayList<String> errors) {
+        try {
+            service.checkOverlap(Date.valueOf(request.getParameter("date")),LocalTime.parse(request.getParameter("endtime")));
+        } catch (DbException e) {
+            errors.add(e.getMessage());
+        }
+    }
+
+    private void validatePast(WorkOrder workOrder, HttpServletRequest request, ArrayList<String> errors) {
+        try {
+            service.checkPast(Date.valueOf(request.getParameter("date")),LocalTime.parse(request.getParameter("endtime")));
+        } catch (DbException | IllegalArgumentException e) {
+            errors.add(e.getMessage());
         }
     }
 

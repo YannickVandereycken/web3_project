@@ -1,15 +1,10 @@
 package domain.service;
 
-import domain.model.Role;
 import domain.model.Team;
-import domain.model.User;
 import domain.model.WorkOrder;
 import util.DBConnectionService;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -28,9 +23,6 @@ public class WorkOrderServiceDBSQL implements WorkOrderService {
     public void add(WorkOrder workOrder) {
         String query = String.format("insert into %s.workorders (name, team, date, start_time, end_time, description) values (?,?,?,?,?,?)", schema);
         try {
-            System.out.println(workOrder.getDateSQL());
-            System.out.println(workOrder.getStartTime());
-            System.out.println(workOrder.getEndTime());
             PreparedStatement statement = getConnection().prepareStatement(query);
             statement.setString(1, workOrder.getName());
             statement.setString(2, workOrder.getTeam().getStringValue());
@@ -104,6 +96,27 @@ public class WorkOrderServiceDBSQL implements WorkOrderService {
     @Override
     public int getNumberOfWorkorders() {
         return getAllWorkOrders().size();
+    }
+
+    @Override
+    public void checkOverlap(Date date, LocalTime endTime) {
+        ArrayList<WorkOrder> workOrders = getAllWorkOrders();
+        for (WorkOrder wo : workOrders) {
+            if (wo != null)
+                if (date.equals(wo.getDateSQL()))
+                    if (endTime.isAfter(wo.getStartTime()) || endTime.equals(wo.getStartTime()))
+                        if (endTime.isBefore(wo.getEndTime()) || endTime.equals(wo.getEndTime()))
+                            throw new DbException("Workorder overlaps with other workorder(s)");
+        }
+    }
+
+    @Override
+    public void checkPast(Date date, LocalTime endTime) {
+        if (date.equals(Date.valueOf(LocalDate.now())))
+            if (endTime.isAfter(LocalTime.now()))
+                throw new DbException("Workorder must be in the past");
+        if (date.after(Date.valueOf(LocalDate.now())))
+            throw new DbException("Workorder must be in the past");
     }
 
     public WorkOrder resultSetToWorkOrder(ResultSet result) throws SQLException {

@@ -70,13 +70,16 @@ public class WorkOrder {
     public String getDate() {
         return date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
     }
+    public LocalDate getDateRaw() {
+        return date;
+    }
 
     public Date getDateSQL() {
-        //return date.format(DateTimeFormatter.ISO_LOCAL_DATE);
         return Date.valueOf(date);
     }
 
     public void setDate(LocalDate date) {
+        if(date.isAfter(LocalDate.now())) throw new IllegalArgumentException("Date must be before today");
         this.date = date;
     }
 
