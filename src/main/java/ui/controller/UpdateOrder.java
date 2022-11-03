@@ -39,8 +39,10 @@ public class UpdateOrder extends RequestHandler {
         } catch (DbException | IllegalArgumentException e) {
             errors.add(e.getMessage());
         }
-        validateOverlap(workOrder, request, errors);
-        validatePast(workOrder, request, errors);
+        if (!request.getParameter("endtime").isEmpty() && !request.getParameter("date").isEmpty()) {
+            validateOverlap(workOrder, request, errors);
+            validatePast(workOrder, request, errors);
+        }
         validateDescription(workOrder, request, errors);
         if (errors.size() == 0) {
             try {
@@ -77,7 +79,7 @@ public class UpdateOrder extends RequestHandler {
 
     private void validateOverlap(WorkOrder workOrder, HttpServletRequest request, ArrayList<String> errors) {
         try {
-            service.checkOverlap(Date.valueOf(request.getParameter("date")), LocalTime.parse(request.getParameter("endtime")));
+            service.checkOverlap(workOrder, Date.valueOf(request.getParameter("date")), LocalTime.parse(request.getParameter("endtime")));
         } catch (DbException e) {
             errors.add(e.getMessage());
         }

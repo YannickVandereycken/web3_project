@@ -99,10 +99,10 @@ public class WorkOrderServiceDBSQL implements WorkOrderService {
     }
 
     @Override
-    public void checkOverlap(Date date, LocalTime endTime) {
+    public void checkOverlap(WorkOrder workOrder, Date date, LocalTime endTime) {
         ArrayList<WorkOrder> workOrders = getAllWorkOrders();
         for (WorkOrder wo : workOrders) {
-            if (wo != null)
+            if (wo != null && wo.getWorkOrderId() != workOrder.getWorkOrderId())
                 if (date.equals(wo.getDateSQL()))
                     if (endTime.isAfter(wo.getStartTime()) || endTime.equals(wo.getStartTime()))
                         if (endTime.isBefore(wo.getEndTime()) || endTime.equals(wo.getEndTime()))

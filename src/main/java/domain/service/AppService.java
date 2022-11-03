@@ -61,8 +61,8 @@ public class AppService {
         workOrderService.delete(id);
     }
 
-    public void checkOverlap(Date date, LocalTime endTime){
-        workOrderService.checkOverlap(date, endTime);
+    public void checkOverlap(WorkOrder workOrder, Date date, LocalTime endTime) {
+        workOrderService.checkOverlap(workOrder, date, endTime);
     }
 
     public void checkPast(Date date, LocalTime endTime) {
