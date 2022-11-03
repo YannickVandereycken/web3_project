@@ -16,7 +16,7 @@ public class Controller extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private AppService service = new AppService();
-    private ProjectService projectService = new ProjectService();
+    private ProjectServiceOld projectService = new ProjectServiceOld();
 
     private HandlerFactory handlerFactory = new HandlerFactory();
 

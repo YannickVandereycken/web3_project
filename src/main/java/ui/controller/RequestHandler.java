@@ -1,14 +1,14 @@
 package ui.controller;
 
 import domain.service.AppService;
-import domain.service.ProjectService;
+import domain.service.ProjectServiceOld;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public abstract class RequestHandler {
     protected AppService service;
-    protected ProjectService projectService;
+    protected ProjectServiceOld projectService;
 
     public abstract String handleRequest(HttpServletRequest request, HttpServletResponse response);
 
@@ -20,11 +20,11 @@ public abstract class RequestHandler {
         this.service = service;
     }
 
-    public ProjectService getProjectService() {
+    public ProjectServiceOld getProjectService() {
         return projectService;
     }
 
-    public void setProjectService(ProjectService service) {
+    public void setProjectService(ProjectServiceOld service) {
         this.projectService = service;
     }
 }

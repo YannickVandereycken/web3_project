@@ -1,20 +1,21 @@
 package ui.controller;
 
+import domain.model.Project;
 import domain.model.WorkOrder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class DeleteO extends RequestHandler {
+public class DeleteP extends RequestHandler{
 
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
-        WorkOrder workOrder = service.getOrder(Integer.parseInt(request.getParameter("id")));
-        if (workOrder == null)
-            return "Controller?command=OrderOverview";
-        request.setAttribute("delete", workOrder);
-        return "deleteorder.jsp";
+        Project project = service.getProject(Integer.parseInt(request.getParameter("id")));
+        if (project == null)
+            return "Controller?command=ProjectOverview";
+        request.setAttribute("delete", project);
+        return "deleteproject.jsp";
     }
 }

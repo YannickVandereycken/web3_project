@@ -1,5 +1,6 @@
 package domain.service;
 
+import domain.model.Project;
 import domain.model.User;
 import domain.model.WorkOrder;
 
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 public class AppService {
     private UserService userService = new UserServiceDBSQL();
     private WorkOrderService workOrderService = new WorkOrderServiceDBSQL();
+    private ProjectService projectService = new ProjectServiceDBSQL();
 
     //User Services
     public void addUser(User user) {
@@ -70,4 +72,14 @@ public class AppService {
     }
 
     //Project Services
+
+    public void addProject(Project project){ projectService.add(project);}
+
+    public Project getProject(int id){return projectService.get(id);}
+
+    public ArrayList<Project> getAllProjects() {return  projectService.getAllProjects();}
+
+    public void updateProject(Project project) {projectService.update(project);}
+
+    public void deleteProject(int id){projectService.delete(id);}
 }

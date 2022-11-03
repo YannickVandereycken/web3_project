@@ -22,7 +22,7 @@
         <p>From: ${delete.startDate} To: ${delete.endDate}</p>
         <form action="Controller" method="post" novalidate="novalidate">
             <input type="hidden" name="id" value="${delete.projectId}">
-            <input type="hidden" name="command" value="DeleteUser">
+            <input type="hidden" name="command" value="DeleteProject">
             <input type="submit" name="submit" id="cancel" value="Cancel" class="cancel">
             <input type="submit" name="submit" id="confirm" value="Confirm" class="confirm">
         </form>

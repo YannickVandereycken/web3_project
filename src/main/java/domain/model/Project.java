@@ -16,6 +16,14 @@ public class Project {
         setEndDate(endDate);
     }
 
+    public Project(int projectId, String name, Team team, LocalDate startDate, LocalDate endDate){
+        setProjectId(projectId);
+        setName(name);
+        setTeam(team);
+        setStartDate(startDate);
+        setEndDate(endDate);
+    }
+
     public Project() {
     }
 
