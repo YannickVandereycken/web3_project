@@ -32,8 +32,11 @@ public class DeleteTest {
         // GIVEN STEP = context
         OverviewPage overviewPage = PageFactory.initElements(driver, OverviewPage.class);
 
+        //Get latest added user from registertest
+        int added_id = overviewPage.highestId();
+
         // WHEN STEP = action
-        overviewPage.deleteUserWithId(2);
+        overviewPage.deleteUserWithId(added_id);
 
         // Confirm action
         DeletePage deletePage = PageFactory.initElements(driver, DeletePage.class);
@@ -41,11 +44,11 @@ public class DeleteTest {
 
         // THEN STEP = result
         assertEquals("Overview", overviewPage.getTitle());
-        assertFalse(overviewPage.containsUserWithName("Boss"));
+        assertFalse(overviewPage.containsUserWithName("Keanu"));
     }
 
     @Test
-    public void deleteUser_clickCancel_OverviewAndUserNotDeleted(){
+    public void deleteUser_clickCancel_OverviewAndUserNotDeleted() {
         // GIVEN STEP = context
         OverviewPage overviewPage = PageFactory.initElements(driver, OverviewPage.class);
 
@@ -58,16 +61,16 @@ public class DeleteTest {
 
         // THEN STEP = result
         assertEquals("Overview", overviewPage.getTitle());
-        assertTrue(overviewPage.containsUserWithName("Good"));
+        assertTrue(overviewPage.containsUserWithName("Bob"));
     }
 
     @Test
-    public void deleteUserNonExistingId_Overview(){
+    public void deleteUserNonExistingId_Overview() {
         // GIVEN STEP = context
         OverviewPage overviewPage = PageFactory.initElements(driver, OverviewPage.class);
 
         // WHEN STEP = action
-        overviewPage.deleteUserWithIdUrl(10);
+        overviewPage.deleteUserWithIdUrl(5);
 
         // THEN STEP = result
         assertEquals("Overview", overviewPage.getTitle());

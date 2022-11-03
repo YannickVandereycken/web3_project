@@ -16,7 +16,6 @@ public class EditTest {
     String firstName = "Keanu";
     String lastName = "Reeves";
     String email = "keanu@reeves.com";
-    String password = "keanu";
 
     @Before
     public void setUp() {
@@ -37,8 +36,11 @@ public class EditTest {
         // GIVEN STEP = context
         OverviewPage overviewPage = PageFactory.initElements(driver, OverviewPage.class);
 
+        //Get latest added user from registertest
+        int added_id = overviewPage.highestId();
+
         // WHEN STEP = action
-        overviewPage.editUserWithId(3);
+        overviewPage.editUserWithId(added_id);
 
         // GIVEN STEP = context
         EditPage editPage = PageFactory.initElements(driver, EditPage.class);
@@ -60,7 +62,7 @@ public class EditTest {
         OverviewPage overviewPage = PageFactory.initElements(driver, OverviewPage.class);
 
         // WHEN STEP = action
-        overviewPage.editUserWithId(4);
+        overviewPage.editUserWithId(3);
 
         // GIVEN STEP = context
         EditPage editPage = PageFactory.initElements(driver, EditPage.class);
@@ -74,9 +76,9 @@ public class EditTest {
         // THEN STEP = result
         assertEquals("Edit User", editPage.getTitle());
         assertTrue(editPage.hasErrorMessage("No email given"));
-        assertTrue(editPage.hasStickyFirstName("Good"));
-        assertTrue(editPage.hasStickyLastName("Employee"));
-        assertTrue(editPage.hasStickyEmail("c@c.be"));
+        assertTrue(editPage.hasStickyFirstName("employee"));
+        assertTrue(editPage.hasStickyLastName("ucll"));
+        assertTrue(editPage.hasStickyEmail("employee@ucll.be"));
     }
 
     @Test
@@ -85,7 +87,7 @@ public class EditTest {
         OverviewPage overviewPage = PageFactory.initElements(driver, OverviewPage.class);
 
         // WHEN STEP = action
-        overviewPage.editUserWithIdUrl(10);
+        overviewPage.editUserWithIdUrl(5);
 
         // THEN STEP = result
         assertEquals("Overview", overviewPage.getTitle());

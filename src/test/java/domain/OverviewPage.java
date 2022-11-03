@@ -14,19 +14,21 @@ public class OverviewPage extends Page {
     }
 
     public void deleteUserWithId(int id) {
-        WebElement deleteButton = driver.findElement(By.id("delete"+id));
+        WebElement deleteButton = driver.findElement(By.id("delete" + id));
         deleteButton.click();
     }
+
     public void deleteUserWithIdUrl(int id) {
-        this.driver.get(Config.BASE_URL + "?command=Delete&id="+id);
+        this.driver.get(Config.BASE_URL + "?command=Delete&id=" + id);
     }
 
     public void editUserWithId(int id) {
-        WebElement deleteButton = driver.findElement(By.id("update"+id));
+        WebElement deleteButton = driver.findElement(By.id("update" + id));
         deleteButton.click();
     }
+
     public void editUserWithIdUrl(int id) {
-        this.driver.get(Config.BASE_URL + "?command=Update&id="+id);
+        this.driver.get(Config.BASE_URL + "?command=Update&id=" + id);
     }
 
 
@@ -39,5 +41,21 @@ public class OverviewPage extends Page {
             }
         }
         return found;
+    }
+
+    public int highestId() {
+        ArrayList<WebElement> listItems = (ArrayList<WebElement>) this.driver.findElements(By.cssSelector("td"));
+        int max = 5;
+        for (WebElement listItem : listItems) {
+            try {
+                int nr = Integer.parseInt(listItem.getText());
+                if (nr > max) {
+                    max = nr;
+                }
+            } catch (IllegalArgumentException e) {
+
+            }
+        }
+        return max;
     }
 }

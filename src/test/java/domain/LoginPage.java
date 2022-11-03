@@ -36,5 +36,4 @@ public class LoginPage extends Page {
         setPassword("a");
         submitButton.click();
     }
-
 }
