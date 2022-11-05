@@ -64,6 +64,8 @@ public class Project {
     }
 
     public void setStartDate(LocalDate startDate) {
+        if(this.endDate!=null && this.endDate.isBefore(startDate))
+            throw new DomainException("The startdate needs to be after the end date");
         this.startDate = startDate;
     }
 
@@ -72,6 +74,8 @@ public class Project {
     }
 
     public void setEndDate(LocalDate endDate) {
+        if(endDate.isBefore(this.startDate))
+            throw new DomainException("The end date needs to be after the start date");
         this.endDate = endDate;
     }
 }

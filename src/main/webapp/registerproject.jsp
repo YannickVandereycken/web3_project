@@ -20,13 +20,12 @@
             <p class="alert-danger">${e}</p>
         </c:forEach>
         <form action="Controller" method="post" novalidate="novalidate">
-            <p><label for="date">Date</label><input type="date" id="date" name="date"
-                                                    value="${datePrevious}" required autofocus></p>
-            <p><label for="startdate">Start time</label><input type="time" id="startdate" name="startdate"
+            <p><label for="name">Name</label><input type="text" id="name" name="name"
+                                                    value="${namePrevious}" required autofocus></p>
+            <p><label for="startdate">Start date</label><input type="date" id="startdate" name="startdate"
                                                                value="${startdatePrevious}" required></p>
-            <p><label for="enddate">End time</label><input type="time" id="enddate" name="enddate"
+            <p><label for="enddate">End date</label><input type="date" id="enddate" name="enddate"
                                                            value="${enddatePrevious}" required></p>
-            <input type="hidden" name="name" value="${username}">
             <input type="hidden" name="team" value="${team}">
             <input type="hidden" name="command" value="RegisterProject">
             <p><input type="submit" id="register" value="Register"></p>

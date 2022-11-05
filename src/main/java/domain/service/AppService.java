@@ -1,6 +1,7 @@
 package domain.service;
 
 import domain.model.Project;
+import domain.model.Team;
 import domain.model.User;
 import domain.model.WorkOrder;
 
@@ -82,4 +83,8 @@ public class AppService {
     public void updateProject(Project project) {projectService.update(project);}
 
     public void deleteProject(int id){projectService.delete(id);}
+
+    public void checkUnique(String name, Team team) {
+        projectService.checkUnique(name, team);
+    }
 }

@@ -1,6 +1,7 @@
 package domain.service;
 
 import domain.model.Project;
+import domain.model.Team;
 
 import java.sql.Date;
 import java.time.LocalTime;
@@ -18,4 +19,6 @@ public interface ProjectService {
     void delete(int projectId);
 
     int getNumberOfProjects();
+
+    void checkUnique(String name, Team team);
 }

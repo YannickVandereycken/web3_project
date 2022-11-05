@@ -2,6 +2,7 @@ package ui.controller;
 
 import domain.model.Project;
 import domain.model.Role;
+import domain.model.Team;
 import domain.model.User;
 import domain.service.DbException;
 
@@ -18,16 +19,8 @@ public class RegisterProject extends RequestHandler {
         HttpSession session = request.getSession();
         ArrayList<String> errors = new ArrayList<String>();
         Project p = new Project();
-        validateName(p, request, errors);
-        validateStartDate(p, request, errors);
-        //validateEndDate(p, request, errors);
-        String username = (String) session.getAttribute("username");
-        for (User u : service.getAllUsers()) {
-            if (u.getFirstName().equals(username)) {
-                p.setTeam(u.getTeam());
-                break;
-            }
-        }
+        validateNameTeam(p, request, errors);
+        validateDate(p, request, errors);
         if (errors.size() == 0) {
             try {
                 projectService.add(p);
@@ -40,22 +33,28 @@ public class RegisterProject extends RequestHandler {
         return "Controller?command=RegisterP";
     }
 
-    private void validateName(Project project, HttpServletRequest request, ArrayList<String> errors) {
+    private void validateNameTeam(Project project, HttpServletRequest request, ArrayList<String> errors) {
         String name = request.getParameter("name");
+        String team = request.getParameter("team");
         try {
+            service.checkUnique(name, Team.valueOf(team));
             project.setName(name);
+            project.setTeam(team);
             request.setAttribute("namePrevious", name);
-        } catch (IllegalArgumentException e) {
+        } catch (DbException | IllegalArgumentException e) {
             errors.add(e.getMessage());
             request.setAttribute("nameError", true);
         }
     }
 
-    private void validateStartDate(Project project, HttpServletRequest request, ArrayList<String> errors){
-        String string_startDate = request.getParameter("startDate");
-        LocalDate startDate = LocalDate.parse(string_startDate);
+    private void validateDate(Project project, HttpServletRequest request, ArrayList<String> errors){
+        String string_startDate = request.getParameter("startdate");
+        String string_endDate = request.getParameter("enddate");
         try {
+            LocalDate startDate = LocalDate.parse(string_startDate);
+            LocalDate endDate = LocalDate.parse(string_endDate);
             project.setStartDate(startDate);
+            project.setEndDate(endDate);
         } catch (IllegalArgumentException e){
             errors.add(e.getMessage());
             request.setAttribute("startError", true);

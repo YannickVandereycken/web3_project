@@ -1,9 +1,6 @@
 package domain.service;
 
-import domain.model.Project;
-import domain.model.Role;
-import domain.model.Team;
-import domain.model.User;
+import domain.model.*;
 import util.DBConnectionService;
 
 import java.sql.Connection;
@@ -97,6 +94,14 @@ public class ProjectServiceDBSQL implements ProjectService{
     @Override
     public int getNumberOfProjects() {
         return getAllProjects().size();
+    }
+
+    @Override
+    public void checkUnique(String name, Team team){
+        for (Project p : getAllProjects()){
+            if(p.getName().equals(name) && p.getTeam().getStringValue().equals(team.getStringValue()))
+                throw new DomainException("geen unieke combinatie van naam en team");
+        }
     }
 
     public Project resultSetToProject(ResultSet result) throws SQLException{
