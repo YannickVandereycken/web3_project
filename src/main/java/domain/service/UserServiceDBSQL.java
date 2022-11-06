@@ -63,7 +63,6 @@ public class UserServiceDBSQL implements UserService {
 
     @Override
     public void update(User user) {
-        ArrayList<User> users = new ArrayList<>();
         String sql = String.format("UPDATE %s.users set first_name=?, last_name=?, email=?, role=?, team=? where userid=?;", schema);
         try {
             PreparedStatement statement = getConnection().prepareStatement(sql);

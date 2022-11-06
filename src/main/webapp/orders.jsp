@@ -49,6 +49,7 @@
                 <p>These aren't the work orders you are looking for.</p>
             </c:otherwise>
         </c:choose>
+        <p>If you want to sort the work orders differently, <a href="Controller?command=SortO">click here</a></p>
     </main>
     <footer>&copy; Webontwikkeling 3, UC Leuven-Limburg</footer>
 </div>

@@ -119,6 +119,31 @@ public class WorkOrderServiceDBSQL implements WorkOrderService {
             throw new DbException("Workorder must be in the past");
     }
 
+    @Override
+    public ArrayList<WorkOrder> sortWorkOrders(String label, String order) {
+        ArrayList<WorkOrder> workOrders = new ArrayList<>();
+        int sort = 1;
+        try {
+            if (!label.isEmpty()) sort = Integer.parseInt(label);
+        } catch (IllegalArgumentException ignored) {
+        }
+        String sql = String.format("SELECT * from %s.workorders order by ?;", schema);
+        if (order.trim().equals("desc")) sql = String.format("SELECT * from %s.workorders order by ? desc;", schema);
+        try {
+            PreparedStatement statement = getConnection().prepareStatement(sql);
+            System.out.println(label + "/" + order + "/" + sort + "/");
+            statement.setInt(1, sort);
+            System.out.println(statement);
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                workOrders.add(resultSetToWorkOrder(result));
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+        return workOrders;
+    }
+
     public WorkOrder resultSetToWorkOrder(ResultSet result) throws SQLException {
         int id = result.getInt("workorderid");
         String name = result.getString("name").trim();

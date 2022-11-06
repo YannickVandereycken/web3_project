@@ -72,17 +72,30 @@ public class AppService {
         workOrderService.checkPast(date, endTime);
     }
 
+    public ArrayList<WorkOrder> sortWorkOrders(String label, String order) {
+        return workOrderService.sortWorkOrders(label, order);
+    }
+
     //Project Services
+    public void addProject(Project project) {
+        projectService.add(project);
+    }
 
-    public void addProject(Project project){ projectService.add(project);}
+    public Project getProject(int id) {
+        return projectService.get(id);
+    }
 
-    public Project getProject(int id){return projectService.get(id);}
+    public ArrayList<Project> getAllProjects() {
+        return projectService.getAllProjects();
+    }
 
-    public ArrayList<Project> getAllProjects() {return  projectService.getAllProjects();}
+    public void updateProject(Project project) {
+        projectService.update(project);
+    }
 
-    public void updateProject(Project project) {projectService.update(project);}
-
-    public void deleteProject(int id){projectService.delete(id);}
+    public void deleteProject(int id) {
+        projectService.delete(id);
+    }
 
     public void checkUnique(String name, Team team) {
         projectService.checkUnique(name, team);

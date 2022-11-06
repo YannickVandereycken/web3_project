@@ -22,4 +22,6 @@ public interface WorkOrderService {
     void checkOverlap(WorkOrder workOrder, Date date, LocalTime endTime);
 
     void checkPast(Date date, LocalTime endTime);
+
+    ArrayList<WorkOrder> sortWorkOrders(String label, String order);
 }
