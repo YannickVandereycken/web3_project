@@ -6,6 +6,7 @@ import domain.model.User;
 import domain.model.WorkOrder;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -100,4 +101,6 @@ public class AppService {
     public void checkUnique(String name, Team team) {
         projectService.checkUnique(name, team);
     }
+
+    public ArrayList<Project> findProject(LocalDate date){return projectService.find(date);}
 }

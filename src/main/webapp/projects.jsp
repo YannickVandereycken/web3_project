@@ -40,6 +40,14 @@
                         </tr>
                     </c:forEach>
                 </table>
+                <c:forEach var="e" items="${errors}">
+                    <p class="alert-danger">${e}</p>
+                </c:forEach>
+                <form action="Controller" method="get" novalidate>
+                    <label for="date">Date: </label><input type="date" name="date" id="date">
+                    <input type="hidden" name="command" value="FindProject">
+                    <p><input type="submit" value="Find"></p>
+                </form>
             </c:when>
             <c:otherwise>
                 <p>These aren't the projects you are looking for.</p>

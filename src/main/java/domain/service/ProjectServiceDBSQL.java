@@ -102,8 +102,16 @@ public class ProjectServiceDBSQL implements ProjectService{
     }
 
     @Override
-    public Project find(){
-        return null;
+    public ArrayList<Project> find(LocalDate date){
+        ArrayList<Project> result = new ArrayList<>();
+        for (Project project : getAllProjects()){
+            if (project != null)
+                if( (project.getStartDate().isBefore(date) && project.getEndDate().isAfter(date)) || project.getEndDate().isEqual(date) || project.getStartDate().isEqual(date))
+                    result.add(project);
+        }
+        if(result.isEmpty())
+            throw new DbException("Op de ingevulde datum zijn er geen projecten bezig");
+        return result;
     }
 
     public Project resultSetToProject(ResultSet result) throws SQLException{

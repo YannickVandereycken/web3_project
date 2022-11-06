@@ -4,6 +4,7 @@ import domain.model.Project;
 import domain.model.Team;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -22,5 +23,5 @@ public interface ProjectService {
 
     void checkUnique(String name, Team team);
 
-    Project find();
+    ArrayList<Project> find(LocalDate date);
 }

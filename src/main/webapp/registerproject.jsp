@@ -13,7 +13,7 @@
     <jsp:include page="header.jsp">
         <jsp:param name="current" value=""/>
     </jsp:include>
-    <h2>Register Work Order</h2>
+    <h2>Register Project</h2>
     <main>
         <p>Do you want to register a project, ${username} (${team})?</p>
         <c:forEach var="e" items="${errors}">
