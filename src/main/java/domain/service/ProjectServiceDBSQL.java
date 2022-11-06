@@ -3,10 +3,7 @@ package domain.service;
 import domain.model.*;
 import util.DBConnectionService;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -22,13 +19,13 @@ public class ProjectServiceDBSQL implements ProjectService{
 
     @Override
     public void add(Project project) {
-        String query = String.format("insert into %s.projects (name, team, startDate, endDate) values (?,?,?,?)", schema);
+        String query = String.format("insert into %s.projects (name, team, start_date, end_date) values (?,?,?,?)", schema);
         try{
             PreparedStatement statement = getConnection().prepareStatement(query);
             statement.setString(1,project.getName());
             statement.setString(2,project.getTeam().getStringValue());
-            statement.setString(3, project.getStartDate().toString());
-            statement.setString(4, project.getEndDate().toString());
+            statement.setDate(3, Date.valueOf(project.getStartDate()));
+            statement.setDate(4, Date.valueOf(project.getEndDate()));
             statement.execute();
         }
         catch(SQLException e){
@@ -64,7 +61,7 @@ public class ProjectServiceDBSQL implements ProjectService{
 
     @Override
     public void update(Project project) {
-        String query = String.format("update %s.projects set name=?, team=?, startDate=?, endDate=? where projectid=?", schema);
+        String query = String.format("update %s.projects set name=?, team=?, start_date=?, end_date=? where projectid=?", schema);
         try{
             PreparedStatement statement = getConnection().prepareStatement(query);
             statement.setString(1,project.getName());
@@ -104,12 +101,17 @@ public class ProjectServiceDBSQL implements ProjectService{
         }
     }
 
+    @Override
+    public Project find(){
+        return null;
+    }
+
     public Project resultSetToProject(ResultSet result) throws SQLException{
-        int id = result.getInt("userid");
+        int id = result.getInt("projectid");
         String name = result.getString("name").trim();
         String team = result.getString("team").trim();
-        String startDate = result.getString("startDate").trim();
-        String endDate = result.getString("endDate").trim();
+        String startDate = result.getString("start_date").trim();
+        String endDate = result.getString("end_date").trim();
         Project res = new Project(id, name, Team.valueOf(team.toUpperCase()), LocalDate.parse(startDate), LocalDate.parse(endDate));
         return res;
     }

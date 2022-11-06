@@ -1,9 +1,6 @@
 package ui.controller;
 
-import domain.model.Project;
-import domain.model.Role;
-import domain.model.Team;
-import domain.model.User;
+import domain.model.*;
 import domain.service.DbException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +20,7 @@ public class RegisterProject extends RequestHandler {
         validateDate(p, request, errors);
         if (errors.size() == 0) {
             try {
-                projectService.add(p);
+                service.addProject(p);
                 return "Controller?command=ProjectOverview";
             } catch (DbException | IllegalArgumentException e) {
                 errors.add(e.getMessage());
@@ -41,7 +38,7 @@ public class RegisterProject extends RequestHandler {
             project.setName(name);
             project.setTeam(team);
             request.setAttribute("namePrevious", name);
-        } catch (DbException | IllegalArgumentException e) {
+        } catch (DomainException | IllegalArgumentException e) {
             errors.add(e.getMessage());
             request.setAttribute("nameError", true);
         }

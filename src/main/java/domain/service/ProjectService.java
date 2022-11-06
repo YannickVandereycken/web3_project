@@ -21,4 +21,6 @@ public interface ProjectService {
     int getNumberOfProjects();
 
     void checkUnique(String name, Team team);
+
+    Project find();
 }
