@@ -42,7 +42,7 @@ public class DeleteProjectTest {
         deletePage.confirm();
 
         // THEN STEP = result
-        assertEquals("Projects", orderOverviewPage.getTitle());
+        assertEquals("Project Overview", orderOverviewPage.getTitle());
         assertFalse(orderOverviewPage.containsProjectWithName("dummy project"));
     }
 
@@ -59,7 +59,7 @@ public class DeleteProjectTest {
         deletePage.cancel();
 
         // THEN STEP = result
-        assertEquals("Projects", orderOverviewPage.getTitle());
+        assertEquals("Project Overview", orderOverviewPage.getTitle());
         assertTrue(orderOverviewPage.containsProjectWithName("dummy project"));
     }
 
@@ -72,6 +72,6 @@ public class DeleteProjectTest {
         orderOverviewPage.deleteProjectWithIdUrl(5);
 
         // THEN STEP = result
-        assertEquals("Projects", orderOverviewPage.getTitle());
+        assertEquals("Project Overview", orderOverviewPage.getTitle());
     }
 }

@@ -35,10 +35,10 @@ public class RegisterProject extends RequestHandler {
         String team = request.getParameter("team");
         if (team.isEmpty()) errors.add("Please log in to register a project");
         try {
+            request.setAttribute("namePrevious", name);
             service.checkUnique(name, Team.valueOf(team));
             project.setName(name);
             project.setTeam(team);
-            request.setAttribute("namePrevious", name);
         } catch (DomainException | IllegalArgumentException e) {
             errors.add(e.getMessage());
             request.setAttribute("nameError", true);
@@ -49,6 +49,8 @@ public class RegisterProject extends RequestHandler {
         String string_startDate = request.getParameter("startdate");
         String string_endDate = request.getParameter("enddate");
         try {
+            if(string_startDate.isEmpty() || string_endDate.isEmpty())
+                throw new IllegalArgumentException("please fill in a date");
             LocalDate startDate = LocalDate.parse(string_startDate);
             LocalDate endDate = LocalDate.parse(string_endDate);
             project.setStartDate(startDate);

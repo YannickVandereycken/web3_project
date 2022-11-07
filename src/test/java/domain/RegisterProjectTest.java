@@ -14,8 +14,8 @@ public class RegisterProjectTest {
 
     // Test variables
     String name = "dummy project";
-    String startdate = "31-01-2025";
-    String enddate = "31-12-2025";
+    String startdate = "2025-01-31";
+    String enddate = "2025-12-31";
 
     @Before
     public void setUp() {
@@ -26,9 +26,28 @@ public class RegisterProjectTest {
         loginPage.logIn();
     }
 
-    @After
+    /*@After
     public void clean() {
         driver.quit();
+    }//*/
+
+    @Test
+    public void ProjectAddedNotUniqueNameAndTeam_ErrorMessageGiven() {
+        // GIVEN STEP = context
+        RegisterProjectPage registerProjectPage = PageFactory.initElements(driver, RegisterProjectPage.class);
+        registerProjectPage.setName("dummy project");
+        registerProjectPage.setStartDate("2025-01-31");
+        registerProjectPage.setEndDate("2025-12-31");
+
+        // WHEN STEP = action
+        registerProjectPage.add();
+
+        // THEN STEP = result
+        assertEquals("Register Project", registerProjectPage.getTitle());
+        assertTrue(registerProjectPage.hasErrorMessage("not a unique combination of name and team"));
+        assertTrue(registerProjectPage.hasStickyName("dummy project"));
+        assertTrue(registerProjectPage.hasStickyStartDate("2025-01-31"));
+        assertTrue(registerProjectPage.hasStickyEndDate("2025-12-31"));
     }
 
     @Test
@@ -45,27 +64,8 @@ public class RegisterProjectTest {
 
         // THEN STEP = result
         ProjectOverviewPage projectOverviewPage = PageFactory.initElements(driver, ProjectOverviewPage.class);
-        assertEquals("Work Projects", projectOverviewPage.getTitle());
+        assertEquals("Project Overview", projectOverviewPage.getTitle());
         assertTrue(projectOverviewPage.containsProjectWithName(name));
-    }
-
-    @Test
-    public void ProjectAddedNotUniqueNameAndTeam_ErrorMessageGiven() {
-        // GIVEN STEP = context
-        RegisterProjectPage registerProjectPage = PageFactory.initElements(driver, RegisterProjectPage.class);
-        registerProjectPage.setName("dummy project");
-        registerProjectPage.setStartDate("31-01-2025");
-        registerProjectPage.setEndDate("31-12-2025");
-
-        // WHEN STEP = action
-        registerProjectPage.add();
-
-        // THEN STEP = result
-        assertEquals("Register Project", registerProjectPage.getTitle());
-        assertTrue(registerProjectPage.hasErrorMessage("geen unieke combinatie van naam en team"));
-        assertTrue(registerProjectPage.hasStickyName("dummy project"));
-        assertTrue(registerProjectPage.hasStickyStartDate("31-01-2025"));
-        assertTrue(registerProjectPage.hasStickyEndDate("31-12-2025"));
     }
 
     @Test
@@ -82,7 +82,7 @@ public class RegisterProjectTest {
         // THEN STEP = result
         assertEquals("Register Project", registerProjectPage.getTitle());
         assertTrue(registerProjectPage.hasErrorMessage("please fill in a name"));
-        assertTrue(registerProjectPage.hasStickyStartDate("31-01-2025"));
-        assertTrue(registerProjectPage.hasStickyEndDate("31-12-2025"));
+        assertTrue(registerProjectPage.hasStickyStartDate("2025-01-31"));
+        assertTrue(registerProjectPage.hasStickyEndDate("2025-12-31"));
     }
 }

@@ -15,8 +15,8 @@ public class EditProjectTest {
 
     // Test Variables
     String name = "dummy project";
-    String startdate = "31-01-2026";
-    String enddate = "31-12-2026";
+    String startdate = "2026-01-31";
+    String enddate = "2026-12-31";
 
     @Before
     public void setUp() {
@@ -27,10 +27,10 @@ public class EditProjectTest {
         loginPage.logIn();
     }
 
-    @After
+    /*@After
     public void clean() {
         driver.quit();
-    }
+    }//*/
 
     @Test
     public void editProject_allFieldsFilledInCorrectly_projectIsEdited() {
@@ -52,21 +52,20 @@ public class EditProjectTest {
         editProjectPage.update();
 
         // THEN STEP = result
-        assertEquals("Projects", projectOverviewPage.getTitle());
+        assertEquals("Project Overview", projectOverviewPage.getTitle());
         assertTrue(projectOverviewPage.containsProjectWithDate(startdate, enddate));
     }
 
     @Test
     public void editProject_endDateBlank_errorAndOldValuesKept() {
         // GIVEN STEP = context
-        ProjectOverviewPage orderOverviewPage = PageFactory.initElements(driver, ProjectOverviewPage.class);
+        ProjectOverviewPage projectOverviewPage = PageFactory.initElements(driver, ProjectOverviewPage.class);
 
         // WHEN STEP = action
-        orderOverviewPage.editProjectWithId(1);
+        projectOverviewPage.editProjectWithId(1);
 
         // GIVEN STEP = context
         EditProjectPage editProjectPage = PageFactory.initElements(driver, EditProjectPage.class);
-        editProjectPage.setName(name);
         editProjectPage.setStartDate(startdate);
         editProjectPage.setEndDate("");
 
@@ -74,22 +73,22 @@ public class EditProjectTest {
         editProjectPage.update();
 
         // THEN STEP = result
-        assertEquals("Edit Workorder", editProjectPage.getTitle());
-        assertTrue(editProjectPage.hasErrorMessage("Please fill in a valid end time"));
-        assertTrue(editProjectPage.hasStickyStartDate("31-01-2026"));
-        assertTrue(editProjectPage.hasStickyEndDate("31-12-2026"));
+        assertEquals("Edit Project", editProjectPage.getTitle());
+        assertTrue(editProjectPage.hasErrorMessage("Please fill in a valid end date"));
+        assertTrue(editProjectPage.hasStickyStartDate("2023-03-15"));
+        assertTrue(editProjectPage.hasStickyEndDate("2023-06-29"));
 
     }
 
     @Test
     public void editProjectNonExistingId_ProjectOverview() {
         // GIVEN STEP = context
-        ProjectOverviewPage orderOverviewPage = PageFactory.initElements(driver, ProjectOverviewPage.class);
+        ProjectOverviewPage projectOverviewPage = PageFactory.initElements(driver, ProjectOverviewPage.class);
 
         // WHEN STEP = action
-        orderOverviewPage.editProjectWithIdUrl(4);
+        projectOverviewPage.editProjectWithIdUrl(5);
 
         // THEN STEP = result
-        assertEquals("Work Projects", orderOverviewPage.getTitle());
+        assertEquals("Project Overview", projectOverviewPage.getTitle());
     }
 }
