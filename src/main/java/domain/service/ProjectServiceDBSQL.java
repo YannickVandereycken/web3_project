@@ -24,8 +24,8 @@ public class ProjectServiceDBSQL implements ProjectService{
             PreparedStatement statement = getConnection().prepareStatement(query);
             statement.setString(1,project.getName());
             statement.setString(2,project.getTeam().getStringValue());
-            statement.setDate(3, Date.valueOf(project.getStartDate()));
-            statement.setDate(4, Date.valueOf(project.getEndDate()));
+            statement.setDate(3, project.getStartDateSQL());
+            statement.setDate(4, project.getEndDateSQL());
             statement.execute();
         }
         catch(SQLException e){
@@ -66,8 +66,8 @@ public class ProjectServiceDBSQL implements ProjectService{
             PreparedStatement statement = getConnection().prepareStatement(query);
             statement.setString(1,project.getName());
             statement.setString(2,project.getTeam().getStringValue());
-            statement.setString(3, project.getStartDate().toString());
-            statement.setString(4, project.getEndDate().toString());
+            statement.setDate(3, project.getStartDateSQL());
+            statement.setDate(4, project.getEndDateSQL());
             statement.setInt(5,project.getProjectId());
             statement.execute();
         }

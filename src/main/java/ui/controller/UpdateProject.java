@@ -39,13 +39,13 @@ public class UpdateProject extends RequestHandler{
         if (errors.size() == 0) {
             try {
                 service.updateProject(project);
-                return "Controller?command=OrderOverview";
+                return "Controller?command=ProjectOverview";
             } catch (DomainException | IllegalArgumentException e) {
                 errors.add(e.getMessage());
             }
         }
         request.setAttribute("errors", errors);
-        return "Controller?command=UpdateO";
+        return "Controller?command=UpdateP";
     }
 
     private void validateTeam(Project project, HttpServletRequest request, ArrayList<String> errors) {

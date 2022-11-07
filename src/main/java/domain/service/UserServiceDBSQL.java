@@ -5,6 +5,8 @@ import domain.model.Team;
 import domain.model.User;
 import util.DBConnectionService;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -28,9 +30,10 @@ public class UserServiceDBSQL implements UserService {
             statement.setString(3, user.getEmail());
             statement.setString(4, user.getRole().getStringValue());
             statement.setString(5, user.getTeam().getStringValue());
-            statement.setString(6, user.getPassword());
+            statement.setString(6, user.hashPassword(user.getPassword()));
+            System.out.println(statement);
             statement.execute();
-        } catch (SQLException e) {
+        } catch (SQLException | NoSuchAlgorithmException | UnsupportedEncodingException e) {
             throw new DbException(e.getMessage());
         }
     }

@@ -1,5 +1,6 @@
 package domain.model;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class Project {
@@ -63,6 +64,10 @@ public class Project {
         return startDate;
     }
 
+    public Date getStartDateSQL() {
+        return Date.valueOf(startDate);
+    }
+
     public void setStartDate(LocalDate startDate) {
         if(this.endDate!=null && this.endDate.isBefore(startDate))
             throw new DomainException("The startdate needs to be after the end date");
@@ -71,6 +76,10 @@ public class Project {
 
     public LocalDate getEndDate() {
         return endDate;
+    }
+
+    public Date getEndDateSQL() {
+        return Date.valueOf(endDate);
     }
 
     public void setEndDate(LocalDate endDate) {

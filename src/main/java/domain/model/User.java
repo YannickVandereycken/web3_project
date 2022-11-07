@@ -84,7 +84,7 @@ public class User {
     public void setPassword(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         if (password.isEmpty())
             throw new IllegalArgumentException("No password given");
-        this.password = hashPassword(password);
+        this.password = password;
     }
 
     public String getFirstName() {

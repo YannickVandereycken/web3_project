@@ -21,6 +21,7 @@ public class RegisterProjectPage extends Page{
 
     public RegisterProjectPage(WebDriver driver) {
         super(driver);
+        this.driver.get(Config.BASE_URL + "?command=RegisterP");
     }
 
     public void setName(String name) {

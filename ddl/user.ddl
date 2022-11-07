@@ -13,13 +13,13 @@ CREATE SEQUENCE groep2_13.user_id_seq;
 
 CREATE TABLE groep2_13.users
 (
-    userid     integer  NOT NULL DEFAULT nextval('groep2_13.user_id_seq'::regclass),
-    first_name char(40) NOT NULL,
-    last_name  char(40) NOT NULL,
-    email      char(40) NOT NULL,
-    role       char(40) NOT NULL,
-    team       char(40) NOT NULL,
-    password   char(40) NOT NULL,
+    userid     integer   NOT NULL DEFAULT nextval('groep2_13.user_id_seq'::regclass),
+    first_name char(40)  NOT NULL,
+    last_name  char(40)  NOT NULL,
+    email      char(40)  NOT NULL,
+    role       char(40)  NOT NULL,
+    team       char(40)  NOT NULL,
+    password   char(128) NOT NULL,
     CONSTRAINT pk_user PRIMARY KEY (userid)
 );
 
@@ -49,3 +49,15 @@ from groep2_13.users
 -- UPDATE groep2_13.users
 -- set first_name=Bobby, last_name=De Bouwer, email=a@a.be, role=employee, team=ALPHA
 -- where userid=4;
+
+ALTER TABLE groep2_13.users
+ALTER
+COLUMN password TYPE char(128);
+
+hashed passwords:
+t: 99f97d455d5d62b24f3a942a1abc3fa8863fc0ce2037f52f09bd785b22b800d4f2e7b2b614cb600ffc2a4fe24679845b24886d69bb776fcfa46e54d188889c6f
+a: 1f40fc92da241694750979ee6cf582f2d5d7d28e18335de05abc54d0560e0f5302860c652bf08d560252aa5e74210546f369fbbbce8c12cfc7957b2652fe9a75
+
+UPDATE groep2_13.users
+set password = '99f97d455d5d62b24f3a942a1abc3fa8863fc0ce2037f52f09bd785b22b800d4f2e7b2b614cb600ffc2a4fe24679845b24886d69bb776fcfa46e54d188889c6f'
+where userid = 1
