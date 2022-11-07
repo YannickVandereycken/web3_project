@@ -19,7 +19,7 @@ public interface WorkOrderService {
 
     int getNumberOfWorkorders();
 
-    void checkOverlap(WorkOrder workOrder, Date date, LocalTime endTime);
+    void checkOverlap(WorkOrder workOrder, Date date, LocalTime startTime, LocalTime endTime);
 
     void checkPast(Date date, LocalTime endTime);
 

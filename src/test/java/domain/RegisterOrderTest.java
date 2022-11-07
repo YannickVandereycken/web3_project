@@ -54,7 +54,7 @@ public class RegisterOrderTest {
     public void OrderAddedWithOverlappingTime_ErrorMessageGiven() {
         // GIVEN STEP = context
         RegisterOrderPage registerOrderPage = PageFactory.initElements(driver, RegisterOrderPage.class);
-        registerOrderPage.setDate("2015-11-12");
+        registerOrderPage.setDate("2006-04-03");
         registerOrderPage.setStartTime("10:00");
         registerOrderPage.setEndTime("14:00");
         registerOrderPage.setDescription(description);
@@ -65,7 +65,7 @@ public class RegisterOrderTest {
         // THEN STEP = result
         assertEquals("Register Order", registerOrderPage.getTitle());
         assertTrue(registerOrderPage.hasErrorMessage("Workorder overlaps with other workorder(s)"));
-        assertTrue(registerOrderPage.hasStickyDate("2015-11-12"));
+        assertTrue(registerOrderPage.hasStickyDate("2006-04-03"));
         assertTrue(registerOrderPage.hasStickyStartTime("10:00"));
         assertTrue(registerOrderPage.hasStickyEndTime("14:00"));
         assertTrue(registerOrderPage.hasStickyDescription(description));

@@ -99,14 +99,19 @@ public class WorkOrderServiceDBSQL implements WorkOrderService {
     }
 
     @Override
-    public void checkOverlap(WorkOrder workOrder, Date date, LocalTime endTime) {
+    public void checkOverlap(WorkOrder workOrder, Date date, LocalTime startTime, LocalTime endTime) {
         ArrayList<WorkOrder> workOrders = getAllWorkOrders();
         for (WorkOrder wo : workOrders) {
-            if (wo != null && wo.getWorkOrderId() != workOrder.getWorkOrderId())
-                if (date.equals(wo.getDateSQL()))
-                    if (endTime.isAfter(wo.getStartTime()) || endTime.equals(wo.getStartTime()))
-                        if (endTime.isBefore(wo.getEndTime()) || endTime.equals(wo.getEndTime()))
-                            throw new DbException("Workorder overlaps with other workorder(s)");
+            if (wo.getName().equals(workOrder.getName()) && wo.getTeam().getStringValue().equals(workOrder.getTeam().getStringValue()))
+                if (wo != null && wo.getWorkOrderId() != workOrder.getWorkOrderId())
+                    if (date.equals(wo.getDateSQL())) {
+                        if (endTime.isAfter(wo.getStartTime()) || endTime.equals(wo.getStartTime()))
+                            if (endTime.isBefore(wo.getEndTime()) || endTime.equals(wo.getEndTime()))
+                                throw new DbException("Workorder overlaps with other workorder(s)");
+                        if (startTime.isAfter(wo.getStartTime()) || startTime.equals(wo.getStartTime()))
+                            if (startTime.isBefore(wo.getEndTime()) || startTime.equals(wo.getEndTime()))
+                                throw new DbException("Workorder overlaps with other workorder(s)");
+                    }
         }
     }
 

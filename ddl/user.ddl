@@ -70,6 +70,9 @@ VALUES (3, 'employee', 'ucll', 'employee@ucll.be', 'employee', 'BETA', 't');
 INSERT INTO groep2_13.users(userid, first_name, last_name, email, role, team, password)
 VALUES (4, 'Bob', 'De Bouwer', 'a@a.be', 'director', 'ALPHA', 'a');
 
+INSERT INTO groep2_13.workorders(workorderid, name, team, date, start_time, end_time, description)
+VALUES (1, 'Bob', 'ALPHA', '2006-04-03', '06:00', '12:00', 'dont delete this is for testing');
+
 set search_path to groep2_13;
 select *
 from groep2_13.users

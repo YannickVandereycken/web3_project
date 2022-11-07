@@ -65,8 +65,8 @@ public class AppService {
         workOrderService.delete(id);
     }
 
-    public void checkOverlap(WorkOrder workOrder, Date date, LocalTime endTime) {
-        workOrderService.checkOverlap(workOrder, date, endTime);
+    public void checkOverlap(WorkOrder workOrder, Date date, LocalTime startTime, LocalTime endTime) {
+        workOrderService.checkOverlap(workOrder, date, startTime, endTime);
     }
 
     public void checkPast(Date date, LocalTime endTime) {
@@ -102,5 +102,7 @@ public class AppService {
         projectService.checkUnique(name, team);
     }
 
-    public ArrayList<Project> findProject(LocalDate date){return projectService.find(date);}
+    public ArrayList<Project> findProject(LocalDate date) {
+        return projectService.find(date);
+    }
 }

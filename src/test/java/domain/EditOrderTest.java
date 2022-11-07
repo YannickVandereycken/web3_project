@@ -79,9 +79,9 @@ public class EditOrderTest {
         // THEN STEP = result
         assertEquals("Edit Workorder", editOrderPage.getTitle());
         assertTrue(editOrderPage.hasErrorMessage("Please fill in a valid end time"));
-        assertTrue(editOrderPage.hasStickyDate("1415-11-12"));
-        assertTrue(editOrderPage.hasStickyStartTime("12:00"));
-        assertTrue(editOrderPage.hasStickyDescription("testing"));
+        assertTrue(editOrderPage.hasStickyDate("2006-04-03"));
+        assertTrue(editOrderPage.hasStickyStartTime("06:00"));
+        assertTrue(editOrderPage.hasStickyDescription("dont delete this is for testing"));
     }
 
     @Test

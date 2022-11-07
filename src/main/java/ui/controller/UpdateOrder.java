@@ -79,7 +79,7 @@ public class UpdateOrder extends RequestHandler {
 
     private void validateOverlap(WorkOrder workOrder, HttpServletRequest request, ArrayList<String> errors) {
         try {
-            service.checkOverlap(workOrder, Date.valueOf(request.getParameter("date")), LocalTime.parse(request.getParameter("endtime")));
+            service.checkOverlap(workOrder, Date.valueOf(request.getParameter("date")), LocalTime.parse(request.getParameter("starttime")), LocalTime.parse(request.getParameter("endtime")));
         } catch (DbException e) {
             errors.add(e.getMessage());
         }
