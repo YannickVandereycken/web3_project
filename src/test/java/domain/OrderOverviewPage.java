@@ -3,10 +3,18 @@ package domain;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
 
 public class OrderOverviewPage extends Page {
+
+    @FindBy(id = "order")
+    private WebElement orderField;
+
+    @FindBy(id = "sort")
+    private WebElement sortButton;
 
     public OrderOverviewPage(WebDriver driver) {
         super(driver);
@@ -56,5 +64,14 @@ public class OrderOverviewPage extends Page {
             }
         }
         return max;
+    }
+
+    public void setOrder(String order) {
+        Select orderF = new Select(orderField);
+        orderF.selectByVisibleText(order);
+    }
+
+    public void sortOrder() {
+        sortButton.click();
     }
 }

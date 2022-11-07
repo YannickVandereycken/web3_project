@@ -127,13 +127,10 @@ public class WorkOrderServiceDBSQL implements WorkOrderService {
             if (!label.isEmpty()) sort = Integer.parseInt(label);
         } catch (IllegalArgumentException ignored) {
         }
-        String sql = String.format("SELECT * from %s.workorders order by ?;", schema);
-        if (order.trim().equals("desc")) sql = String.format("SELECT * from %s.workorders order by ? desc;", schema);
+        String sql = String.format("SELECT * from %s.workorders order by date;", schema);
+        if (order.trim().equals("desc")) sql = String.format("SELECT * from %s.workorders order by date desc;", schema);
         try {
             PreparedStatement statement = getConnection().prepareStatement(sql);
-            System.out.println(label + "/" + order + "/" + sort + "/");
-            statement.setInt(1, sort);
-            System.out.println(statement);
             ResultSet result = statement.executeQuery();
             while (result.next()) {
                 workOrders.add(resultSetToWorkOrder(result));

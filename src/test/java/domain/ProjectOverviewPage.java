@@ -3,13 +3,21 @@ package domain;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
 
-public class ProjectOverviewPage extends Page{
+public class ProjectOverviewPage extends Page {
+
+    @FindBy(id = "date")
+    private WebElement dateField;
+
+    @FindBy(id = "find")
+    private WebElement findButton;
+
     public ProjectOverviewPage(WebDriver driver) {
         super(driver);
-        this.driver.get(getPath() + "?command=ProjectOverview");
+        this.driver.get(Config.BASE_URL + "?command=ProjectOverview");
     }
 
     public void deleteProjectWithId(int id) {
@@ -55,5 +63,19 @@ public class ProjectOverviewPage extends Page{
             }
         }
         return max;
+    }
+
+    public void setDate(String date) {
+        dateField.clear();
+        dateField.sendKeys(date);
+    }
+
+    public void findProject() {
+        findButton.click();
+    }
+
+    public boolean hasErrorMessage(String message) {
+        WebElement errorMsg = driver.findElement(By.cssSelector("p.alert-danger"));
+        return (message.equals(errorMsg.getText()));
     }
 }

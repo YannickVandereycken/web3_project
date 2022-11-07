@@ -44,12 +44,35 @@
                         </tr>
                     </c:forEach>
                 </table>
+                <h3>Choose how you want to sort the work orders by date</h3>
+                <c:forEach var="e" items="${errors}">
+                    <p class="alert-danger">${e}</p>
+                </c:forEach>
+                <form action="Controller" method="post" novalidate="novalidate">
+                        <%--                    <label for="label">Sorting Label</label>--%>
+                        <%--                    <select id="label" name="label">--%>
+                        <%--                        <option value="1">Workorder ID</option>--%>
+                        <%--                        <option value="2">Name</option>--%>
+                        <%--                        <option value="3">Team</option>--%>
+                        <%--                        <option value="4">Date</option>--%>
+                        <%--                        <option value="5">Start Time</option>--%>
+                        <%--                        <option value="6">End Time</option>--%>
+                        <%--                        <option value="7">Description</option>--%>
+                        <%--                    </select>--%>
+                    <label for="order">Order</label>
+                    <select id="order" name="order">
+                        <option value="asc">Ascending</option>
+                        <option value="desc">Descending</option>
+                    </select>
+                    <input type="hidden" name="label" value="4">
+                    <input type="hidden" name="command" value="SortOrder">
+                    <p><input type="submit" id="sort" value="Sort"></p>
+                </form>
             </c:when>
             <c:otherwise>
                 <p>These aren't the work orders you are looking for.</p>
             </c:otherwise>
         </c:choose>
-        <p>If you want to sort the work orders differently, <a href="Controller?command=SortO">click here</a></p>
     </main>
     <footer>&copy; Webontwikkeling 3, UC Leuven-Limburg</footer>
 </div>
