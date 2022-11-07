@@ -26,7 +26,7 @@ public class ProjectOverviewPage extends Page {
     }
 
     public void deleteProjectWithIdUrl(int id) {
-        this.driver.get(Config.BASE_URL + "?command=DeleteO&id=" + id);
+        this.driver.get(Config.BASE_URL + "?command=DeleteP&id=" + id);
     }
 
     public void editProjectWithId(int id) {
@@ -35,7 +35,7 @@ public class ProjectOverviewPage extends Page {
     }
 
     public void editProjectWithIdUrl(int id) {
-        this.driver.get(Config.BASE_URL + "?command=UpdateO&id=" + id);
+        this.driver.get(Config.BASE_URL + "?command=UpdateP&id=" + id);
     }
 
 
