@@ -60,7 +60,7 @@ public class DeleteProjectTest {
 
         // THEN STEP = result
         assertEquals("Project Overview", orderOverviewPage.getTitle());
-        assertTrue(orderOverviewPage.containsProjectWithName("dummy project"));
+        assertTrue(orderOverviewPage.containsProjectWithName("yes"));
     }
 
     @Test

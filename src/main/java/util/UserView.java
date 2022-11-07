@@ -1,7 +1,5 @@
 package util;
 
-import util.Secret;
-
 import java.sql.*;
 import java.util.Properties;
 

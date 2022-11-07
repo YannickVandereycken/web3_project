@@ -18,6 +18,9 @@ public class EditProjectTest {
     String startdate = "2026-01-31";
     String enddate = "2026-12-31";
 
+    String startdateShort = "31/01/26";
+    String enddateShort = "31/12/26";
+
     @Before
     public void setUp() {
         driver = DriverHelper.getDriver();
@@ -27,10 +30,10 @@ public class EditProjectTest {
         loginPage.logIn();
     }
 
-    /*@After
+    @After
     public void clean() {
         driver.quit();
-    }//*/
+    }
 
     @Test
     public void editProject_allFieldsFilledInCorrectly_projectIsEdited() {
@@ -53,7 +56,7 @@ public class EditProjectTest {
 
         // THEN STEP = result
         assertEquals("Project Overview", projectOverviewPage.getTitle());
-        assertTrue(projectOverviewPage.containsProjectWithDate(startdate, enddate));
+        assertTrue(projectOverviewPage.containsProjectWithDate(startdateShort, enddateShort));
     }
 
     @Test

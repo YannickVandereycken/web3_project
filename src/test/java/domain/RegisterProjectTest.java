@@ -26,16 +26,16 @@ public class RegisterProjectTest {
         loginPage.logIn();
     }
 
-    /*@After
+    @After
     public void clean() {
         driver.quit();
-    }//*/
+    }
 
     @Test
     public void ProjectAddedNotUniqueNameAndTeam_ErrorMessageGiven() {
         // GIVEN STEP = context
         RegisterProjectPage registerProjectPage = PageFactory.initElements(driver, RegisterProjectPage.class);
-        registerProjectPage.setName("dummy project");
+        registerProjectPage.setName("yes");
         registerProjectPage.setStartDate("2025-01-31");
         registerProjectPage.setEndDate("2025-12-31");
 
@@ -45,7 +45,7 @@ public class RegisterProjectTest {
         // THEN STEP = result
         assertEquals("Register Project", registerProjectPage.getTitle());
         assertTrue(registerProjectPage.hasErrorMessage("not a unique combination of name and team"));
-        assertTrue(registerProjectPage.hasStickyName("dummy project"));
+        assertTrue(registerProjectPage.hasStickyName("yes"));
         assertTrue(registerProjectPage.hasStickyStartDate("2025-01-31"));
         assertTrue(registerProjectPage.hasStickyEndDate("2025-12-31"));
     }
