@@ -11,7 +11,7 @@
 <body>
 <div id="container">
     <jsp:include page="header.jsp">
-        <jsp:param name="current" value=""/>
+        <jsp:param name="actual" value="Work Orders"/>
     </jsp:include>
     <h2>Work Order Overview</h2>
     <main>
