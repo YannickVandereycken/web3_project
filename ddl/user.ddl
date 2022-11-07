@@ -1,5 +1,4 @@
 -- noinspection SqlDialectInspectionForFile
-
 -- noinspection SqlNoDataSourceInspectionForFile
 
 -- beide teamgenoten moeten deze code uitvoeren OP DEZELFDE DATABASE
@@ -24,33 +23,6 @@ CREATE TABLE groep2_13.users
     CONSTRAINT pk_user PRIMARY KEY (userid)
 );
 
-CREATE SEQUENCE groep2_13.workorder_id_seq;
-
-CREATE TABLE groep2_13.workorders
-(
-    workorderid integer   NOT NULL DEFAULT nextval('groep2_13.workorder_id_seq'::regclass),
-    name        char(40)  NOT NULL,
-    team        char(40)  NOT NULL,
-    date        date      NOT NULL,
-    start_time  time      NOT NULL,
-    end_time    time      NOT NULL,
-    description char(100) NOT NULL,
-    CONSTRAINT pk_workorder PRIMARY KEY (workorderid)
-);
-
-CREATE SEQUENCE groep2_13.project_id_seq;
-
-CREATE TABLE groep2_13.projects
-(
-    projectid   integer     NOT NULL DEFAULT nextval('groep2_13.project_id_seq'::regclass),
-    name        char(40)    NOT NULL,
-    team        char(40)    NOT NULL,
-    start_date  date        NOT NULL,
-    end_date    date        NOT NULL,
-    CONSTRAINT pk_project PRIMARY KEY (projectid)
-);
-
-
 grant all on schema groep2_13 to local_r0854458, local_r0663460, r0854458, r0663460, local_u0015529, local_u0034562;
 grant all on all SEQUENCES IN SCHEMA groep2_13 to local_r0854458, local_r0663460, r0854458, r0663460, local_u0015529, local_u0034562;
 grant all on all tables in schema groep2_13 to local_r0854458, local_r0663460, r0854458, r0663460, local_u0015529, local_u0034562;
@@ -69,9 +41,6 @@ INSERT INTO groep2_13.users(userid, first_name, last_name, email, role, team, pa
 VALUES (3, 'employee', 'ucll', 'employee@ucll.be', 'employee', 'BETA', 't');
 INSERT INTO groep2_13.users(userid, first_name, last_name, email, role, team, password)
 VALUES (4, 'Bob', 'De Bouwer', 'a@a.be', 'director', 'ALPHA', 'a');
-
-INSERT INTO groep2_13.workorders(workorderid, name, team, date, start_time, end_time, description)
-VALUES (1, 'Bob', 'ALPHA', '2006-04-03', '06:00', '12:00', 'dont delete this is for testing');
 
 set search_path to groep2_13;
 select *
