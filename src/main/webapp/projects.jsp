@@ -33,8 +33,8 @@
                             <td>${p.projectId}</td>
                             <td>${p.name}</td>
                             <td>${p.team.stringValue}</td>
-                            <td>${p.startDate}</td>
-                            <td>${not empty p.endDate? p.endDate : ""}</td>
+                            <td>${p.startDateShort}</td>
+                            <td>${not empty p.endDateShort? p.endDateShort : ""}</td>
                             <td><a href="Controller?command=UpdateP&id=${p.projectId}" id="update${p.projectId}">Edit</a></td>
                             <td><a href="Controller?command=DeleteP&id=${p.projectId}" id="delete${p.projectId}">Delete</a></td>
                         </tr>

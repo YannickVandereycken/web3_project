@@ -70,9 +70,7 @@ public class WorkOrder {
     public String getDate() {
         return date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
     }
-    public LocalDate getDateRaw() {
-        return date;
-    }
+
 
     public Date getDateSQL() {
         return Date.valueOf(date);

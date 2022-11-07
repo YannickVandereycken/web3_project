@@ -2,6 +2,8 @@ package domain.model;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 public class Project {
     private int projectId;
@@ -68,6 +70,10 @@ public class Project {
         return Date.valueOf(startDate);
     }
 
+    public String getStartDateShort() {
+        return startDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
+    }
+
     public void setStartDate(LocalDate startDate) {
         if(this.endDate!=null && this.endDate.isBefore(startDate))
             throw new DomainException("The startdate needs to be after the end date");
@@ -80,6 +86,10 @@ public class Project {
 
     public Date getEndDateSQL() {
         return Date.valueOf(endDate);
+    }
+
+    public String getEndDateShort() {
+        return endDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
     }
 
     public void setEndDate(LocalDate endDate) {
