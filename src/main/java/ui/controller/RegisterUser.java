@@ -7,6 +7,8 @@ import domain.service.DbException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 public class RegisterUser extends RequestHandler {
@@ -72,7 +74,7 @@ public class RegisterUser extends RequestHandler {
         try {
             user.setPassword(password);
             request.setAttribute("passwordPrevious", password);
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | NoSuchAlgorithmException | UnsupportedEncodingException e) {
             errors.add(e.getMessage());
             request.setAttribute("passwordError", true);
         }

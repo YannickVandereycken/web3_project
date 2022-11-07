@@ -1,5 +1,11 @@
 package domain.model;
 
+import domain.service.DbException;
+
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,7 +20,11 @@ public class User {
 
     public User(String email, String password, String firstName, String lastName, Team team) {
         setEmail(email);
-        setPassword(password);
+        try {
+            setPassword(password);
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            throw new DbException(e.getMessage());
+        }
         setFirstName(firstName);
         setLastName(lastName);
         setTeam(team);
@@ -67,18 +77,14 @@ public class User {
         return password;
     }
 
-    public boolean isCorrectPassword(String password) {
-        if (password.isEmpty()) {
-            throw new IllegalArgumentException("No password given");
-        }
-        return getPassword().equals(password);
+    public boolean isCorrectPassword(String password) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        return getPassword().equals(hashPassword(password));
     }
 
-    public void setPassword(String password) {
-        if (password.isEmpty()) {
+    public void setPassword(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        if (password.isEmpty())
             throw new IllegalArgumentException("No password given");
-        }
-        this.password = password;
+        this.password = hashPassword(password);
     }
 
     public String getFirstName() {
@@ -130,5 +136,20 @@ public class User {
     @Override
     public String toString() {
         return getFirstName() + " " + getLastName() + ": " + getUserid() + ", " + getEmail() + ", " + getRole() + ", " + getTeam();
+    }
+
+    public String hashPassword(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        //create MessageDigest
+        MessageDigest crypt = MessageDigest.getInstance("SHA-512");
+        //reset
+        crypt.reset();
+        byte[] passwordBytes = password.getBytes("UTF-8");
+        crypt.update(passwordBytes);
+        //digest
+        byte[] digest = crypt.digest();
+        //convert to String
+        BigInteger digestAsBigInteger = new BigInteger(1, digest);
+        //return hashed password
+        return digestAsBigInteger.toString(16);
     }
 }

@@ -1,10 +1,13 @@
 package ui.controller;
 
 import domain.model.User;
+import domain.service.DbException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 public class LogIn extends RequestHandler{
@@ -17,10 +20,14 @@ public class LogIn extends RequestHandler{
         boolean succesful = false;
         List<User> users= service.getAllUsers();
         for(User u : users){
-            if(u.getEmail().equals(email) && u.isCorrectPassword(password)){
-                session.setAttribute("username", u.getFirstName());
-                session.setAttribute("team", u.getTeam());
-                succesful=true;
+            try {
+                if(u.getEmail().equals(email) && u.isCorrectPassword(password)){
+                    session.setAttribute("username", u.getFirstName());
+                    session.setAttribute("team", u.getTeam());
+                    succesful=true;
+                }
+            } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+                throw new DbException(e.getMessage());
             }
         }
         if(succesful==false)
