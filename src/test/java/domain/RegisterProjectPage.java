@@ -28,12 +28,12 @@ public class RegisterProjectPage extends Page{
         nameField.sendKeys(name);
     }
 
-    public void setStartTime(String startdate) {
+    public void setStartDate(String startdate) {
         startDateField.clear();
         startDateField.sendKeys(startdate);
     }
 
-    public void setEndTime(String enddate) {
+    public void setEndDate(String enddate) {
         endDateField.clear();
         endDateField.sendKeys(enddate);
     }
@@ -51,11 +51,11 @@ public class RegisterProjectPage extends Page{
         return name.equals(nameField.getAttribute("value"));
     }
 
-    public boolean hasStickyStartTime(String startdate) {
+    public boolean hasStickyStartDate(String startdate) {
         return startdate.equals(startDateField.getAttribute("value"));
     }
 
-    public boolean hasStickyEndTime(String enddate) {
+    public boolean hasStickyEndDate(String enddate) {
         return enddate.equals(endDateField.getAttribute("value"));
     }
 

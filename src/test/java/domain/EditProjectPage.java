@@ -9,14 +9,11 @@ public class EditProjectPage extends Page{
     @FindBy(id = "name")
     private WebElement nameField;
 
-    @FindBy(id = "starttime")
-    private WebElement startTimeField;
+    @FindBy(id = "startdate")
+    private WebElement startDateField;
 
-    @FindBy(id = "endtime")
-    private WebElement endTimeField;
-
-    @FindBy(id = "description")
-    private WebElement descriptionField;
+    @FindBy(id = "enddate")
+    private WebElement endDateField;
 
     @FindBy(id = "update")
     private WebElement submitButton;
@@ -30,19 +27,14 @@ public class EditProjectPage extends Page{
         nameField.sendKeys(name);
     }
 
-    public void setStartTime(String starttime) {
-        startTimeField.clear();
-        startTimeField.sendKeys(starttime);
+    public void setStartDate(String startdate) {
+        startDateField.clear();
+        startDateField.sendKeys(startdate);
     }
 
-    public void setEndTime(String endtime) {
-        endTimeField.clear();
-        endTimeField.sendKeys(endtime);
-    }
-
-    public void setDescription(String description) {
-        descriptionField.clear();
-        descriptionField.sendKeys(description);
+    public void setEndDate(String enddate) {
+        endDateField.clear();
+        endDateField.sendKeys(enddate);
     }
 
     public void update() {
@@ -54,23 +46,23 @@ public class EditProjectPage extends Page{
         return (message.equals(errorMsg.getText()));
     }
 
-    public boolean hasStickyDate(String name) {
+    public boolean hasStickyName(String name) {
         return name.equals(nameField.getAttribute("value"));
     }
 
-    public boolean hasStickyStartTime(String starttime) {
-        return starttime.equals(startTimeField.getAttribute("value"));
+    public boolean hasStickyStartDate(String startdate) {
+        return startdate.equals(startDateField.getAttribute("value"));
     }
 
-    public boolean hasStickyEndTime(String endtime) {
-        return endtime.equals(endTimeField.getAttribute("value"));
+    public boolean hasStickyEndDate(String enddate) {
+        return enddate.equals(endDateField.getAttribute("value"));
     }
 
-    public boolean hasStickyDescription(String description) {
-        return description.equals(descriptionField.getAttribute("value"));
+    public boolean hasEmptyStartDate() {
+        return startDateField.getAttribute("value").isEmpty();
     }
 
-    public boolean hasEmptyDate() {
-        return nameField.getAttribute("value").isEmpty();
+    public boolean hasEmptyEndDate() {
+        return endDateField.getAttribute("value").isEmpty();
     }
 }

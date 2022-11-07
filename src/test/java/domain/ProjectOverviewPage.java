@@ -50,6 +50,16 @@ public class ProjectOverviewPage extends Page {
         return found;
     }
 
+    public boolean containsProjectWithDate(String startDate, String endDate){
+        ArrayList<WebElement> listItems = (ArrayList<WebElement>) this.driver.findElement(By.cssSelector("td"));
+        boolean found = false;
+        for(WebElement listItem : listItems){
+            if(listItem.getText().contains(startDate) && listItem.getText().contains(endDate))
+                found=true;
+        }
+        return found;
+    }
+
     public int highestId() {
         ArrayList<WebElement> listItems = (ArrayList<WebElement>) this.driver.findElements(By.cssSelector("td"));
         int max = 5;

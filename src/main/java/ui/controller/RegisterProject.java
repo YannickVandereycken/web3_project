@@ -33,6 +33,7 @@ public class RegisterProject extends RequestHandler {
     private void validateNameTeam(Project project, HttpServletRequest request, ArrayList<String> errors) {
         String name = request.getParameter("name");
         String team = request.getParameter("team");
+        if (team.isEmpty()) errors.add("Please log in to register a project");
         try {
             service.checkUnique(name, Team.valueOf(team));
             project.setName(name);
@@ -52,6 +53,8 @@ public class RegisterProject extends RequestHandler {
             LocalDate endDate = LocalDate.parse(string_endDate);
             project.setStartDate(startDate);
             project.setEndDate(endDate);
+            request.setAttribute("startdatePrevious", string_startDate);
+            request.setAttribute("enddatePrevious", string_endDate);
         } catch (IllegalArgumentException e){
             errors.add(e.getMessage());
             request.setAttribute("startError", true);

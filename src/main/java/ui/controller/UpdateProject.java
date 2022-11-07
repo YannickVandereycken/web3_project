@@ -50,7 +50,7 @@ public class UpdateProject extends RequestHandler{
 
     private void validateTeam(Project project, HttpServletRequest request, ArrayList<String> errors) {
         String team = request.getParameter("team");
-        if (team.isEmpty()) errors.add("Please log in to register a workorder");
+        if (team.isEmpty()) errors.add("Please log in to register a project");
         else {
             project.setTeam(request.getParameter("team"));
         }

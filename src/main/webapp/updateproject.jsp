@@ -21,15 +21,13 @@
             <p class="alert-danger">${e}</p>
         </c:forEach>
         <form action="Controller" method="post" novalidate="novalidate">
-            <%--<p><label for="date">Date</label><input type="date" id="date" name="date" value="${update.dateSQL}" required
-                                                    autofocus></p>--%>
             <p><label for="startdate">Start time</label><input type="date" id="startdate" name="startdate"
-                                                               value="${update.startDate}" required></p>
+                                                               value="${update.startDate}" required autofocus></p>
             <p><label for="enddate">End time</label><input type="date" id="enddate" name="enddate"
                                                            value="${update.endDate}" required></p>
             <input type="hidden" name="name" value="${update.name}">
             <input type="hidden" name="team" value="${update.team}">
-            <input type="hidden" name="id" value="${update.workOrderId}">
+            <input type="hidden" name="id" value="${update.projectId}">
             <input type="hidden" name="command" value="UpdateProject">
             <p><input type="submit" id="update" value="Update"></p>
         </form>

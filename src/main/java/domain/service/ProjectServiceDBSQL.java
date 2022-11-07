@@ -95,9 +95,11 @@ public class ProjectServiceDBSQL implements ProjectService{
 
     @Override
     public void checkUnique(String name, Team team){
+        if(name.isEmpty())
+            throw new DomainException("please fill in a name");
         for (Project p : getAllProjects()){
             if(p.getName().equals(name) && p.getTeam().getStringValue().equals(team.getStringValue()))
-                throw new DomainException("geen unieke combinatie van naam en team");
+                throw new DomainException("not a unique combination of name and team");
         }
     }
 
