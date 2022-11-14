@@ -14,4 +14,5 @@ document
     .addEventListener("submit", (event) => {
         event.preventDefault()
         handleAddCourse()
+        addTextById(course,"main")
     })
