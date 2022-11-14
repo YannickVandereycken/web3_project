@@ -4,9 +4,9 @@ const handleAddCourse = () => {
     const credits = document.getElementById("credits").value
     const semester = document.getElementById("semester").value
 
-    const course = {name, lectors, credits}
+    const course = {name, lectors, credits, semester}
     course.push(course)
-    console.log(farm.length)
+    console.log(course.length)
 }
 
 document
