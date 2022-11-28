@@ -52,8 +52,9 @@ public class Controller extends HttpServlet {
 //            RequestHandler handler = handlerFactory.getHandler(command, service);
 //            destination = handler.handleRequest(request, response);
 //        }
-
-        RequestDispatcher view = request.getRequestDispatcher(destination);
-        view.forward(request, response);
+        if (!response.isCommitted()) {
+            RequestDispatcher view = request.getRequestDispatcher(destination);
+            view.forward(request, response);
+        }
     }
 }
