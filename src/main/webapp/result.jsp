@@ -26,16 +26,16 @@
             </tr>
             <c:forEach var="p" items="${result}">
                 <tr>
-                    <td>${p.projectId}</td>
-                    <td>${p.name}</td>
-                    <td>${p.team.stringValue}</td>
-                    <td>${p.startDate}</td>
-                    <td>${not empty p.endDate? p.endDate : ""}</td>
+                    <td><c:out value='${p.projectId}'/></td>
+                    <td><c:out value='${p.name}'/></td>
+                    <td><c:out value='${p.team.stringValue}'/></td>
+                    <td><c:out value='${p.startDate}'/></td>
+                    <td><c:out value='${not empty p.endDate? p.endDate : ""}'/></td>
                 </tr>
             </c:forEach>
         </table>
         <c:forEach var="e" items="${errors}">
-            <p class="alert-danger">${e}</p>
+            <p class="alert-danger"><c:out value='${e}'/></p>
         </c:forEach>
     </main>
     <footer>&copy; Webontwikkeling 3, UC Leuven-Limburg</footer>

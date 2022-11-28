@@ -15,20 +15,20 @@
     </jsp:include>
     <h2>Edit Workorder</h2>
     <main>
-        <h3>Edit work order of ${update.name} (${update.team})</h3>
+        <h3>Edit work order of <c:out value='${update.name}'/> (<c:out value='${update.team}'/>)</h3>
         <%--<div class="alert-danger"></div>--%>
         <c:forEach var="e" items="${errors}">
-            <p class="alert-danger">${e}</p>
+            <p class="alert-danger"><c:out value='${e}'/></p>
         </c:forEach>
         <form action="Controller" method="post" novalidate="novalidate">
-            <p><label for="date">Date</label><input type="date" id="date" name="date" value="${update.dateSQL}" required
+            <p><label for="date">Date</label><input type="date" id="date" name="date" value="<c:out value='${update.dateSQL}'/>" required
                                                     autofocus></p>
             <p><label for="starttime">Start time</label><input type="time" id="starttime" name="starttime"
-                                                               value="${update.startTime}" required></p>
+                                                               value="<c:out value='${update.startTime}'/>" required></p>
             <p><label for="endtime">End time</label><input type="time" id="endtime" name="endtime"
-                                                           value="${update.endTime}" required></p>
+                                                           value="<c:out value='${update.endTime}'/>" required></p>
             <p><label for="description">Description</label><input type="text" id="description" name="description"
-                                                                  value="${update.description}"></p>
+                                                                  value="<c:out value='${update.description}'/>"></p>
             <input type="hidden" name="name" value="${update.name}">
             <input type="hidden" name="team" value="${update.team}">
             <input type="hidden" name="id" value="${update.workOrderId}">

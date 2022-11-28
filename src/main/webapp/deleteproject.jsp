@@ -16,12 +16,12 @@
     <h2>Delete Project</h2>
     <main>
         <h3>Are you sure you want to delete this project?</h3>
-        <p>Name: ${delete.name}</p>
-        <p>ProjectId: ${delete.projectId}</p>
-        <p>Team: ${delete.team.stringValue}</p>
-        <p>From: ${delete.startDate} To: ${delete.endDate}</p>
+        <p>Name: <c:out value='${delete.name}'/></p>
+        <p>ProjectId: <c:out value='${delete.projectId}'/></p>
+        <p>Team: <c:out value='${delete.team.stringValue}'/></p>
+        <p>From: <c:out value='${delete.startDate}'/> To: <c:out value='${delete.endDate}'/></p>
         <form action="Controller" method="post" novalidate="novalidate">
-            <input type="hidden" name="id" value="${delete.projectId}">
+            <input type="hidden" name="id" value="<c:out value='${delete.projectId}'/>">
             <input type="hidden" name="command" value="DeleteProject">
             <input type="submit" name="submit" id="cancel" value="Cancel" class="cancel">
             <input type="submit" name="submit" id="confirm" value="Confirm" class="confirm">

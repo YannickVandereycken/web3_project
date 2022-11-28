@@ -18,14 +18,14 @@
         <h3>Userid: ${update.userid}</h3>
         <%--<div class="alert-danger"></div>--%>
         <c:forEach var="e" items="${errors}">
-            <p class="alert-danger">${e}</p>
+            <p class="alert-danger"><c:out value='${e}'/></p>
         </c:forEach>
         <form action="Controller" method="post" novalidate="novalidate">
             <p><label for="firstName">First Name</label><input type="text" id="firstName" name="firstName"
-                                                               value="${update.firstName}" required autofocus></p>
+                                                               value="<c:out value='${update.firstName}'/>" required autofocus></p>
             <p><label for="lastName">Last Name</label><input type="text" id="lastName" name="lastName"
-                                                             value="${update.lastName}" required></p>
-            <p><label for="email">Email</label><input type="email" id="email" name="email" value="${update.email}"
+                                                             value="<c:out value='${update.lastName}'/>" required></p>
+            <p><label for="email">Email</label><input type="email" id="email" name="email" value="<c:out value='${update.email}'/>"
                                                       required></p>
             <label for="role">Role</label>
             <select id="role" name="role">

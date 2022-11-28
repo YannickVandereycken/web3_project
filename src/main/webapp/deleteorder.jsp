@@ -16,12 +16,12 @@
     <h2>Delete Workorder</h2>
     <main>
         <h3>Are you sure you want to delete this workorder?</h3>
-        <p>Name: ${delete.name} (${delete.team.stringValue})</p>
-        <p>WorkorderId: ${delete.workOrderId}</p>
-        <p>Date: ${delete.date}</p>
-        <p>Time: ${delete.startTime} to ${delete.endTime}</p>
+        <p>Name: <c:out value='${delete.name}'/> (<c:out value='${delete.team.stringValue}'/>)</p>
+        <p>WorkorderId: <c:out value='${delete.workOrderId}'/></p>
+        <p>Date: <c:out value='${delete.date}'/></p>
+        <p>Time: <c:out value='${delete.startTime}'/> to <c:out value='${delete.endTime}'/></p>
         <form action="Controller" method="post" novalidate="novalidate">
-            <input type="hidden" name="id" value="${delete.workOrderId}">
+            <input type="hidden" name="id" value="<c:out value='${delete.workOrderId}'/>">
             <input type="hidden" name="command" value="DeleteOrder">
             <input type="submit" name="submit" id="cancel" value="Cancel" class="cancel">
             <input type="submit" name="submit" id="confirm" value="Confirm" class="confirm">

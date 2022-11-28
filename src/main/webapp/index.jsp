@@ -17,7 +17,7 @@
     <c:choose>
         <c:when test="${not empty username}">
             <main>
-                <h3>Welcome, ${username}</h3>
+                <h3>Welcome, <c:out value='${username}'/></h3>
                 <form action="Controller" method="post">
                     <input type="hidden" name="command" value="LogOut">
                     <p><input type="submit" id="logOut" value="Log Out"></p>

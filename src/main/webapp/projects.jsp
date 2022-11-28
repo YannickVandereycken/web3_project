@@ -30,18 +30,18 @@
                     </tr>
                     <c:forEach var="p" items="${projects}">
                         <tr>
-                            <td>${p.projectId}</td>
-                            <td>${p.name}</td>
-                            <td>${p.team.stringValue}</td>
-                            <td>${p.startDateShort}</td>
-                            <td>${not empty p.endDateShort? p.endDateShort : ""}</td>
+                            <td><c:out value='${p.projectId}'/></td>
+                            <td><c:out value='${p.name}'/></td>
+                            <td><c:out value='${p.team.stringValue}'/></td>
+                            <td><c:out value='${p.startDateShort}'/></td>
+                            <td><c:out value='${not empty p.endDateShort? p.endDateShort : ""}'/></td>
                             <td><a href="Controller?command=UpdateP&id=${p.projectId}" id="update${p.projectId}">Edit</a></td>
                             <td><a href="Controller?command=DeleteP&id=${p.projectId}" id="delete${p.projectId}">Delete</a></td>
                         </tr>
                     </c:forEach>
                 </table>
                 <c:forEach var="e" items="${errors}">
-                    <p class="alert-danger">${e}</p>
+                    <p class="alert-danger"><c:out value='${e}'/></p>
                 </c:forEach>
                 <form action="Controller" method="post" novalidate="novalidate">
                     <label for="date">Date: </label><input type="date" name="date" id="date">

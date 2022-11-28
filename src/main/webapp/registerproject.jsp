@@ -15,17 +15,17 @@
     </jsp:include>
     <h2>Register Project</h2>
     <main>
-        <p>Do you want to register a project, ${username} (${team})?</p>
+        <p>Do you want to register a project, <c:out value='${username}'/> (<c:out value='${team}'/>)?</p>
         <c:forEach var="e" items="${errors}">
-            <p class="alert-danger">${e}</p>
+            <p class="alert-danger"><c:out value='${e}'/></p>
         </c:forEach>
         <form action="Controller" method="post" novalidate="novalidate">
             <p><label for="name">Name</label><input type="text" id="name" name="name"
-                                                    value="${namePrevious}" required autofocus></p>
+                                                    value="<c:out value='${namePrevious}'/>" required autofocus></p>
             <p><label for="startdate">Start date</label><input type="date" id="startdate" name="startdate"
-                                                               value="${startdatePrevious}" required></p>
+                                                               value="<c:out value='${startdatePrevious}'/>" required></p>
             <p><label for="enddate">End date</label><input type="date" id="enddate" name="enddate"
-                                                           value="${enddatePrevious}" required></p>
+                                                           value="<c:out value='${enddatePrevious}'/>" required></p>
             <input type="hidden" name="team" value="${team}">
             <input type="hidden" name="command" value="RegisterProject">
             <p><input type="submit" id="register" value="Register"></p>

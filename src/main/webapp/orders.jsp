@@ -31,12 +31,12 @@
                     </tr>
                     <c:forEach var="o" items="${orders}">
                         <tr>
-                            <td>${o.workOrderId}</td>
-                            <td>${o.name} (${o.team.stringValue})</td>
-                            <td>${o.date}</td>
-                            <td>from ${o.startTime} to ${o.endTime}</td>
-                            <td>${o.totalTime} min.</td>
-                            <td>${o.description}</td>
+                            <td><c:out value='${o.workOrderId}'/></td>
+                            <td><c:out value='${o.name}'/> (<c:out value='${o.team.stringValue}'/>)</td>
+                            <td><c:out value='${o.date}'/></td>
+                            <td>from <c:out value='${o.startTime}'/> to <c:out value='${o.endTime}'/></td>
+                            <td><c:out value='${o.totalTime}'/> min.</td>
+                            <td><c:out value='${o.description}'/></td>
                             <td><a href="Controller?command=UpdateO&id=${o.workOrderId}"
                                    id="update${o.workOrderId}">Edit</a></td>
                             <td><a href="Controller?command=DeleteO&id=${o.workOrderId}"
@@ -46,7 +46,7 @@
                 </table>
                 <h3>Choose how you want to sort the work orders by date</h3>
                 <c:forEach var="e" items="${errors}">
-                    <p class="alert-danger">${e}</p>
+                    <p class="alert-danger"><c:out value='${e}'/></p>
                 </c:forEach>
                 <form action="Controller" method="post" novalidate="novalidate">
                         <%--                    <label for="label">Sorting Label</label>--%>

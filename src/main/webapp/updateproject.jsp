@@ -15,16 +15,16 @@
     </jsp:include>
     <h2>Edit Project</h2>
     <main>
-        <h3>Edit ${update.name} (${update.team})</h3>
+        <h3>Edit <c:out value='${update.name}'/> (<c:out value='${update.team}'/>)</h3>
         <%--<div class="alert-danger"></div>--%>
         <c:forEach var="e" items="${errors}">
-            <p class="alert-danger">${e}</p>
+            <p class="alert-danger"><c:out value='${e}'/></p>
         </c:forEach>
         <form action="Controller" method="post" novalidate="novalidate">
             <p><label for="startdate">Start time</label><input type="date" id="startdate" name="startdate"
-                                                               value="${update.startDate}" required autofocus></p>
+                                                               value="<c:out value='${update.startDate}'/>" required autofocus></p>
             <p><label for="enddate">End time</label><input type="date" id="enddate" name="enddate"
-                                                           value="${update.endDate}" required></p>
+                                                           value="<c:out value='${update.endDate}'/>" required></p>
             <input type="hidden" name="name" value="${update.name}">
             <input type="hidden" name="team" value="${update.team}">
             <input type="hidden" name="id" value="${update.projectId}">

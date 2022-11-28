@@ -17,17 +17,17 @@
     <main>
         <%--<div class="alert-danger"></div>--%>
         <c:forEach var="e" items="${errors}">
-            <p class="alert-danger">${e}</p>
+            <p class="alert-danger"><c:out value='${e}'/></p>
         </c:forEach>
         <form action="Controller" method="post" novalidate="novalidate">
             <p><label for="firstName">First Name</label><input type="text" id="firstName" name="firstName"
-                                                               value="${namePrevious}" required autofocus></p>
+                                                               value="<c:out value='${namePrevious}'/>" required autofocus></p>
             <p><label for="lastName">Last Name</label><input type="text" id="lastName" name="lastName"
-                                                             value="${lastNamePrevious}" required></p>
-            <p><label for="email">Email</label><input type="email" id="email" name="email" value="${emailPrevious}"
+                                                             value="<c:out value='${lastNamePrevious}'/>" required></p>
+            <p><label for="email">Email</label><input type="email" id="email" name="email" value="<c:out value='${emailPrevious}'/>"
                                                       required></p>
             <p><label for="password">Password</label><input type="password" id="password" name="password"
-                                                            value="${passwordPrevious}" required></p>
+                                                            value="<c:out value='${passwordPrevious}'/>" required></p>
             <label for="team">Team</label>
             <select id="team" name="team">
                 <option value="ALPHA">Alpha</option>

@@ -16,12 +16,12 @@
     <h2>Delete User</h2>
     <main>
         <h3>Are you sure you want to delete user?</h3>
-        <p>Name: ${delete.firstName} ${delete.lastName}</p>
-        <p>Userid: ${delete.userid}</p>
-        <p>Role: ${delete.role.stringValue}</p>
-        <p>Team: ${delete.team.stringValue}</p>
+        <p>Name: <c:out value='${delete.firstName}'/> <c:out value='${delete.lastName}'/></p>
+        <p>Userid: <c:out value='${delete.userid}'/></p>
+        <p>Role: <c:out value='${delete.role.stringValue}'/></p>
+        <p>Team: <c:out value='${delete.team.stringValue}'/> </p>
         <form action="Controller" method="post" novalidate="novalidate">
-            <input type="hidden" name="id" value="${delete.userid}">
+            <input type="hidden" name="id" value="<c:out value='${delete.userid}'/>">
             <input type="hidden" name="command" value="DeleteUser">
             <input type="submit" name="submit" id="cancel" value="Cancel" class="cancel">
             <input type="submit" name="submit" id="confirm" value="Confirm" class="confirm">

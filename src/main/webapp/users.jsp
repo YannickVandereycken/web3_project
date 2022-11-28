@@ -31,12 +31,12 @@
                     </tr>
                     <c:forEach var="u" items="${users}">
                         <tr>
-                            <td>${u.userid}</td>
-                            <td>${u.firstName}</td>
-                            <td>${u.lastName}</td>
-                            <td>${u.email}</td>
-                            <td>${u.team.stringValue}</td>
-                            <td>${u.role.stringValue}</td>
+                            <td><c:out value='${u.userid}'/></td>
+                            <td><c:out value='${u.firstName}'/></td>
+                            <td><c:out value='${u.lastName}'/></td>
+                            <td><c:out value='${u.email}'/></td>
+                            <td><c:out value='${u.team.stringValue}'/></td>
+                            <td><c:out value='${u.role.stringValue}'/></td>
                             <td><a href="Controller?command=Update&id=${u.userid}" id="update${u.userid}">Edit</a></td>
                             <td><a href="Controller?command=Delete&id=${u.userid}" id="delete${u.userid}">Delete</a></td>
                         </tr>
