@@ -40,7 +40,7 @@
                             <td><c:if test="${user.userid==u.userid || (user.role=='TEAMLEADER' && u.role !='DIRECTOR' && user.team==u.team) || user.role=='DIRECTOR'}">
                                 <a href="Controller?command=Update&id=${u.userid}" id="update${u.userid}">Edit</a>
                             </c:if></td>
-                            <td><c:if test="${(user.role=='TEAMLEADER' && u.role !='DIRECTOR' && user.team==u.team) || user.role=='DIRECTOR'}">
+                            <td><c:if test="${user.role=='DIRECTOR'}">
                                 <a href="Controller?command=Delete&id=${u.userid}" id="delete${u.userid}">Delete</a>
                             </c:if></td>
                         </tr>

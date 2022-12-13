@@ -7,7 +7,6 @@ import domain.service.DbException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,10 +15,9 @@ public class UpdateProject extends RequestHandler{
 
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, NotAuthorizedException{
-        Role[] roles = { Role.EMPLOYEE, Role.TEAMLEADER, Role.DIRECTOR };
+        Role[] roles = {Role.DIRECTOR };
         Utility.checkRole(request, roles);
-        HttpSession session = request.getSession();
-        ArrayList<String> errors = new ArrayList<String>();
+        ArrayList<String> errors = new ArrayList<>();
         Project project = new Project();
         project.setProjectId(Integer.parseInt(request.getParameter("id")));
         validateTeam(project, request, errors);

@@ -1,13 +1,10 @@
 package ui.controller;
 
-import domain.model.DomainException;
-import domain.model.Role;
-import domain.model.WorkOrder;
+import domain.model.*;
 import domain.service.DbException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -17,11 +14,17 @@ import java.util.ArrayList;
 public class UpdateOrder extends RequestHandler {
 
     @Override
-    public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, NotAuthorizedException{
-        Role[] roles = { Role.EMPLOYEE, Role.TEAMLEADER, Role.DIRECTOR };
+    public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, NotAuthorizedException {
+        Role[] roles = {Role.EMPLOYEE, Role.TEAMLEADER, Role.DIRECTOR};
         Utility.checkRole(request, roles);
-        HttpSession session = request.getSession();
-        ArrayList<String> errors = new ArrayList<String>();
+
+        User loggedIn = (User) request.getSession().getAttribute("user");
+        if (loggedIn.getRole() == Role.EMPLOYEE && loggedIn.getFirstName() != request.getParameter("name") && loggedIn.getTeam() != Team.valueOf(request.getParameter("team")))
+            throw new NotAuthorizedException();
+        if (loggedIn.getRole() == Role.TEAMLEADER && loggedIn.getTeam() != Team.valueOf(request.getParameter("team")))
+            throw new NotAuthorizedException();
+
+        ArrayList<String> errors = new ArrayList<>();
         WorkOrder workOrder = new WorkOrder();
         workOrder.setWorkOrderId(Integer.parseInt(request.getParameter("id")));
         validateNameTeam(workOrder, request, errors);

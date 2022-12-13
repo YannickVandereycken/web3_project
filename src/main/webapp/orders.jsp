@@ -40,7 +40,7 @@
                             <td><c:if test="${user.firstName==o.name || user.role=='TEAMLEADER' || user.role=='DIRECTOR'}">
                                 <a href="Controller?command=UpdateO&id=${o.workOrderId}" id="update${o.workOrderId}">Edit</a>
                             </c:if></td>
-                            <td><c:if test="${user.firstName==o.name || user.role=='TEAMLEADER' || user.role=='DIRECTOR'}">
+                            <td><c:if test="${user.role=='DIRECTOR'}">
                                 <a href="Controller?command=DeleteO&id=${o.workOrderId}" id="delete${o.workOrderId}">Delete</a>
                             </c:if></td>
                         </tr>

@@ -48,7 +48,7 @@
             <label for="team">Team</label>
             <select id="team" name="team">
                 <c:choose>
-                    <c:when test="${user.role=='DIRECTOR' && update.role=='DIRECTOR'}">
+                    <c:when test="${user.role=='DIRECTOR' && update.userid==user.userid}">
                         <option value="ALPHA" selected>Alpha</option>
                     </c:when>
                     <c:otherwise>

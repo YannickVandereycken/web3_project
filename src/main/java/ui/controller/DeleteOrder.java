@@ -10,9 +10,8 @@ import java.io.IOException;
 public class DeleteOrder extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, NotAuthorizedException {
-        Role[] roles = {Role.EMPLOYEE, Role.TEAMLEADER, Role.DIRECTOR};
+        Role[] roles = {Role.DIRECTOR};
         Utility.checkRole(request, roles);
-        HttpSession session = request.getSession();
         int id = Integer.parseInt(request.getParameter("id"));
         if (request.getParameter("submit").equals("Confirm")) {
             service.deleteOrder(id);
