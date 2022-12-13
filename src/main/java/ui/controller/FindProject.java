@@ -1,5 +1,6 @@
 package ui.controller;
 
+import domain.model.Role;
 import domain.service.DbException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +11,9 @@ import java.util.ArrayList;
 
 public class FindProject extends RequestHandler{
     @Override
-    public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
+    public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws NotAuthorizedException{
+        Role[] roles = { Role.EMPLOYEE, Role.TEAMLEADER, Role.DIRECTOR };
+        Utility.checkRole(request, roles);
         HttpSession session = request.getSession();
         ArrayList<String> errors = new ArrayList<String>();
         String date_string = request.getParameter("date");

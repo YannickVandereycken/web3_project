@@ -1,5 +1,6 @@
 package domain.service;
 
+import domain.model.Team;
 import domain.model.WorkOrder;
 
 import java.sql.Date;
@@ -12,6 +13,8 @@ public interface WorkOrderService {
     ArrayList<WorkOrder> getAllWorkOrders();
 
     void add(WorkOrder workOrder);
+
+    ArrayList<WorkOrder> getWorkOrdersOfTeam(Team team);
 
     void update(WorkOrder workOrder);
 

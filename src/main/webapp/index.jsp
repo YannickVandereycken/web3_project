@@ -14,6 +14,9 @@
         <jsp:param name="actual" value="Home"/>
     </jsp:include>
     <h2>Home</h2>
+    <c:if test="${notAuthorized!=null }">
+        <p class="error">${notAuthorized}</p>
+    </c:if>
     <c:choose>
         <c:when test="${not empty username}">
             <main>

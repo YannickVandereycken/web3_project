@@ -1,5 +1,6 @@
 package ui.controller;
 
+import domain.model.Role;
 import domain.model.WorkOrder;
 import domain.service.DbException;
 
@@ -15,7 +16,9 @@ import java.util.ArrayList;
 public class RegisterOrder extends RequestHandler {
 
     @Override
-    public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, NotAuthorizedException {
+        Role[] roles = {Role.EMPLOYEE, Role.TEAMLEADER, Role.DIRECTOR};
+        Utility.checkRole(request, roles);
         HttpSession session = request.getSession();
         ArrayList<String> errors = new ArrayList<String>();
         WorkOrder workOrder = new WorkOrder();

@@ -38,10 +38,16 @@ public class WorkOrderServiceDBSQL implements WorkOrderService {
 
     @Override
     public WorkOrder get(int id) {
-        for (WorkOrder workOrder : getAllWorkOrders()) {
-            if (workOrder != null)
-                if (workOrder.getWorkOrderId() == id)
-                    return workOrder;
+        String sql = String.format("SELECT * from %s.workorders where workorderid=?;", schema);
+        try {
+            PreparedStatement statement = getConnection().prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                return resultSetToWorkOrder(result);
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
         }
         return null;
     }
@@ -52,6 +58,23 @@ public class WorkOrderServiceDBSQL implements WorkOrderService {
         String sql = String.format("SELECT * from %s.workorders order by workorderid;", schema);
         try {
             PreparedStatement statement = getConnection().prepareStatement(sql);
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                workOrders.add(resultSetToWorkOrder(result));
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+        return workOrders;
+    }
+
+    @Override
+    public ArrayList<WorkOrder> getWorkOrdersOfTeam(Team team) {
+        ArrayList<WorkOrder> workOrders = new ArrayList<>();
+        String sql = String.format("SELECT * from %s.workorders where team=? order by workorderid;", schema);
+        try {
+            PreparedStatement statement = getConnection().prepareStatement(sql);
+            statement.setString(1, team.getStringValue());
             ResultSet result = statement.executeQuery();
             while (result.next()) {
                 workOrders.add(resultSetToWorkOrder(result));

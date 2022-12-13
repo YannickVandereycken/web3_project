@@ -13,7 +13,9 @@ import java.util.ArrayList;
 public class RegisterProject extends RequestHandler {
 
     @Override
-    public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, NotAuthorizedException {
+        Role[] roles = {Role.TEAMLEADER, Role.DIRECTOR};
+        Utility.checkRole(request, roles);
         HttpSession session = request.getSession();
         ArrayList<String> errors = new ArrayList<String>();
         Project p = new Project();
@@ -47,11 +49,11 @@ public class RegisterProject extends RequestHandler {
         }
     }
 
-    private void validateDate(Project project, HttpServletRequest request, ArrayList<String> errors){
+    private void validateDate(Project project, HttpServletRequest request, ArrayList<String> errors) {
         String string_startDate = request.getParameter("startdate");
         String string_endDate = request.getParameter("enddate");
         try {
-            if(string_startDate.isEmpty() || string_endDate.isEmpty())
+            if (string_startDate.isEmpty() || string_endDate.isEmpty())
                 throw new IllegalArgumentException("please fill in a date");
             LocalDate startDate = LocalDate.parse(string_startDate);
             LocalDate endDate = LocalDate.parse(string_endDate);
@@ -59,7 +61,7 @@ public class RegisterProject extends RequestHandler {
             project.setEndDate(endDate);
             request.setAttribute("startdatePrevious", string_startDate);
             request.setAttribute("enddatePrevious", string_endDate);
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             errors.add(e.getMessage());
             request.setAttribute("startError", true);
         }

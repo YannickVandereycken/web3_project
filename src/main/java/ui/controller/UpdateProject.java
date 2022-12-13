@@ -2,6 +2,7 @@ package ui.controller;
 
 import domain.model.DomainException;
 import domain.model.Project;
+import domain.model.Role;
 import domain.service.DbException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +15,9 @@ import java.util.ArrayList;
 public class UpdateProject extends RequestHandler{
 
     @Override
-    public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, NotAuthorizedException{
+        Role[] roles = { Role.EMPLOYEE, Role.TEAMLEADER, Role.DIRECTOR };
+        Utility.checkRole(request, roles);
         HttpSession session = request.getSession();
         ArrayList<String> errors = new ArrayList<String>();
         Project project = new Project();

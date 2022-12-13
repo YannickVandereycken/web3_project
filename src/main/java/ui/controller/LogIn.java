@@ -23,6 +23,7 @@ public class LogIn extends RequestHandler {
         for (User u : users) {
             try {
                 if (u.getEmail().equals(email) && u.isCorrectPassword(password)) {
+                    session.setAttribute("user", u);
                     session.setAttribute("username", u.getFirstName());
                     session.setAttribute("team", u.getTeam());
                     succesful = true;
@@ -31,7 +32,7 @@ public class LogIn extends RequestHandler {
                 throw new DbException(e.getMessage());
             }
         }
-        if (succesful == false)
+        if (!succesful)
             request.setAttribute("error", "No valid email/password");
         response.sendRedirect("Controller?command=Index");
         return "index.jsp";

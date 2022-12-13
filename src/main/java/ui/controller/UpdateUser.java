@@ -10,11 +10,16 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class UpdateUser extends RequestHandler{
+public class UpdateUser extends RequestHandler {
     @Override
-    public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, NotAuthorizedException {
+        Role[] roles = {Role.EMPLOYEE, Role.TEAMLEADER, Role.DIRECTOR};
+        Utility.checkRole(request, roles);
         HttpSession session = request.getSession();
-        ArrayList<String> errors = new ArrayList<String>();
+        ArrayList<String> errors = new ArrayList<>();
+        User loggedIn = (User) request.getSession().getAttribute("user");
+        if (loggedIn.getRole() == Role.TEAMLEADER && request.getParameter("role") == Role.DIRECTOR.getStringValue())
+            throw new NotAuthorizedException();
         User user = new User();
         user.setUserid(Integer.parseInt(request.getParameter("id")));
         validateName(user, request, errors);

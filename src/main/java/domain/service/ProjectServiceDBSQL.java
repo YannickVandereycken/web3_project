@@ -34,11 +34,17 @@ public class ProjectServiceDBSQL implements ProjectService{
     }
 
     @Override
-    public Project get(int userid) {
-        for (Project project : getAllProjects()) {
-            if (project != null)
-                if (project.getProjectId() == userid)
-                    return project;
+    public Project get(int id) {
+        String sql = String.format("SELECT * from %s.projects where projectid=?;", schema);
+        try {
+            PreparedStatement statement = getConnection().prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                return resultSetToProject(result);
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
         }
         return null;
     }

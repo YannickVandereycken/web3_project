@@ -57,6 +57,10 @@ public class AppService {
         return workOrderService.getAllWorkOrders();
     }
 
+    public ArrayList<WorkOrder> getWorkOrdersOfTeam(Team team) {
+        return workOrderService.getWorkOrdersOfTeam(team);
+    }
+
     public void updateOrder(WorkOrder workOrder) {
         workOrderService.update(workOrder);
     }

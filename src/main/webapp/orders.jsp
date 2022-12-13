@@ -37,10 +37,12 @@
                             <td>from <c:out value='${o.startTime}'/> to <c:out value='${o.endTime}'/></td>
                             <td><c:out value='${o.totalTime}'/> min.</td>
                             <td><c:out value='${o.description}'/></td>
-                            <td><a href="Controller?command=UpdateO&id=${o.workOrderId}"
-                                   id="update${o.workOrderId}">Edit</a></td>
-                            <td><a href="Controller?command=DeleteO&id=${o.workOrderId}"
-                                   id="delete${o.workOrderId}">Delete</a></td>
+                            <td><c:if test="${user.firstName==o.name || user.role=='TEAMLEADER' || user.role=='DIRECTOR'}">
+                                <a href="Controller?command=UpdateO&id=${o.workOrderId}" id="update${o.workOrderId}">Edit</a>
+                            </c:if></td>
+                            <td><c:if test="${user.firstName==o.name || user.role=='TEAMLEADER' || user.role=='DIRECTOR'}">
+                                <a href="Controller?command=DeleteO&id=${o.workOrderId}" id="delete${o.workOrderId}">Delete</a>
+                            </c:if></td>
                         </tr>
                     </c:forEach>
                 </table>

@@ -40,10 +40,16 @@ public class UserServiceDBSQL implements UserService {
 
     @Override
     public User get(int id) {
-        for (User user : getAllUsers()) {
-            if (user != null)
-                if (user.getUserid() == id)
-                    return user;
+        String sql = String.format("SELECT * from %s.users where userid=?;", schema);
+        try {
+            PreparedStatement statement = getConnection().prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                return resultSetToUser(result);
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
         }
         return null;
     }

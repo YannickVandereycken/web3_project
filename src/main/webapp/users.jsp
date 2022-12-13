@@ -37,8 +37,12 @@
                             <td><c:out value='${u.email}'/></td>
                             <td><c:out value='${u.team.stringValue}'/></td>
                             <td><c:out value='${u.role.stringValue}'/></td>
-                            <td><a href="Controller?command=Update&id=${u.userid}" id="update${u.userid}">Edit</a></td>
-                            <td><a href="Controller?command=Delete&id=${u.userid}" id="delete${u.userid}">Delete</a></td>
+                            <td><c:if test="${user.userid==u.userid || (user.role=='TEAMLEADER' && u.role !='DIRECTOR' && user.team==u.team) || user.role=='DIRECTOR'}">
+                                <a href="Controller?command=Update&id=${u.userid}" id="update${u.userid}">Edit</a>
+                            </c:if></td>
+                            <td><c:if test="${(user.role=='TEAMLEADER' && u.role !='DIRECTOR' && user.team==u.team) || user.role=='DIRECTOR'}">
+                                <a href="Controller?command=Delete&id=${u.userid}" id="delete${u.userid}">Delete</a>
+                            </c:if></td>
                         </tr>
                     </c:forEach>
                 </table>

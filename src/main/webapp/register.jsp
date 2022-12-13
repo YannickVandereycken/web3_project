@@ -15,7 +15,6 @@
     </jsp:include>
     <h2>Register</h2>
     <main>
-        <%--<div class="alert-danger"></div>--%>
         <c:forEach var="e" items="${errors}">
             <p class="alert-danger"><c:out value='${e}'/></p>
         </c:forEach>
@@ -24,13 +23,15 @@
                                                                value="<c:out value='${namePrevious}'/>" required autofocus></p>
             <p><label for="lastName">Last Name</label><input type="text" id="lastName" name="lastName"
                                                              value="<c:out value='${lastNamePrevious}'/>" required></p>
-            <p><label for="email">Email</label><input type="email" id="email" name="email" value="<c:out value='${emailPrevious}'/>"
-                                                      required></p>
+            <p><label for="email">Email</label><input type="email" id="email" name="email"
+                                                      value="<c:out value='${emailPrevious}'/>" required></p>
             <p><label for="password">Password</label><input type="password" id="password" name="password"
                                                             value="<c:out value='${passwordPrevious}'/>" required></p>
             <label for="team">Team</label>
             <select id="team" name="team">
-                <option value="ALPHA">Alpha</option>
+                <c:if test="${user.role=='DIRECTOR'}">
+                    <option value="ALPHA">Alpha</option>
+                </c:if>
                 <option value="BETA">Beta</option>
                 <option value="GAMMA">Gamma</option>
                 <option value="DELTA">Delta</option>

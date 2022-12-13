@@ -35,8 +35,12 @@
                             <td><c:out value='${p.team.stringValue}'/></td>
                             <td><c:out value='${p.startDateShort}'/></td>
                             <td><c:out value='${not empty p.endDateShort? p.endDateShort : ""}'/></td>
-                            <td><a href="Controller?command=UpdateP&id=${p.projectId}" id="update${p.projectId}">Edit</a></td>
-                            <td><a href="Controller?command=DeleteP&id=${p.projectId}" id="delete${p.projectId}">Delete</a></td>
+                            <td><c:if test="${user.role=='DIRECTOR'}">
+                                <a href="Controller?command=UpdateP&id=${p.projectId}" id="update${p.projectId}">Edit</a>
+                            </c:if></td>
+                            <td><c:if test="${user.role=='DIRECTOR'}">
+                                <a href="Controller?command=DeleteP&id=${p.projectId}" id="delete${p.projectId}">Delete</a>
+                            </c:if></td>
                         </tr>
                     </c:forEach>
                 </table>
