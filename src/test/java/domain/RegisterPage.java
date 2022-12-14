@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
 public class RegisterPage extends Page {
 
@@ -18,6 +19,9 @@ public class RegisterPage extends Page {
 
     @FindBy(id = "password")
     private WebElement passwordField;
+
+    @FindBy(id = "team")
+    private WebElement teamField;
 
     @FindBy(id = "signUp")
     private WebElement submitButton;
@@ -45,6 +49,11 @@ public class RegisterPage extends Page {
     public void setPassword(String password) {
         passwordField.clear();
         passwordField.sendKeys(password);
+    }
+
+    public void setTeam(String team){
+        Select dropdown = new Select(teamField);
+        dropdown.selectByVisibleText(team);
     }
 
     public void add() {

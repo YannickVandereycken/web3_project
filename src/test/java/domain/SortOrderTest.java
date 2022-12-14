@@ -27,7 +27,7 @@ public class SortOrderTest {
     }
 
     @Test
-    public void dateCorrect_foundOneProject() {
+    public void descending_orderCorrect() {
         // GIVEN STEP = context
         OrderOverviewPage orderOverviewPage = PageFactory.initElements(driver, OrderOverviewPage.class);
         orderOverviewPage.setOrder("Descending");
@@ -35,11 +35,11 @@ public class SortOrderTest {
 
         // THEN STEP = result
         assertEquals("Work Orders", orderOverviewPage.getTitle());
-        assertTrue(orderOverviewPage.containsOrderWithDescription("yesn't"));
+        assertTrue(orderOverviewPage.containsOrderWithDescription("non't"));
     }
 
     @Test
-    public void dateCorrect_foundNoProject() {
+    public void ascending_orderCorrect() {
         // GIVEN STEP = context
         OrderOverviewPage orderOverviewPage = PageFactory.initElements(driver, OrderOverviewPage.class);
         orderOverviewPage.setOrder("Ascending");

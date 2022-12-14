@@ -29,9 +29,6 @@
                                                             value="<c:out value='${passwordPrevious}'/>" required></p>
             <label for="team">Team</label>
             <select id="team" name="team">
-                <c:if test="${user.role=='DIRECTOR'}">
-                    <option value="ALPHA">Alpha</option>
-                </c:if>
                 <option value="BETA">Beta</option>
                 <option value="GAMMA">Gamma</option>
                 <option value="DELTA">Delta</option>

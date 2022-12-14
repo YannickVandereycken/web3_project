@@ -19,6 +19,8 @@ public class RegisterTest {
     String email = "bob@bouwer.be";
     String password = "bob";
 
+    String team = "Delta";
+
     @Before
     public void setUp() {
         driver = DriverHelper.getDriver();
@@ -41,6 +43,7 @@ public class RegisterTest {
         registerPage.setLastName(lastName);
         registerPage.setEmail("bab@bouwer.be");
         registerPage.setPassword(password);
+        registerPage.setTeam(team);
 
         // WHEN STEP = action
         registerPage.add();
@@ -59,6 +62,7 @@ public class RegisterTest {
         registerPage.setLastName(lastName);
         registerPage.setEmail(email);
         registerPage.setPassword(password);
+        registerPage.setTeam(team);
 
         // WHEN STEP = action
         registerPage.add();
