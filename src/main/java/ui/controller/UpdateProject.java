@@ -11,19 +11,20 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class UpdateProject extends RequestHandler{
+public class UpdateProject extends RequestHandler {
 
     @Override
-    public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, NotAuthorizedException{
-        Role[] roles = {Role.DIRECTOR };
+    public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, NotAuthorizedException {
+        Role[] roles = {Role.DIRECTOR};
         Utility.checkRole(request, roles);
+        
         ArrayList<String> errors = new ArrayList<>();
         Project project = new Project();
         project.setProjectId(Integer.parseInt(request.getParameter("id")));
         validateTeam(project, request, errors);
         try {
             if (request.getParameter("name").isEmpty()) errors.add("Please fill in a valid name");
-            else{
+            else {
                 project.setName(request.getParameter("name"));
             }
             if (request.getParameter("startdate").isEmpty()) errors.add("Please fill in a valid start date");

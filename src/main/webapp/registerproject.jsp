@@ -15,7 +15,7 @@
     </jsp:include>
     <h2>Register Project</h2>
     <main>
-        <p>Do you want to register a project, <c:out value='${username}'/> (<c:out value='${team}'/>)?</p>
+        <p>Do you want to register a project, <c:out value='${user.firstName}'/> (<c:out value='${user.team}'/>)?</p>
         <c:forEach var="e" items="${errors}">
             <p class="alert-danger"><c:out value='${e}'/></p>
         </c:forEach>
@@ -26,7 +26,7 @@
                                                                value="<c:out value='${startdatePrevious}'/>" required></p>
             <p><label for="enddate">End date</label><input type="date" id="enddate" name="enddate"
                                                            value="<c:out value='${enddatePrevious}'/>" required></p>
-            <input type="hidden" name="team" value="${team}">
+            <input type="hidden" name="team" value="${user.team}">
             <input type="hidden" name="command" value="RegisterProject">
             <p><input type="submit" id="register" value="Register"></p>
         </form>

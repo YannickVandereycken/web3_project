@@ -6,7 +6,6 @@ import domain.model.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class UserServiceOld {
@@ -26,16 +25,13 @@ public class UserServiceOld {
         add(new User("c@c.be", "c", "Good", "Employee", Team.BETA));
     }
 
-
     public User get(int userid) {
         return users.get(userid);
     }
 
-
     public ArrayList<User> getAllUsers() {
         return new ArrayList<User>(users.values());
     }
-
 
     public void add(User user) {
         if (user == null) {

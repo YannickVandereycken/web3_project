@@ -1,12 +1,12 @@
 package ui.controller;
 
 import domain.model.Role;
+import domain.model.User;
 import domain.model.WorkOrder;
 import domain.service.DbException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -19,8 +19,8 @@ public class RegisterOrder extends RequestHandler {
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, NotAuthorizedException {
         Role[] roles = {Role.EMPLOYEE, Role.TEAMLEADER, Role.DIRECTOR};
         Utility.checkRole(request, roles);
-        HttpSession session = request.getSession();
-        ArrayList<String> errors = new ArrayList<String>();
+
+        ArrayList<String> errors = new ArrayList<>();
         WorkOrder workOrder = new WorkOrder();
         validateNameTeam(workOrder, request, errors);
         try {
@@ -60,8 +60,13 @@ public class RegisterOrder extends RequestHandler {
     }
 
     private void validateNameTeam(WorkOrder workOrder, HttpServletRequest request, ArrayList<String> errors) {
-        String name = request.getParameter("name");
-        String team = request.getParameter("team");
+        String name = "";
+        String team = "";
+        if (request.getSession().getAttribute("user") != null) {
+            User user = (User) request.getSession().getAttribute("user");
+            name = user.getFirstName();
+            team = user.getTeam().getStringValue();
+        }
         if (name.isEmpty() || team.isEmpty()) errors.add("Please log in to register a workorder");
         else {
             workOrder.setName(request.getParameter("name"));

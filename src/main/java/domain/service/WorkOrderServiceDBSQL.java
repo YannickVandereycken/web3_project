@@ -169,6 +169,29 @@ public class WorkOrderServiceDBSQL implements WorkOrderService {
         return workOrders;
     }
 
+    @Override
+    public ArrayList<WorkOrder> sortWorkOrdersOfTeam(String label, String order, Team team) {
+        ArrayList<WorkOrder> workOrders = new ArrayList<>();
+        int sort = 1;
+        try {
+            if (!label.isEmpty()) sort = Integer.parseInt(label);
+        } catch (IllegalArgumentException ignored) {
+        }
+        String sql = String.format("SELECT * from %s.workorders where team=? order by date;", schema);
+        if (order.trim().equals("desc")) sql = String.format("SELECT * from %s.workorders where team=? order by date desc;", schema);
+        try {
+            PreparedStatement statement = getConnection().prepareStatement(sql);
+            statement.setString(1, team.getStringValue());
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                workOrders.add(resultSetToWorkOrder(result));
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+        return workOrders;
+    }
+
     public WorkOrder resultSetToWorkOrder(ResultSet result) throws SQLException {
         int id = result.getInt("workorderid");
         String name = result.getString("name").trim();

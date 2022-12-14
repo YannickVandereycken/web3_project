@@ -32,6 +32,11 @@ public class LoginPage extends Page {
     }
 
     public void logIn() {
+//        setEmail("director@ucll.be");
+//        setEmail("teamleader@ucll.be");
+//        setEmail("employee@ucll.be");
+//        setPassword("t");
+
         setEmail("a@a.be");
         setPassword("a");
         submitButton.click();

@@ -5,7 +5,6 @@ import domain.service.DbException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,15 +15,15 @@ public class RegisterProject extends RequestHandler {
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, NotAuthorizedException {
         Role[] roles = {Role.TEAMLEADER, Role.DIRECTOR};
         Utility.checkRole(request, roles);
-        HttpSession session = request.getSession();
-        ArrayList<String> errors = new ArrayList<String>();
+
+        ArrayList<String> errors = new ArrayList<>();
         Project p = new Project();
         validateNameTeam(p, request, errors);
         validateDate(p, request, errors);
         if (errors.size() == 0) {
             try {
                 service.addProject(p);
-                response.sendRedirect("Controller?command=Overview");
+                response.sendRedirect("Controller?command=ProjectOverview");
                 return "Controller?command=ProjectOverview";
             } catch (DbException | IllegalArgumentException e) {
                 errors.add(e.getMessage());
@@ -35,8 +34,12 @@ public class RegisterProject extends RequestHandler {
     }
 
     private void validateNameTeam(Project project, HttpServletRequest request, ArrayList<String> errors) {
+        String team = "";
+        if (request.getSession().getAttribute("user") != null) {
+            User user = (User) request.getSession().getAttribute("user");
+            team = user.getTeam().getStringValue();
+        }
         String name = request.getParameter("name");
-        String team = request.getParameter("team");
         if (team.isEmpty()) errors.add("Please log in to register a project");
         try {
             request.setAttribute("namePrevious", name);

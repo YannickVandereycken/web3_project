@@ -1,6 +1,7 @@
 package ui.controller;
 
 import domain.model.Role;
+import domain.model.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +16,10 @@ public class SortOrder extends RequestHandler {
             request.setAttribute("errors", "Sorting label or order can't be empty");
             return "sortorders.jsp";
         }
-        request.setAttribute("orders", service.sortWorkOrders(request.getParameter("label"), request.getParameter("order")));
+        User loggedIn = (User) request.getSession().getAttribute("user");
+        request.setAttribute("orders", service.sortWorkOrdersOfTeam(request.getParameter("label"), request.getParameter("order"),loggedIn.getTeam()));
+        if (loggedIn.getRole() == Role.DIRECTOR)
+            request.setAttribute("orders", service.sortWorkOrders(request.getParameter("label"), request.getParameter("order")));
         return "orders.jsp";
     }
 }

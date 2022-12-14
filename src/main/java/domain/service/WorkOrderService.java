@@ -27,4 +27,6 @@ public interface WorkOrderService {
     void checkPast(Date date, LocalTime endTime);
 
     ArrayList<WorkOrder> sortWorkOrders(String label, String order);
+
+    ArrayList<WorkOrder> sortWorkOrdersOfTeam(String label, String order, Team team);
 }

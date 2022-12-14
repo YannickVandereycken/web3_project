@@ -18,9 +18,9 @@
         <p class="error">${notAuthorized}</p>
     </c:if>
     <c:choose>
-        <c:when test="${not empty username}">
+        <c:when test="${not empty user}">
             <main>
-                <h3>Welcome, <c:out value='${username}'/></h3>
+                <h3>Welcome, <c:out value='${user.firstName}'/></h3>
                 <form action="Controller" method="post">
                     <input type="hidden" name="command" value="LogOut">
                     <p><input type="submit" id="logOut" value="Log Out"></p>

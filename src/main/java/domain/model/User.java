@@ -4,6 +4,7 @@ import domain.service.DbException;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.regex.Matcher;
@@ -67,7 +68,6 @@ public class User {
         }
         this.email = email;
     }
-
 
     public String getEmail() {
         return email;
@@ -143,7 +143,7 @@ public class User {
         MessageDigest crypt = MessageDigest.getInstance("SHA-512");
         //reset
         crypt.reset();
-        byte[] passwordBytes = password.getBytes("UTF-8");
+        byte[] passwordBytes = password.getBytes(StandardCharsets.UTF_8);
         crypt.update(passwordBytes);
         //digest
         byte[] digest = crypt.digest();

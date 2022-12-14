@@ -11,9 +11,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class AppService {
-    private UserService userService = new UserServiceDBSQL();
-    private WorkOrderService workOrderService = new WorkOrderServiceDBSQL();
-    private ProjectService projectService = new ProjectServiceDBSQL();
+    private final UserService userService = new UserServiceDBSQL();
+    private final WorkOrderService workOrderService = new WorkOrderServiceDBSQL();
+    private final ProjectService projectService = new ProjectServiceDBSQL();
 
     //User Services
     public void addUser(User user) {
@@ -81,6 +81,10 @@ public class AppService {
         return workOrderService.sortWorkOrders(label, order);
     }
 
+    public ArrayList<WorkOrder> sortWorkOrdersOfTeam(String label, String order, Team team) {
+        return workOrderService.sortWorkOrdersOfTeam(label, order, team);
+    }
+
     //Project Services
     public void addProject(Project project) {
         projectService.add(project);
@@ -92,6 +96,10 @@ public class AppService {
 
     public ArrayList<Project> getAllProjects() {
         return projectService.getAllProjects();
+    }
+
+    public ArrayList<Project> getProjectsOfTeam(Team team){
+        return projectService.getProjectsOfTeam(team);
     }
 
     public void updateProject(Project project) {

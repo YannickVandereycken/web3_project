@@ -5,19 +5,18 @@ import domain.service.DbException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class FindProject extends RequestHandler{
+public class FindProject extends RequestHandler {
     @Override
-    public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws NotAuthorizedException{
-        Role[] roles = { Role.EMPLOYEE, Role.TEAMLEADER, Role.DIRECTOR };
+    public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws NotAuthorizedException {
+        Role[] roles = {Role.EMPLOYEE, Role.TEAMLEADER, Role.DIRECTOR};
         Utility.checkRole(request, roles);
-        HttpSession session = request.getSession();
-        ArrayList<String> errors = new ArrayList<String>();
+
+        ArrayList<String> errors = new ArrayList<>();
         String date_string = request.getParameter("date");
-        if(date_string.isEmpty()) errors.add("Please fill in a date");
+        if (date_string.isEmpty()) errors.add("Please fill in a date");
         else {
             try {
                 request.setAttribute("result", service.findProject(LocalDate.parse(date_string)));

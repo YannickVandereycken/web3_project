@@ -12,7 +12,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 public class LogIn extends RequestHandler {
-
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();

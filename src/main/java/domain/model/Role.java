@@ -3,11 +3,13 @@ package domain.model;
 public enum Role {
     DIRECTOR("Director"), TEAMLEADER("Teamleader"), EMPLOYEE("Employee");
 
-    private String stringValue;
+    private final String stringValue;
 
-    private Role(String stringValue){
-        this.stringValue=stringValue;
+    Role(String stringValue) {
+        this.stringValue = stringValue;
     }
 
-    public String getStringValue() {return stringValue;}
+    public String getStringValue() {
+        return stringValue;
+    }
 }

@@ -77,7 +77,7 @@ public class WorkOrder {
     }
 
     public void setDate(LocalDate date) {
-        if(date.isAfter(LocalDate.now())) throw new IllegalArgumentException("Date must be before today");
+        if (date.isAfter(LocalDate.now())) throw new IllegalArgumentException("Date must be before today");
         this.date = date;
     }
 

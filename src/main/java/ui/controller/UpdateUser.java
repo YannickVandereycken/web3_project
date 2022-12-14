@@ -15,11 +15,12 @@ public class UpdateUser extends RequestHandler {
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, NotAuthorizedException {
         Role[] roles = {Role.EMPLOYEE, Role.TEAMLEADER, Role.DIRECTOR};
         Utility.checkRole(request, roles);
+
         ArrayList<String> errors = new ArrayList<>();
         User loggedIn = (User) request.getSession().getAttribute("user");
         if (loggedIn.getRole() == Role.EMPLOYEE && loggedIn.getUserid() != Integer.parseInt(request.getParameter("id")))
             throw new NotAuthorizedException();
-        if (loggedIn.getRole() == Role.TEAMLEADER && loggedIn.getTeam() != Team.valueOf(request.getParameter("team")))
+        if (loggedIn.getRole() == Role.TEAMLEADER && !loggedIn.getTeam().getStringValue().equalsIgnoreCase(request.getParameter("team")))
             throw new NotAuthorizedException();
         User user = new User();
         user.setUserid(Integer.parseInt(request.getParameter("id")));
@@ -78,6 +79,11 @@ public class UpdateUser extends RequestHandler {
 
     private void validateTeam(User user, HttpServletRequest request, ArrayList<String> errors) {
         String team = request.getParameter("team");
+
+        User loggedIn = (User) request.getSession().getAttribute("user");
+        if (loggedIn.getRole() == Role.EMPLOYEE || loggedIn.getRole() == Role.TEAMLEADER)
+            team = loggedIn.getTeam().getStringValue();
+
         if (request.getParameter("role").equals("DIRECTOR"))
             team = "ALPHA";
         try {
@@ -91,6 +97,13 @@ public class UpdateUser extends RequestHandler {
 
     private void validateRole(User user, HttpServletRequest request, ArrayList<String> errors) {
         String role = request.getParameter("role");
+
+        User loggedIn = (User) request.getSession().getAttribute("user");
+        if (loggedIn.getRole() == Role.EMPLOYEE)
+            role = Role.EMPLOYEE.getStringValue();
+        if (loggedIn.getRole() == Role.TEAMLEADER && request.getParameter("role").equalsIgnoreCase("director"))
+            throw new NotAuthorizedException();
+
         try {
             user.setRole(Role.valueOf(role));
             request.setAttribute("rolePrevious", role);

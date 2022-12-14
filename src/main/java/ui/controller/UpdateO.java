@@ -18,7 +18,7 @@ public class UpdateO extends RequestHandler {
 
         User loggedIn = (User) request.getSession().getAttribute("user");
         WorkOrder workOrder = service.getOrder(Integer.parseInt(request.getParameter("id")));
-        if (loggedIn.getRole() == Role.EMPLOYEE && loggedIn.getFirstName() != workOrder.getName() && loggedIn.getTeam() != workOrder.getTeam())
+        if (loggedIn.getRole() == Role.EMPLOYEE && !loggedIn.getFirstName().equals(workOrder.getName()) && loggedIn.getTeam() != workOrder.getTeam())
             throw new NotAuthorizedException();
         if (loggedIn.getRole() == Role.TEAMLEADER && loggedIn.getTeam() != workOrder.getTeam())
             throw new NotAuthorizedException();

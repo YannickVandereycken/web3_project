@@ -6,7 +6,6 @@ import domain.service.DbException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
@@ -15,8 +14,7 @@ import java.util.ArrayList;
 public class RegisterUser extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        HttpSession session = request.getSession();
-        ArrayList<String> errors = new ArrayList<String>();
+        ArrayList<String> errors = new ArrayList<>();
         User u = new User();
         validateName(u, request, errors);
         validateLastName(u, request, errors);
@@ -84,12 +82,17 @@ public class RegisterUser extends RequestHandler {
 
     private void validateTeam(User user, HttpServletRequest request, ArrayList<String> errors) {
         String team = request.getParameter("team");
-        try {
-            user.setTeam(team);
-            request.setAttribute("teamPrevious", team);
-        } catch (IllegalArgumentException e) {
-            errors.add(e.getMessage());
+        if (team.equals("ALPHA")) {
+            errors.add("Team can't be Alpha");
             request.setAttribute("teamError", true);
+        } else {
+            try {
+                user.setTeam(team);
+                request.setAttribute("teamPrevious", team);
+            } catch (IllegalArgumentException e) {
+                errors.add(e.getMessage());
+                request.setAttribute("teamError", true);
+            }
         }
     }
 }

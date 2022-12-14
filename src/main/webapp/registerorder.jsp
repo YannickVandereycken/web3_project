@@ -15,8 +15,7 @@
     </jsp:include>
     <h2>Register Work Order</h2>
     <main>
-        <p>Do you want to register a workorder, <c:out value='${username}'/> (<c:out value='${team}'/>)?</p>
-        <%--<div class="alert-danger"></div>--%>
+        <p>Do you want to register a workorder, <c:out value='${user.firstName}'/> (<c:out value='${user.team}'/>)?</p>
         <c:forEach var="e" items="${errors}">
             <p class="alert-danger"><c:out value='${e}'/></p>
         </c:forEach>
@@ -29,8 +28,8 @@
                                                            value="<c:out value='${endtimePrevious}'/>" required></p>
             <p><label for="description">Description</label><input type="text" id="description" name="description"
                                                                   value="<c:out value='${descriptionPrevious}'/>"></p>
-            <input type="hidden" name="name" value="${username}">
-            <input type="hidden" name="team" value="${team}">
+            <input type="hidden" name="name" value="${user.firstName}">
+            <input type="hidden" name="team" value="${user.team}">
             <input type="hidden" name="command" value="RegisterOrder">
             <p><input type="submit" id="register" value="Register"></p>
         </form>

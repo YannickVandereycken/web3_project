@@ -22,7 +22,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class RegisterTestSelenium {
 	private WebDriver driver;
-	private String path = "http://localhost:8080/groep2_13_war_exploded/Controller";
+	private final String path = "http://localhost:8080/groep2_13_war_exploded/Controller";
 	
 	@Before
 	public void setUp() {

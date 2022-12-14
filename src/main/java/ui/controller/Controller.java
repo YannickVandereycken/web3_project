@@ -1,6 +1,7 @@
 package ui.controller;
 
-import domain.service.*;
+import domain.service.AppService;
+import domain.service.ProjectServiceOld;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,17 +9,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/Controller")
 public class Controller extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private AppService service = new AppService();
-    private ProjectServiceOld projectService = new ProjectServiceOld();
-
-    private HandlerFactory handlerFactory = new HandlerFactory();
+    private final AppService service = new AppService();
+    private final ProjectServiceOld projectService = new ProjectServiceOld();
+    private final HandlerFactory handlerFactory = new HandlerFactory();
 
     public Controller() {
         super();
@@ -34,7 +33,6 @@ public class Controller extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
         String destination;
         String command = request.getParameter("command");
 

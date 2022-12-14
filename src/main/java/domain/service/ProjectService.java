@@ -3,9 +3,7 @@ package domain.service;
 import domain.model.Project;
 import domain.model.Team;
 
-import java.sql.Date;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 
 public interface ProjectService {
@@ -14,6 +12,8 @@ public interface ProjectService {
     ArrayList<Project> getAllProjects();
 
     void add(Project project);
+
+    ArrayList<Project> getProjectsOfTeam(Team team);
 
     void update(Project project);
 

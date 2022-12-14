@@ -67,6 +67,11 @@ public class UpdateOrder extends RequestHandler {
     private void validateNameTeam(WorkOrder workOrder, HttpServletRequest request, ArrayList<String> errors) {
         String name = request.getParameter("name");
         String team = request.getParameter("team");
+
+        User loggedIn = (User) request.getSession().getAttribute("user");
+        if (loggedIn.getRole() == Role.EMPLOYEE || loggedIn.getRole() == Role.TEAMLEADER)
+            team = loggedIn.getTeam().getStringValue();
+
         if (name.isEmpty() || team.isEmpty()) errors.add("Please log in to register a workorder");
         else {
             workOrder.setName(request.getParameter("name"));
