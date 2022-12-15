@@ -46,16 +46,16 @@
                         </tr>
                     </c:forEach>
                 </table>
-                <h3>Choose how you want to sort the work orders by date</h3>
+                <h3>Find work orders during a certain date</h3>
                 <c:forEach var="e" items="${errors}">
                     <p class="alert-danger"><c:out value='${e}'/></p>
                 </c:forEach>
                 <form action="Controller" method="post" novalidate="novalidate">
                     <label for="date">Date: </label><input type="date" name="date" id="date">
-                    <input type="hidden" name="command" value="FindWorkOrder">
+                    <input type="hidden" name="command" value="FindOrder">
                     <p><input type="submit" value="Find" id="find"></p>
                 </form>
-
+                <h3>Choose how you want to sort the work orders by date</h3>
                 <form action="Controller" method="post" novalidate="novalidate">
                         <%--                    <label for="label">Sorting Label</label>--%>
                         <%--                    <select id="label" name="label">--%>

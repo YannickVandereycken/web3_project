@@ -29,8 +29,8 @@
                     <td><c:out value='${p.projectId}'/></td>
                     <td><c:out value='${p.name}'/></td>
                     <td><c:out value='${p.team.stringValue}'/></td>
-                    <td><c:out value='${p.startDate}'/></td>
-                    <td><c:out value='${not empty p.endDate? p.endDate : ""}'/></td>
+                    <td><c:out value='${p.startDateShort}'/></td>
+                    <td><c:out value='${not empty p.endDate? p.endDateShort : ""}'/></td>
                 </tr>
             </c:forEach>
         </table>

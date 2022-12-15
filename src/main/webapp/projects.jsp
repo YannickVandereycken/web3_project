@@ -44,6 +44,7 @@
                         </tr>
                     </c:forEach>
                 </table>
+                <h3>Find projects during a certain date</h3>
                 <c:forEach var="e" items="${errors}">
                     <p class="alert-danger"><c:out value='${e}'/></p>
                 </c:forEach>
@@ -52,7 +53,7 @@
                     <input type="hidden" name="command" value="FindProject">
                     <p><input type="submit" value="Find" id="find"></p>
                 </form>
-
+                <h3>Choose how you want to sort the projects by date</h3>
                 <form action="Controller" method="post" novalidate="novalidate">
                     <label for="project">Order</label>
                     <select id="project" name="project">

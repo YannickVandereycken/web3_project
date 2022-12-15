@@ -13,11 +13,11 @@ public class SortProject extends RequestHandler {
         Utility.checkRole(request, roles);
         if (request.getParameter("label").isEmpty() || request.getParameter("project").isEmpty()) {
             request.setAttribute("errors", "Sorting label or project can't be empty");
-            return "sortprojects.jsp";
+            return "Controller?command=ProjectOverview";
         }
         User loggedIn = (User) request.getSession().getAttribute("user");
         request.setAttribute("projects", service.sortProjectsOfTeam(request.getParameter("project"),loggedIn.getTeam()));
-        if (loggedIn.getRole() == Role.DIRECTOR)
+        if (loggedIn.getRole() == Role.TEAMLEADER || loggedIn.getRole() == Role.DIRECTOR)
             request.setAttribute("projects", service.sortProjects(request.getParameter("project")));
         return "projects.jsp";
     }

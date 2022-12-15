@@ -169,7 +169,8 @@ public class ProjectServiceDBSQL implements ProjectService {
     public ArrayList<Project> sort(String order) {
         ArrayList<Project> projects = new ArrayList<>();
         String sql = String.format("SELECT * from %s.projects order by start_date;", schema);
-        if (order.trim().equals("desc")) sql = String.format("SELECT * from %s.projects order by start_date desc;", schema);
+        if (order.trim().equals("desc"))
+            sql = String.format("SELECT * from %s.projects order by start_date desc;", schema);
         try {
             PreparedStatement statement = getConnection().prepareStatement(sql);
             ResultSet result = statement.executeQuery();
@@ -186,7 +187,8 @@ public class ProjectServiceDBSQL implements ProjectService {
     public ArrayList<Project> sortOfTeam(Team team, String order) {
         ArrayList<Project> projects = new ArrayList<>();
         String sql = String.format("SELECT * from %s.projects where team=? order by start_date;", schema);
-        if (order.trim().equals("desc")) sql = String.format("SELECT * from %s.projects order by start_date desc;", schema);
+        if (order.trim().equals("desc"))
+            sql = String.format("SELECT * from %s.projects where team=? order by start_date desc;", schema);
         try {
             PreparedStatement statement = getConnection().prepareStatement(sql);
             statement.setString(1, team.getStringValue());

@@ -14,7 +14,7 @@ public class SortOrder extends RequestHandler {
         Utility.checkRole(request, roles);
         if (request.getParameter("label").isEmpty() || request.getParameter("order").isEmpty()) {
             request.setAttribute("errors", "Sorting label or order can't be empty");
-            return "sortorders.jsp";
+            return "Controller?command=OrderOverview";
         }
         User loggedIn = (User) request.getSession().getAttribute("user");
         request.setAttribute("orders", service.sortWorkOrdersOfTeam(request.getParameter("order"),loggedIn.getTeam()));
