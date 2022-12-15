@@ -52,6 +52,17 @@
                     <input type="hidden" name="command" value="FindProject">
                     <p><input type="submit" value="Find" id="find"></p>
                 </form>
+
+                <form action="Controller" method="post" novalidate="novalidate">
+                    <label for="project">Order</label>
+                    <select id="project" name="project">
+                        <option value="asc">Ascending</option>
+                        <option value="desc">Descending</option>
+                    </select>
+                    <input type="hidden" name="label" value="4">
+                    <input type="hidden" name="command" value="SortProject">
+                    <p><input type="submit" id="sort" value="Sort"></p>
+                </form>
             </c:when>
             <c:otherwise>
                 <p>These aren't the projects you are looking for.</p>

@@ -16,6 +16,12 @@ public class OrderOverviewPage extends Page {
     @FindBy(id = "sort")
     private WebElement sortButton;
 
+    @FindBy(id = "date")
+    private WebElement dateField;
+
+    @FindBy(id = "find")
+    private WebElement findButton;
+
     public OrderOverviewPage(WebDriver driver) {
         super(driver);
         this.driver.get(getPath() + "?command=OrderOverview");
@@ -66,6 +72,11 @@ public class OrderOverviewPage extends Page {
         return max;
     }
 
+    public boolean hasErrorMessage(String message) {
+        WebElement errorMsg = driver.findElement(By.cssSelector("p.alert-danger"));
+        return (message.equals(errorMsg.getText()));
+    }
+
     public void setOrder(String order) {
         Select orderF = new Select(orderField);
         orderF.selectByVisibleText(order);
@@ -73,5 +84,14 @@ public class OrderOverviewPage extends Page {
 
     public void sortOrder() {
         sortButton.click();
+    }
+
+    public void setDate(String date) {
+        dateField.clear();
+        dateField.sendKeys(date);
+    }
+
+    public void findOrder() {
+        findButton.click();
     }
 }

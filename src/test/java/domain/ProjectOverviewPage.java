@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
 
@@ -14,6 +15,12 @@ public class ProjectOverviewPage extends Page {
 
     @FindBy(id = "find")
     private WebElement findButton;
+
+    @FindBy(id = "order")
+    private WebElement orderField;
+
+    @FindBy(id = "sort")
+    private WebElement sortButton;
 
     public ProjectOverviewPage(WebDriver driver) {
         super(driver);
@@ -90,5 +97,14 @@ public class ProjectOverviewPage extends Page {
     public boolean hasErrorMessage(String message) {
         WebElement errorMsg = driver.findElement(By.cssSelector("p.alert-danger"));
         return (message.equals(errorMsg.getText()));
+    }
+
+    public void setOrder(String order) {
+        Select orderF = new Select(orderField);
+        orderF.selectByVisibleText(order);
+    }
+
+    public void sortProject() {
+        sortButton.click();
     }
 }

@@ -51,6 +51,12 @@
                     <p class="alert-danger"><c:out value='${e}'/></p>
                 </c:forEach>
                 <form action="Controller" method="post" novalidate="novalidate">
+                    <label for="date">Date: </label><input type="date" name="date" id="date">
+                    <input type="hidden" name="command" value="FindWorkOrder">
+                    <p><input type="submit" value="Find" id="find"></p>
+                </form>
+
+                <form action="Controller" method="post" novalidate="novalidate">
                         <%--                    <label for="label">Sorting Label</label>--%>
                         <%--                    <select id="label" name="label">--%>
                         <%--                        <option value="1">Workorder ID</option>--%>
