@@ -24,7 +24,7 @@ public class FindOrder extends RequestHandler{
                 request.setAttribute("result", service.findOrderOfTeam(LocalDate.parse(date_string),loggedIn.getTeam()));
                 if (loggedIn.getRole() == Role.DIRECTOR)
                     request.setAttribute("result", service.findOrder(LocalDate.parse(date_string)));
-                return "result.jsp";
+                return "resultorders.jsp";
             } catch (DbException e) {
                 errors.add(e.getMessage());
             }

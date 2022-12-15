@@ -31,12 +31,12 @@ public class SearchOrderTest {
     public void dateCorrect_foundOneOrder() {
         // GIVEN STEP = context
         OrderOverviewPage orderOverviewPage = PageFactory.initElements(driver, OrderOverviewPage.class);
-        orderOverviewPage.setDate("2010-12-02");
+        orderOverviewPage.setDate("2006-04-03");
         orderOverviewPage.findOrder();
 
         // THEN STEP = result
-        assertEquals("Overview", orderOverviewPage.getTitle());
-        assertTrue(orderOverviewPage.containsOrderWithDescription("testing"));
+        assertEquals("Result", orderOverviewPage.getTitle());
+        assertTrue(orderOverviewPage.containsOrderWithDescription("dont delete this is for testing"));
     }
 
     @Test
@@ -47,7 +47,7 @@ public class SearchOrderTest {
         orderOverviewPage.findOrder();
 
         // THEN STEP = result
-        assertEquals("Overview", orderOverviewPage.getTitle());
+        assertEquals("Work Orders", orderOverviewPage.getTitle());
         assertTrue(orderOverviewPage.hasErrorMessage("Op de ingevulde datum zijn er geen workorders bezig"));
     }
 }
