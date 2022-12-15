@@ -2,8 +2,11 @@ package domain.service;
 
 import domain.model.Team;
 import domain.model.WorkOrder;
+import jdk.vm.ci.meta.Local;
 
+import java.sql.Array;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -26,7 +29,11 @@ public interface WorkOrderService {
 
     void checkPast(Date date, LocalTime endTime);
 
-    ArrayList<WorkOrder> sortWorkOrders(String label, String order);
+    ArrayList<WorkOrder> sortWorkOrders(String order);
 
-    ArrayList<WorkOrder> sortWorkOrdersOfTeam(String label, String order, Team team);
+    ArrayList<WorkOrder> sortWorkOrdersOfTeam(String order, Team team);
+    
+    ArrayList<WorkOrder> findWorkOrders(LocalDate date);
+    
+    ArrayList<WorkOrder> findWorkOrdersOfTeam(LocalDate date, Team team);
 }

@@ -17,9 +17,9 @@ public class SortOrder extends RequestHandler {
             return "sortorders.jsp";
         }
         User loggedIn = (User) request.getSession().getAttribute("user");
-        request.setAttribute("orders", service.sortWorkOrdersOfTeam(request.getParameter("label"), request.getParameter("order"),loggedIn.getTeam()));
+        request.setAttribute("orders", service.sortWorkOrdersOfTeam(request.getParameter("order"),loggedIn.getTeam()));
         if (loggedIn.getRole() == Role.DIRECTOR)
-            request.setAttribute("orders", service.sortWorkOrders(request.getParameter("label"), request.getParameter("order")));
+            request.setAttribute("orders", service.sortWorkOrders(request.getParameter("order")));
         return "orders.jsp";
     }
 }

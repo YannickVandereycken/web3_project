@@ -126,15 +126,78 @@ public class ProjectServiceDBSQL implements ProjectService {
 
     @Override
     public ArrayList<Project> find(LocalDate date) {
-        ArrayList<Project> result = new ArrayList<>();
-        for (Project project : getAllProjects()) {
-            if (project != null)
-                if ((project.getStartDate().isBefore(date) && project.getEndDate().isAfter(date)) || project.getEndDate().isEqual(date) || project.getStartDate().isEqual(date))
-                    result.add(project);
+        ArrayList<Project> projects = new ArrayList<>();
+        String sql = String.format("SELECT * from %s.projects where start_date<=? and end_date>=? order by projectid;", schema);
+        try {
+            PreparedStatement statement = getConnection().prepareStatement(sql);
+            statement.setDate(1, Date.valueOf(date));
+            statement.setDate(2, Date.valueOf(date));
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                projects.add(resultSetToProject(result));
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
         }
-        if (result.isEmpty())
+        if (projects.isEmpty())
             throw new DbException("Op de ingevulde datum zijn er geen projecten bezig");
-        return result;
+        return projects;
+    }
+
+    @Override
+    public ArrayList<Project> findOfTeam(LocalDate date, Team team) {
+        ArrayList<Project> projects = new ArrayList<>();
+        String sql = String.format("SELECT * from %s.projects where start_date<=? and end_date>=? and team=? order by projectid;", schema);
+        try {
+            PreparedStatement statement = getConnection().prepareStatement(sql);
+            statement.setDate(1, Date.valueOf(date));
+            statement.setDate(2, Date.valueOf(date));
+            statement.setString(3, team.getStringValue());
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                projects.add(resultSetToProject(result));
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+        if (projects.isEmpty())
+            throw new DbException("Op de ingevulde datum zijn er geen projecten bezig");
+        return projects;
+    }
+
+    @Override
+    public ArrayList<Project> sort(String order) {
+        ArrayList<Project> projects = new ArrayList<>();
+        String sql = String.format("SELECT * from %s.projects order by start_date;", schema);
+        if (order.trim().equals("desc")) sql = String.format("SELECT * from %s.projects order by start_date desc;", schema);
+        try {
+            PreparedStatement statement = getConnection().prepareStatement(sql);
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                projects.add(resultSetToProject(result));
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+        return projects;
+    }
+
+    @Override
+    public ArrayList<Project> sortOfTeam(Team team, String order) {
+        ArrayList<Project> projects = new ArrayList<>();
+        String sql = String.format("SELECT * from %s.projects where team=? order by start_date;", schema);
+        if (order.trim().equals("desc")) sql = String.format("SELECT * from %s.projects order by start_date desc;", schema);
+        try {
+            PreparedStatement statement = getConnection().prepareStatement(sql);
+            statement.setString(1, team.getStringValue());
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                projects.add(resultSetToProject(result));
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+        return projects;
     }
 
     public Project resultSetToProject(ResultSet result) throws SQLException {

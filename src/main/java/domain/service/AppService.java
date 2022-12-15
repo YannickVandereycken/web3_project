@@ -77,12 +77,12 @@ public class AppService {
         workOrderService.checkPast(date, endTime);
     }
 
-    public ArrayList<WorkOrder> sortWorkOrders(String label, String order) {
-        return workOrderService.sortWorkOrders(label, order);
+    public ArrayList<WorkOrder> sortWorkOrders(String order) {
+        return workOrderService.sortWorkOrders(order);
     }
 
-    public ArrayList<WorkOrder> sortWorkOrdersOfTeam(String label, String order, Team team) {
-        return workOrderService.sortWorkOrdersOfTeam(label, order, team);
+    public ArrayList<WorkOrder> sortWorkOrdersOfTeam(String order, Team team) {
+        return workOrderService.sortWorkOrdersOfTeam(order, team);
     }
 
     //Project Services

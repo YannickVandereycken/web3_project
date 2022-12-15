@@ -148,13 +148,8 @@ public class WorkOrderServiceDBSQL implements WorkOrderService {
     }
 
     @Override
-    public ArrayList<WorkOrder> sortWorkOrders(String label, String order) {
+    public ArrayList<WorkOrder> sortWorkOrders(String order) {
         ArrayList<WorkOrder> workOrders = new ArrayList<>();
-        int sort = 1;
-        try {
-            if (!label.isEmpty()) sort = Integer.parseInt(label);
-        } catch (IllegalArgumentException ignored) {
-        }
         String sql = String.format("SELECT * from %s.workorders order by date;", schema);
         if (order.trim().equals("desc")) sql = String.format("SELECT * from %s.workorders order by date desc;", schema);
         try {
@@ -170,13 +165,8 @@ public class WorkOrderServiceDBSQL implements WorkOrderService {
     }
 
     @Override
-    public ArrayList<WorkOrder> sortWorkOrdersOfTeam(String label, String order, Team team) {
+    public ArrayList<WorkOrder> sortWorkOrdersOfTeam(String order, Team team) {
         ArrayList<WorkOrder> workOrders = new ArrayList<>();
-        int sort = 1;
-        try {
-            if (!label.isEmpty()) sort = Integer.parseInt(label);
-        } catch (IllegalArgumentException ignored) {
-        }
         String sql = String.format("SELECT * from %s.workorders where team=? order by date;", schema);
         if (order.trim().equals("desc")) sql = String.format("SELECT * from %s.workorders where team=? order by date desc;", schema);
         try {
@@ -189,6 +179,45 @@ public class WorkOrderServiceDBSQL implements WorkOrderService {
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         }
+        return workOrders;
+    }
+
+    @Override
+    public ArrayList<WorkOrder> findWorkOrders(LocalDate date) {
+        ArrayList<WorkOrder> workOrders = new ArrayList<>();
+        String sql = String.format("SELECT * from %s.workorders where date=? order by workorderid;", schema);
+        try {
+            PreparedStatement statement = getConnection().prepareStatement(sql);
+            statement.setDate(1, Date.valueOf(date));
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                workOrders.add(resultSetToWorkOrder(result));
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+        if (workOrders.isEmpty())
+            throw new DbException("Op de ingevulde datum zijn er geen workorders bezig");
+        return workOrders;
+    }
+
+    @Override
+    public ArrayList<WorkOrder> findWorkOrdersOfTeam(LocalDate date, Team team) {
+        ArrayList<WorkOrder> workOrders = new ArrayList<>();
+        String sql = String.format("SELECT * from %s.workorders where date=? and team=? order by workorderid;", schema);
+        try {
+            PreparedStatement statement = getConnection().prepareStatement(sql);
+            statement.setDate(1, Date.valueOf(date));
+            statement.setString(2, team.getStringValue());
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                workOrders.add(resultSetToWorkOrder(result));
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+        if (workOrders.isEmpty())
+            throw new DbException("Op de ingevulde datum zijn er geen workorders bezig");
         return workOrders;
     }
 
