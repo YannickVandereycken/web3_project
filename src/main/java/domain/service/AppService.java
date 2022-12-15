@@ -85,6 +85,11 @@ public class AppService {
         return workOrderService.sortWorkOrdersOfTeam(order, team);
     }
 
+    public ArrayList<WorkOrder> findOrder(LocalDate date) {return workOrderService.findWorkOrders(date);}
+
+    public ArrayList<WorkOrder> findOrderOfTeam(LocalDate date, Team team) { return workOrderService.findWorkOrdersOfTeam(date, team);}
+
+
     //Project Services
     public void addProject(Project project) {
         projectService.add(project);
@@ -116,5 +121,15 @@ public class AppService {
 
     public ArrayList<Project> findProject(LocalDate date) {
         return projectService.find(date);
+    }
+
+    public ArrayList<Project> findProjectOfTeam(LocalDate date, Team team) {return projectService.findOfTeam(date, team);}
+
+    public ArrayList<Project> sortProjects(String order) {
+        return projectService.sort(order);
+    }
+
+    public ArrayList<Project> sortProjectsOfTeam(String order, Team team) {
+        return projectService.sortOfTeam(team, order);
     }
 }
