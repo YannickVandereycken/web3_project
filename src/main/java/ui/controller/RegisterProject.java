@@ -34,16 +34,16 @@ public class RegisterProject extends RequestHandler {
     }
 
     private void validateNameTeam(Project project, HttpServletRequest request, ArrayList<String> errors) {
-        String team = "";
+        Team team = null;
         if (request.getSession().getAttribute("user") != null) {
             User user = (User) request.getSession().getAttribute("user");
-            team = user.getTeam().getStringValue();
+            team = user.getTeam();
         }
         String name = request.getParameter("name");
-        if (team.isEmpty()) errors.add("Please log in to register a project");
+        if (team == null) errors.add("Please log in to register a project");
         try {
             request.setAttribute("namePrevious", name);
-            service.checkUnique(name, Team.valueOf(team));
+            service.checkUnique(name, team);
             project.setName(name);
             project.setTeam(team);
         } catch (DomainException | IllegalArgumentException e) {
