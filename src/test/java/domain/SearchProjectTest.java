@@ -24,7 +24,7 @@ public class SearchProjectTest {
 
     @After
     public void clean() {
-        driver.quit();
+//        driver.quit();
     }
 
     @Test
@@ -35,7 +35,7 @@ public class SearchProjectTest {
         projectOverviewPage.findProject();
 
         // THEN STEP = result
-        assertEquals("Overview", projectOverviewPage.getTitle());
+        assertEquals("Project Overview", projectOverviewPage.getTitle());
         assertTrue(projectOverviewPage.containsProjectWithName("Dummy 1"));
     }
 
@@ -47,7 +47,7 @@ public class SearchProjectTest {
         projectOverviewPage.findProject();
 
         // THEN STEP = result
-        assertEquals("Overview", projectOverviewPage.getTitle());
+        assertEquals("Project Overview", projectOverviewPage.getTitle());
         assertTrue(projectOverviewPage.hasErrorMessage("Op de ingevulde datum zijn er geen projecten bezig"));
     }
 }

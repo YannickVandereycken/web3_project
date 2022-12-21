@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class EditPage extends Page {
+public class EditUserPage extends Page {
 
     @FindBy(id = "firstName")
     private WebElement firstNameField;
@@ -22,7 +22,7 @@ public class EditPage extends Page {
     @FindBy(id = "update")
     private WebElement submitButton;
 
-    public EditPage(WebDriver driver) {
+    public EditUserPage(WebDriver driver) {
         super(driver);
 //        this.driver.get(Config.BASE_URL + "?command=Update");
     }

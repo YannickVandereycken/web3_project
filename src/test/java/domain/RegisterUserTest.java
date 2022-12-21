@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class RegisterTest {
+public class RegisterUserTest {
     private WebDriver driver;
 
     // Test variables
@@ -38,15 +38,15 @@ public class RegisterTest {
     @Test
     public void given_allFieldsFilledInCorrectly_when_userAdded_then_userIsAdded() {
         // GIVEN STEP = context
-        RegisterPage registerPage = PageFactory.initElements(driver, RegisterPage.class);
-        registerPage.setFirstName(firstName);
-        registerPage.setLastName(lastName);
-        registerPage.setEmail("bab@bouwer.be");
-        registerPage.setPassword(password);
-        registerPage.setTeam(team);
+        RegisterUserPage registerUserPage = PageFactory.initElements(driver, RegisterUserPage.class);
+        registerUserPage.setFirstName(firstName);
+        registerUserPage.setLastName(lastName);
+        registerUserPage.setEmail("bab@bouwer.be");
+        registerUserPage.setPassword(password);
+        registerUserPage.setTeam(team);
 
         // WHEN STEP = action
-        registerPage.add();
+        registerUserPage.add();
 
         // THEN STEP = result
         OverviewPage overviewPage = PageFactory.initElements(driver, OverviewPage.class);
@@ -57,22 +57,22 @@ public class RegisterTest {
     @Test
     public void given_nameNotFilledIn_when_userAdded_then_errorMessageGivenForNameAndOtherFieldsValueAreKept(){
         // GIVEN STEP = context
-        RegisterPage registerPage = PageFactory.initElements(driver, RegisterPage.class);
-        registerPage.setFirstName("");
-        registerPage.setLastName(lastName);
-        registerPage.setEmail(email);
-        registerPage.setPassword(password);
-        registerPage.setTeam(team);
+        RegisterUserPage registerUserPage = PageFactory.initElements(driver, RegisterUserPage.class);
+        registerUserPage.setFirstName("");
+        registerUserPage.setLastName(lastName);
+        registerUserPage.setEmail(email);
+        registerUserPage.setPassword(password);
+        registerUserPage.setTeam(team);
 
         // WHEN STEP = action
-        registerPage.add();
+        registerUserPage.add();
 
         // THEN STEP = result
-        assertEquals("Sign Up", registerPage.getTitle());
-        assertTrue(registerPage.hasEmptyName());
-        assertTrue(registerPage.hasErrorMessage("No firstname given"));
-        assertTrue(registerPage.hasStickyLastName(lastName));
-        assertTrue(registerPage.hasStickyEmail(email));
-        assertTrue(registerPage.hasStickyPassword(password));
+        assertEquals("Sign Up", registerUserPage.getTitle());
+        assertTrue(registerUserPage.hasEmptyName());
+        assertTrue(registerUserPage.hasErrorMessage("No firstname given"));
+        assertTrue(registerUserPage.hasStickyLastName(lastName));
+        assertTrue(registerUserPage.hasStickyEmail(email));
+        assertTrue(registerUserPage.hasStickyPassword(password));
     }
 }

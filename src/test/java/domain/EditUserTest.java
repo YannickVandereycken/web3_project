@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import static org.junit.Assert.*;
 
-public class EditTest {
+public class EditUserTest {
 
     private WebDriver driver;
 
@@ -43,13 +43,13 @@ public class EditTest {
         overviewPage.editUserWithId(added_id);
 
         // GIVEN STEP = context
-        EditPage editPage = PageFactory.initElements(driver, EditPage.class);
-        editPage.setFirstName(firstName);
-        editPage.setLastName(lastName);
-        editPage.setEmail(email);
+        EditUserPage editUserPage = PageFactory.initElements(driver, EditUserPage.class);
+        editUserPage.setFirstName(firstName);
+        editUserPage.setLastName(lastName);
+        editUserPage.setEmail(email);
 
         // WHEN STEP = action
-        editPage.update();
+        editUserPage.update();
 
         // THEN STEP = result
         assertEquals("Overview", overviewPage.getTitle());
@@ -65,20 +65,20 @@ public class EditTest {
         overviewPage.editUserWithId(3);
 
         // GIVEN STEP = context
-        EditPage editPage = PageFactory.initElements(driver, EditPage.class);
-        editPage.setFirstName(firstName);
-        editPage.setLastName(lastName);
-        editPage.setEmail("");
+        EditUserPage editUserPage = PageFactory.initElements(driver, EditUserPage.class);
+        editUserPage.setFirstName(firstName);
+        editUserPage.setLastName(lastName);
+        editUserPage.setEmail("");
 
         // WHEN STEP = action
-        editPage.update();
+        editUserPage.update();
 
         // THEN STEP = result
-        assertEquals("Edit User", editPage.getTitle());
-        assertTrue(editPage.hasErrorMessage("No email given"));
-        assertTrue(editPage.hasStickyFirstName("employee"));
-        assertTrue(editPage.hasStickyLastName("ucll"));
-        assertTrue(editPage.hasStickyEmail("employee@ucll.be"));
+        assertEquals("Edit User", editUserPage.getTitle());
+        assertTrue(editUserPage.hasErrorMessage("No email given"));
+        assertTrue(editUserPage.hasStickyFirstName("employee"));
+        assertTrue(editUserPage.hasStickyLastName("ucll"));
+        assertTrue(editUserPage.hasStickyEmail("employee@ucll.be"));
     }
 
     @Test

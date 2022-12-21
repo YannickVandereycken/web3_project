@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
-public class RegisterPage extends Page {
+public class RegisterUserPage extends Page {
 
     @FindBy(id = "firstName")
     private WebElement firstNameField;
@@ -26,7 +26,7 @@ public class RegisterPage extends Page {
     @FindBy(id = "signUp")
     private WebElement submitButton;
 
-    public RegisterPage(WebDriver driver) {
+    public RegisterUserPage(WebDriver driver) {
         super(driver);
         this.driver.get(Config.BASE_URL + "?command=Register");
     }
