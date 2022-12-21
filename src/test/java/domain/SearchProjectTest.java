@@ -24,7 +24,7 @@ public class SearchProjectTest {
 
     @After
     public void clean() {
-//        driver.quit();
+        driver.quit();
     }
 
     @Test
