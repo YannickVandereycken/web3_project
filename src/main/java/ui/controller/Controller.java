@@ -39,7 +39,7 @@ public class Controller extends HttpServlet {
         if (command == null || command.isEmpty()) {
             command = "Index";
         }
-        RequestHandler handler = handlerFactory.getHandler(command, service, projectService);
+        RequestHandler handler = handlerFactory.getHandler(command, service);
 
         try {
             destination = handler.handleRequest(request, response);
