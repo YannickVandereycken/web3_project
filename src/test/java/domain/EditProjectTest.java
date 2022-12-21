@@ -18,8 +18,8 @@ public class EditProjectTest {
     String startdate = "2026-01-31";
     String enddate = "2026-12-31";
 
-    String startdateShort = "1/31/26";
-    String enddateShort = "12/31/26";
+    String startdateShort = "31/01/26";
+    String enddateShort = "31/12/26";
 
     @Before
     public void setUp() {
@@ -56,7 +56,7 @@ public class EditProjectTest {
 
         // THEN STEP = result
         assertEquals("Project Overview", projectOverviewPage.getTitle());
-            assertTrue(projectOverviewPage.containsProjectWithDate(startdateShort, enddateShort));
+        assertTrue(projectOverviewPage.containsProjectWithDate(startdateShort, enddateShort));
     }
 
     @Test
