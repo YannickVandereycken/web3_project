@@ -55,8 +55,8 @@
                 </form>
                 <h3>Choose how you want to sort the projects by date</h3>
                 <form action="Controller" method="post" novalidate="novalidate">
-                    <label for="project">Order</label>
-                    <select id="project" name="project">
+                    <label for="order">Order</label>
+                    <select id="order" name="order">
                         <option value="asc">Ascending</option>
                         <option value="desc">Descending</option>
                     </select>
