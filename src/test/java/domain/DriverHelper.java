@@ -9,14 +9,14 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class DriverHelper {
     private static WebDriver driver;
 
-    public static WebDriver getDriver(){
+    public static WebDriver getDriver() {
 //        ChromeOptions chromeOptions = new ChromeOptions();
 //        chromeOptions.addArguments("--lang=en-GB");
-        WebDriverManager.firefoxdriver().setup();
 //        WebDriverManager.chromedriver().setup();
-        WebDriver driver;
-        driver = new FirefoxDriver();
 //        driver = new ChromeDriver(chromeOptions);
+
+        WebDriverManager.firefoxdriver().setup();
+        driver = new FirefoxDriver();
         driver.manage().window().maximize();
         return driver;
     }
