@@ -60,7 +60,6 @@
                         <option value="asc">Ascending</option>
                         <option value="desc">Descending</option>
                     </select>
-                    <input type="hidden" name="label" value="4">
                     <input type="hidden" name="command" value="SortProject">
                     <p><input type="submit" id="sort" value="Sort"></p>
                 </form>
