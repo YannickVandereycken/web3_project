@@ -21,9 +21,10 @@ public class FindProject extends RequestHandler {
         if (date_string.isEmpty()) errors.add("Please fill in a date");
         else {
             try {
-                request.setAttribute("result", service.findProjectOfTeam(LocalDate.parse(date_string), loggedIn.getTeam()));
                 if (loggedIn.getRole() == Role.TEAMLEADER || loggedIn.getRole() == Role.DIRECTOR)
                     request.setAttribute("result", service.findProject(LocalDate.parse(date_string)));
+                else
+                    request.setAttribute("result", service.findProjectOfTeam(LocalDate.parse(date_string), loggedIn.getTeam()));
                 return "result.jsp";
             } catch (DbException e) {
                 errors.add(e.getMessage());

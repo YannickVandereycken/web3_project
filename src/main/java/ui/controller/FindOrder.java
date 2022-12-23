@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class FindOrder extends RequestHandler{
+public class FindOrder extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws NotAuthorizedException {
         Role[] roles = {Role.EMPLOYEE, Role.TEAMLEADER, Role.DIRECTOR};
@@ -21,9 +21,10 @@ public class FindOrder extends RequestHandler{
         if (date_string.isEmpty()) errors.add("Please fill in a date");
         else {
             try {
-                request.setAttribute("result", service.findOrderOfTeam(LocalDate.parse(date_string),loggedIn.getTeam()));
                 if (loggedIn.getRole() == Role.DIRECTOR)
                     request.setAttribute("result", service.findOrder(LocalDate.parse(date_string)));
+                else
+                    request.setAttribute("result", service.findOrderOfTeam(LocalDate.parse(date_string), loggedIn.getTeam()));
                 return "resultorders.jsp";
             } catch (DbException e) {
                 errors.add(e.getMessage());
