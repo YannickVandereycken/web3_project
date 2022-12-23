@@ -35,7 +35,7 @@ public class SearchProjectTest {
         projectOverviewPage.findProject();
 
         // THEN STEP = result
-        assertEquals("Project Overview", projectOverviewPage.getTitle());
+        assertEquals("Result", projectOverviewPage.getTitle());
         assertTrue(projectOverviewPage.containsProjectWithName("Dummy 1"));
     }
 

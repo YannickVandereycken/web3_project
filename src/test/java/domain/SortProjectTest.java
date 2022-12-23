@@ -34,7 +34,7 @@ public class SortProjectTest {
         projectOverviewPage.sortProject();
 
         // THEN STEP = result
-        assertEquals("Work Orders", projectOverviewPage.getTitle());
+        assertEquals("Project Overview", projectOverviewPage.getTitle());
         assertTrue(projectOverviewPage.containsProjectWithName("yes"));
     }
 
@@ -46,7 +46,7 @@ public class SortProjectTest {
         projectOverviewPage.sortProject();
 
         // THEN STEP = result
-        assertEquals("Work Orders", projectOverviewPage.getTitle());
+        assertEquals("Project Overview", projectOverviewPage.getTitle());
         assertTrue(projectOverviewPage.containsProjectWithName("yes"));
     }
 }

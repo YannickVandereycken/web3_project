@@ -12,7 +12,7 @@ public class SortOrder extends RequestHandler {
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws NotAuthorizedException {
         Role[] roles = {Role.EMPLOYEE, Role.TEAMLEADER, Role.DIRECTOR};
         Utility.checkRole(request, roles);
-        if (request.getParameter("label").isEmpty() || request.getParameter("order").isEmpty()) {
+        if (request.getParameter("label") == null || request.getParameter("order") == null || request.getParameter("label").isEmpty() || request.getParameter("order").isEmpty()) {
             request.setAttribute("errors", "Sorting label or order can't be empty");
             return "Controller?command=OrderOverview";
         }

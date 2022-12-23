@@ -57,16 +57,6 @@
                 </form>
                 <h3>Choose how you want to sort the work orders by date</h3>
                 <form action="Controller" method="post" novalidate="novalidate">
-                        <%--                    <label for="label">Sorting Label</label>--%>
-                        <%--                    <select id="label" name="label">--%>
-                        <%--                        <option value="1">Workorder ID</option>--%>
-                        <%--                        <option value="2">Name</option>--%>
-                        <%--                        <option value="3">Team</option>--%>
-                        <%--                        <option value="4">Date</option>--%>
-                        <%--                        <option value="5">Start Time</option>--%>
-                        <%--                        <option value="6">End Time</option>--%>
-                        <%--                        <option value="7">Description</option>--%>
-                        <%--                    </select>--%>
                     <label for="order">Order</label>
                     <select id="order" name="order">
                         <option value="asc">Ascending</option>
